@@ -1,15 +1,28 @@
-package app.inwestycja;
+package app.inwestycje;
 
-public class Iwestycja {
+public class Inwestycja {
+	
+	private String nazwa;
 	private int kosztInwestycji; 
 	private int kosztMiesieczny;
 	
-	public Iwestycja(int kosztInwestycji, int kosztMiesieczny) {
-		super();
+	public Inwestycja() {
+	}
+	
+	public Inwestycja(String nazwa, int kosztInwestycji, int kosztMiesieczny) {
+		this.nazwa = nazwa;
 		this.kosztInwestycji = kosztInwestycji;
 		this.kosztMiesieczny = kosztMiesieczny;
 	}
+	
+	public String getNazwa() {
+		return nazwa;
+	}
 
+	public void setNazwa(String nazwa) {
+		this.nazwa = nazwa;
+	}
+	
 	public int getKosztInwestycji() {
 		return kosztInwestycji;
 	}
@@ -26,5 +39,8 @@ public class Iwestycja {
 		this.kosztMiesieczny = kosztMiesieczny;
 	}
 	
+	public String getOpis() {
+		return "Iwestycja: nazwa = " + nazwa + ", kosztInwestycji = " + kosztInwestycji + ", kosztMiesieczny = " + kosztMiesieczny;
+	}
 
 }

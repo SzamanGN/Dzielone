@@ -2,9 +2,12 @@ package app.okna.popupy;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
@@ -19,24 +22,13 @@ public class DodawanieInwestycji extends JDialog {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			DodawanieInwestycji dialog = new DodawanieInwestycji();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	private JFrame oknoGlowne;
 
 	/**
 	 * Create the dialog.
 	 */
-	public DodawanieInwestycji() {
+	public DodawanieInwestycji(JFrame oknoGlowne) {
+		this.oknoGlowne = oknoGlowne;
 		setBounds(100, 100, 690, 194);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
@@ -68,6 +60,11 @@ public class DodawanieInwestycji extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						zamknijPopup();
+					}
+				});
 			}
 			{
 				JButton cancelButton = new JButton("Anuluj");
@@ -103,6 +100,11 @@ public class DodawanieInwestycji extends JDialog {
 				panel.add(textField_1);
 			}
 		}
+	}
+	
+	private void zamknijPopup() {
+		setVisible(false);
+		oknoGlowne.setVisible(true);
 	}
 
 }

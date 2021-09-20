@@ -1,21 +1,24 @@
 package app.okna;
 
 import java.awt.BorderLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLayeredPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import app.okna.popupy.DodawanieInwestycji;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class OknoGlowne extends JFrame {
+public class OknoGlowne2 extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -26,7 +29,7 @@ public class OknoGlowne extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public OknoGlowne() {
+	public OknoGlowne2() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 705, 474);
 		contentPane = new JPanel();
@@ -101,9 +104,23 @@ public class OknoGlowne extends JFrame {
 		layeredPane.add(lblNewLabel_1);
 		
 		JButton btnNewButton_2 = new JButton("Dodaj Inwestycje");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				pokazPopupDodaniaInwestycji();
+			}
+		});
 		btnNewButton_2.setBounds(355, 11, 142, 23);
 		layeredPane.add(btnNewButton_2);
 		
+		setVisible(true);
+	}
+
+	private void pokazPopupDodaniaInwestycji() {
+		setVisible(false);
+		new DodawanieInwestycji(this);
+	}
+	
+	public void pokazOkno() {
 		setVisible(true);
 	}
 }
