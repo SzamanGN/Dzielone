@@ -15,7 +15,7 @@ public class Inwestycje {
 		wykaz.add(new Inwestycja(nazwa, kosztInwestycji, kosztMiesieczny));
 	}
 	
-	public void add(Inwestycja inwestycja) { /// gotwy obiekt
+	public void add(Inwestycja inwestycja) { /// gotowy obiekt
 		wykaz.add(inwestycja);
 	}
 	
