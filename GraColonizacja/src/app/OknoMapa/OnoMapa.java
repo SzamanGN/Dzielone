@@ -53,7 +53,7 @@ public class OnoMapa extends JFrame {
 		lblNewLabel_4.setBounds(335, 363, 101, 45);
 		layeredPane.add(lblNewLabel_4);
 		
-		JButton btnNewButton = new JButton("Wruc do main");
+		JButton btnNewButton = new JButton("Powrot do main");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
