@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class OnoMapa extends JFrame {
+public class OknoMapa extends JFrame {
 
 	private JPanel contentPane;
 
@@ -21,7 +21,7 @@ public class OnoMapa extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public OnoMapa() {
+	public OknoMapa() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 808, 591);
 		contentPane = new JPanel();

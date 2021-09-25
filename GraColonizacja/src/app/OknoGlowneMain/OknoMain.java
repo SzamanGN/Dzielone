@@ -64,5 +64,7 @@ public class OknoMain extends JFrame {
 		});
 		btnNewButton_3.setBounds(274, 489, 89, 23);
 		layeredPane.add(btnNewButton_3);
+		
+		setVisible(true);
 	}
 }
