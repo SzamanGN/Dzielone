@@ -1,0 +1,25 @@
+Dane gracza:
+v - Obrazek gracza
+v - Stan konta		(rozpoczyna z kwotą 1000C)
+v - Zasiedlone wyspy	(rozpoczyna z ilością zasiedlonych wysp równą 0)
+
+Statek:
+v - Obrazek statku
+v - Stan statku	(W porcie/płynie do portu)
+v - Ładowność		(10 jednostek towarowych jednego towaru)
+v - Cena ładunku	(cena jedostkowa * ilość towaru)
+v - Operacje:
+	* Załadunek;
+	* Rozładunek.
+
+Surowce:
+S1 - Drewno
+S2 - Kamień
+S3 - Żelazo
+S4 - Tytoń
+S5 - Skóra
+
+Wyspa:
+v - Obrazek
+v - Nazwa
+v - 3 x Surowiec	(3 losowe surowce)
