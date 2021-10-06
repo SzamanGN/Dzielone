@@ -63,9 +63,9 @@ public class OknoPulpitGracza extends JFrame {
 		panelDaneGracza.setLayout(null);
 		
 		JLabel lObrazekGracza = new JLabel("");
-		lObrazekGracza.setIcon(new ImageIcon(OknoPulpitGracza.class.getResource("/obrazki/gracz.png")));
+		lObrazekGracza.setIcon(new ImageIcon(OknoPulpitGracza.class.getResource("/obrazki/gracz01.png")));
 		lObrazekGracza.setHorizontalAlignment(SwingConstants.CENTER);
-		lObrazekGracza.setBounds(10, 10, 100, 100);
+		lObrazekGracza.setBounds(10, 10, 100, 94);
 		panelDaneGracza.add(lObrazekGracza);
 		
 		JLabel lStanKonat = new JLabel("Stan konta : 1000000000C");
@@ -93,9 +93,9 @@ public class OknoPulpitGracza extends JFrame {
 		panelStatku.setLayout(null);
 		
 		JLabel lStatek = new JLabel("");
-		lStatek.setIcon(new ImageIcon(OknoPulpitGracza.class.getResource("/obrazki/caravel.jpg")));
+		lStatek.setIcon(new ImageIcon(OknoPulpitGracza.class.getResource("/obrazki/Statek.png")));
 		lStatek.setHorizontalAlignment(SwingConstants.CENTER);
-		lStatek.setBounds(10, 10, 100, 100);
+		lStatek.setBounds(10, 10, 100, 69);
 		panelStatku.add(lStatek);
 		
 		JLabel lStausStatku = new JLabel("Status statku: w porcie A");
@@ -133,7 +133,7 @@ public class OknoPulpitGracza extends JFrame {
 		panelWyspa.setLayout(null);
 		
 		JLabel lWyspa = new JLabel("");
-		lWyspa.setIcon(new ImageIcon(OknoPulpitGracza.class.getResource("/obrazki/wyspa.png")));
+		lWyspa.setIcon(new ImageIcon(OknoPulpitGracza.class.getResource("/obrazki/wyspaSama.png")));
 		lWyspa.setHorizontalAlignment(SwingConstants.CENTER);
 		lWyspa.setBounds(10, 10, 100, 100);
 		panelWyspa.add(lWyspa);
