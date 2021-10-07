@@ -1,8 +1,5 @@
 package gra.okna;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,11 +15,23 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ImageIcon;
 import java.awt.GridLayout;
 import javax.swing.border.LineBorder;
+import gra.komunikaty.ObslugaKomunikatow;
+import gra.okna.panele.PanelDanychGracza;
+import gra.okna.panele.PanelMapy;
+import gra.okna.panele.PanelStatku;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class OknoPulpitGracza extends JFrame {
 
 	private JPanel contentPane;
-
+	private ObslugaKomunikatow komunikaty;
+	private PanelMapy panelMapy;
+	private PanelDanychGracza panelDaneGracza;
+	private PanelStatku panelStatku;
 
 
 	/**
@@ -45,10 +54,12 @@ public class OknoPulpitGracza extends JFrame {
 		lblNewLabel.setBounds(10, 11, 579, 23);
 		contentPane.add(lblNewLabel);
 		
-		JPanel panelMapy = new JPanel();
+		panelMapy = new PanelMapy(this);
 		panelMapy.setBackground(Color.BLUE);
 		panelMapy.setBounds(10, 33, 579, 427);
 		contentPane.add(panelMapy);
+		
+		
 		
 		JLabel lblDaneGracza = new JLabel("Dane gracza");
 		lblDaneGracza.setHorizontalAlignment(SwingConstants.CENTER);
@@ -56,79 +67,28 @@ public class OknoPulpitGracza extends JFrame {
 		lblDaneGracza.setBounds(599, 11, 539, 23);
 		contentPane.add(lblDaneGracza);
 		
-		JPanel panelDaneGracza = new JPanel();
+		panelDaneGracza = new PanelDanychGracza();
 		panelDaneGracza.setBackground(Color.GRAY);
 		panelDaneGracza.setBounds(599, 33, 539, 125);
 		contentPane.add(panelDaneGracza);
-		panelDaneGracza.setLayout(null);
-		
-		JLabel lObrazekGracza = new JLabel("");
-		lObrazekGracza.setIcon(new ImageIcon(OknoPulpitGracza.class.getResource("/obrazki/gracz01.png")));
-		lObrazekGracza.setHorizontalAlignment(SwingConstants.CENTER);
-		lObrazekGracza.setBounds(10, 10, 100, 94);
-		panelDaneGracza.add(lObrazekGracza);
-		
-		JLabel lStanKonat = new JLabel("Stan konta : 1000000000C");
-		lStanKonat.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lStanKonat.setHorizontalAlignment(SwingConstants.CENTER);
-		lStanKonat.setBounds(120, 10, 409, 36);
-		panelDaneGracza.add(lStanKonat);
-		
-		JLabel lZasiedloneWyspy = new JLabel("Zasiedlone wyspy: 0");
-		lZasiedloneWyspy.setHorizontalAlignment(SwingConstants.CENTER);
-		lZasiedloneWyspy.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lZasiedloneWyspy.setBounds(120, 57, 409, 36);
-		panelDaneGracza.add(lZasiedloneWyspy);
-		
+
 		JLabel lblStatek = new JLabel("Statek");
 		lblStatek.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStatek.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblStatek.setBounds(599, 155, 539, 23);
 		contentPane.add(lblStatek);
 		
-		JPanel panelStatku = new JPanel();
-		panelStatku.setBackground(Color.GRAY);
+		// -----------------------
+		
+		panelStatku = new PanelStatku();
 		panelStatku.setBounds(599, 177, 539, 153);
 		contentPane.add(panelStatku);
-		panelStatku.setLayout(null);
-		
-		JLabel lStatek = new JLabel("");
-		lStatek.setIcon(new ImageIcon(OknoPulpitGracza.class.getResource("/obrazki/Statek.png")));
-		lStatek.setHorizontalAlignment(SwingConstants.CENTER);
-		lStatek.setBounds(10, 10, 100, 69);
-		panelStatku.add(lStatek);
-		
-		JLabel lStausStatku = new JLabel("Status statku: w porcie A");
-		lStausStatku.setHorizontalAlignment(SwingConstants.CENTER);
-		lStausStatku.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lStausStatku.setBounds(120, 10, 409, 36);
-		panelStatku.add(lStausStatku);
-		
-		JLabel lLadownosc = new JLabel("Ladownosc: 10");
-		lLadownosc.setHorizontalAlignment(SwingConstants.CENTER);
-		lLadownosc.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lLadownosc.setBounds(120, 41, 409, 36);
-		panelStatku.add(lLadownosc);
-		
-		JLabel lCenaLadunku = new JLabel("Cena ladunku: 15000C");
-		lCenaLadunku.setHorizontalAlignment(SwingConstants.CENTER);
-		lCenaLadunku.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lCenaLadunku.setBounds(120, 74, 409, 36);
-		panelStatku.add(lCenaLadunku);
-		
-		JButton bZaladunek = new JButton("Zaladunek");
-		bZaladunek.setFont(new Font("Tahoma", Font.BOLD, 16));
-		bZaladunek.setBounds(130, 121, 119, 23);
-		panelStatku.add(bZaladunek);
-		
-		JButton bRozladunek = new JButton("Rozladunek");
-		bRozladunek.setFont(new Font("Tahoma", Font.BOLD, 16));
-		bRozladunek.setBounds(259, 121, 143, 23);
-		panelStatku.add(bRozladunek);
+
+		// -----------------------
 		
 		JPanel panelWyspa = new JPanel();
 		panelWyspa.setBackground(Color.GRAY);
-		panelWyspa.setBounds(599, 363, 539, 135);
+		panelWyspa.setBounds(599, 351, 539, 147);
 		contentPane.add(panelWyspa);
 		panelWyspa.setLayout(null);
 		
@@ -146,44 +106,113 @@ public class OknoPulpitGracza extends JFrame {
 		
 		JPanel panelSurowcow = new JPanel();
 		panelSurowcow.setBackground(Color.GRAY);
-		panelSurowcow.setBounds(120, 47, 409, 63);
+		panelSurowcow.setBounds(120, 47, 409, 89);
 		panelWyspa.add(panelSurowcow);
-		panelSurowcow.setLayout(new GridLayout(0, 3, 5, 5));
+		panelSurowcow.setLayout(new GridLayout(2, 3, 5, 5));
 		
-		JLabel lSurowiec0 = new JLabel("<html><center><b>Drzewo</b><br>Ilość: 5<br>Cena: 15C</center></html>");
-		lSurowiec0.setOpaque(true);
-		lSurowiec0.setBackground(Color.YELLOW);
-		lSurowiec0.setForeground(Color.BLACK);
-		lSurowiec0.setBorder(new LineBorder(Color.RED, 2));
-		lSurowiec0.setHorizontalAlignment(SwingConstants.CENTER);
-		lSurowiec0.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panelSurowcow.add(lSurowiec0);
+		JLabel lSurowiecP0 = new JLabel("<html><center><b>Drzewo</b><br>Kup: 15C</center></html>");
+		lSurowiecP0.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		lSurowiecP0.setOpaque(true);
+		lSurowiecP0.setBackground(Color.YELLOW);
+		lSurowiecP0.setForeground(Color.BLACK);
+		lSurowiecP0.setBorder(new LineBorder(Color.RED, 2));
+		lSurowiecP0.setHorizontalAlignment(SwingConstants.CENTER);
+		lSurowiecP0.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panelSurowcow.add(lSurowiecP0);
 		
-		JLabel lSurowiec1 = new JLabel("<html><center><b>Żelazo</b><br>Ilość: 5<br>Cena: 15C</center></html>");
-		lSurowiec1.setOpaque(true);
-		lSurowiec1.setBackground(Color.YELLOW);
-		lSurowiec1.setForeground(Color.BLACK);
-		lSurowiec1.setBorder(new LineBorder(Color.RED, 2));
-		lSurowiec1.setHorizontalAlignment(SwingConstants.CENTER);
-		lSurowiec1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panelSurowcow.add(lSurowiec1);
+		JLabel lSurowiecP1 = new JLabel("<html><center><b>Żelazo</b><br>Kup: 15C</center></html>");
+		lSurowiecP1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		lSurowiecP1.setOpaque(true);
+		lSurowiecP1.setBackground(Color.YELLOW);
+		lSurowiecP1.setForeground(Color.BLACK);
+		lSurowiecP1.setBorder(new LineBorder(Color.RED, 2));
+		lSurowiecP1.setHorizontalAlignment(SwingConstants.CENTER);
+		lSurowiecP1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panelSurowcow.add(lSurowiecP1);
 		
-		JLabel lSurowiec2 = new JLabel("<html><center><b>Skóry</b><br>Ilość: 5<br>Cena: 15C</center></html>");
-		lSurowiec2.setOpaque(true);
-		lSurowiec2.setBackground(Color.YELLOW);
-		lSurowiec2.setForeground(Color.BLACK);
-		lSurowiec2.setBorder(new LineBorder(Color.RED, 2));
-		lSurowiec2.setHorizontalAlignment(SwingConstants.CENTER);
-		lSurowiec2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panelSurowcow.add(lSurowiec2);
+		JLabel lSurowiecP2 = new JLabel("<html><center><b>Skóry</b><br>Kup: 15C</center></html>");
+		lSurowiecP2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		lSurowiecP2.setOpaque(true);
+		lSurowiecP2.setBackground(Color.YELLOW);
+		lSurowiecP2.setForeground(Color.BLACK);
+		lSurowiecP2.setBorder(new LineBorder(Color.RED, 2));
+		lSurowiecP2.setHorizontalAlignment(SwingConstants.CENTER);
+		lSurowiecP2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panelSurowcow.add(lSurowiecP2);
+		
+		JLabel lSurowiecW0 = new JLabel("<html><center><b>Drzewo</b><br>Sprzedaj: 15C</center></html>");
+		lSurowiecW0.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		lSurowiecW0.setOpaque(true);
+		lSurowiecW0.setBackground(Color.GREEN);
+		lSurowiecW0.setForeground(Color.BLACK);
+		lSurowiecW0.setBorder(new LineBorder(Color.RED, 2));
+		lSurowiecW0.setHorizontalAlignment(SwingConstants.CENTER);
+		lSurowiecW0.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panelSurowcow.add(lSurowiecW0);
+		
+		JLabel lSurowiecW1 = new JLabel("<html><center><b>Żelazo</b><br>Sprzedaj: 15C</center></html>");
+		lSurowiecW1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		lSurowiecW1.setOpaque(true);
+		lSurowiecW1.setBackground(Color.GREEN);
+		lSurowiecW1.setForeground(Color.BLACK);
+		lSurowiecW1.setBorder(new LineBorder(Color.RED, 2));
+		lSurowiecW1.setHorizontalAlignment(SwingConstants.CENTER);
+		lSurowiecW1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panelSurowcow.add(lSurowiecW1);
+		
+		JLabel lSurowiecW2 = new JLabel("<html><center><b>Skóry</b><br>Sprzedaj: 15C</center></html>");
+		lSurowiecW2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		lSurowiecW2.setOpaque(true);
+		lSurowiecW2.setBackground(Color.GREEN);
+		lSurowiecW2.setForeground(Color.BLACK);
+		lSurowiecW2.setBorder(new LineBorder(Color.RED, 2));
+		lSurowiecW2.setHorizontalAlignment(SwingConstants.CENTER);
+		lSurowiecW2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panelSurowcow.add(lSurowiecW2);
 		
 		JLabel lblWyspa = new JLabel("Wyspa");
 		lblWyspa.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWyspa.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblWyspa.setBounds(599, 341, 539, 23);
+		lblWyspa.setBounds(599, 327, 539, 23);
 		contentPane.add(lblWyspa);
 		
 		JButton btnNewButton = new JButton("Nowa tura");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//panelMapy.zmianObrazek(2, false);
+				komunikaty.dodaj("Nowa tura!");
+				panelDaneGracza.aktualizacjaOpisuStanuKonta(12345);
+				panelDaneGracza.aktualizacjaOpisuZasiedlenia(7);
+				
+				panelStatku.aktualizacjaStatusu(true, "Alfa");
+				panelStatku.aktualizacjaLadunku(8, "Złoto");
+				panelStatku.aktualizacjaCenyLadunku(156);
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton.setBounds(10, 471, 579, 28);
 		contentPane.add(btnNewButton);
@@ -198,12 +227,19 @@ public class OknoPulpitGracza extends JFrame {
 		scrollPane.setBounds(10, 532, 1128, 216);
 		contentPane.add(scrollPane);
 		
-		JList lKomunikaty = new JList();
+		
+		JList<String> lKomunikaty = new JList<String>();
+		komunikaty = new ObslugaKomunikatow(lKomunikaty);
 		lKomunikaty.setVisibleRowCount(10);
 		lKomunikaty.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(lKomunikaty);
 		
+		komunikaty.dodaj("Witaj w grze!");
 		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+	
+	public void dodajKomunikat(String komunikat) {
+		komunikaty.dodaj(komunikat);
 	}
 }
