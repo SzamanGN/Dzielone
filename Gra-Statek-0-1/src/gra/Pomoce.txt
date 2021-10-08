@@ -13,13 +13,29 @@ v - Operacje:
 	* Rozładunek.
 
 Surowce:
-S1 - Drewno
-S2 - Kamień
-S3 - Żelazo
-S4 - Tytoń
-S5 - Skóra
+P0 - Drewno	Kup 15C
+P1 - Kamień	Kup 15C
+P2 - Żelazo Kup 15C
+W0 - Tytoń	Sprzedaj 15
+W1 - Skóra	Sprzedaj 15
+W2 - Skóra	Sprzedaj 15
 
 Wyspa:
 v - Obrazek
 v - Nazwa
 v - 3 x Surowiec	(3 losowe surowce)
+
+Wyspa:
+- Nazwa
+- Surowce do kupna x 3
+- Surowce do sprzedazy x 3
+
+Rotator surowcow:
+- Kazda wyspa ma 3 x surowiec do kupna;
+- Kazda wyspa ma 3 x surowiec do sprzedazy;
+- Surowce nie moga sie powtarzac.
+
+lWyspa0.setBorder(new LineBorder(Color.RED, 3));
+
+Nowa Tura:
+-

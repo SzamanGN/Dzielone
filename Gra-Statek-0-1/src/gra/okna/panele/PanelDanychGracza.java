@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import gra.narzedzia.Nazwy;
 import gra.okna.OknoPulpitGracza;
 
 import java.awt.Color;
@@ -49,6 +50,6 @@ public class PanelDanychGracza extends JPanel {
 	}
 	
 	public void aktualizacjaOpisuZasiedlenia(int iloscZasiedlonychWysp) {
-		lZasiedloneWyspy.setText("Zasiedlone wyspy: " + iloscZasiedlonychWysp);
+		lZasiedloneWyspy.setText("Zasiedlone wyspy: " + iloscZasiedlonychWysp + " z " + Nazwy.iloscWysp());
 	}
 }

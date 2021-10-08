@@ -15,10 +15,20 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ImageIcon;
 import java.awt.GridLayout;
 import javax.swing.border.LineBorder;
+
+import gra.dane.DaneGracza;
+import gra.dane.Statek;
+import gra.dane.Wyspa;
+import gra.dane.Wyspy;
 import gra.komunikaty.ObslugaKomunikatow;
+import gra.narzedzia.GeneratorLiczb;
+import gra.narzedzia.Nazwy;
 import gra.okna.panele.PanelDanychGracza;
 import gra.okna.panele.PanelMapy;
 import gra.okna.panele.PanelStatku;
+import gra.okna.panele.PanelWyspa;
+import gra.rotatory.RotatorSurowcow;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
@@ -32,7 +42,10 @@ public class OknoPulpitGracza extends JFrame {
 	private PanelMapy panelMapy;
 	private PanelDanychGracza panelDaneGracza;
 	private PanelStatku panelStatku;
-
+	private PanelWyspa panelWyspa;
+	private DaneGracza daneGracza;
+	private Statek statek;
+	private Wyspy wyspy;
 
 	/**
 	 * Create the frame.
@@ -78,121 +91,19 @@ public class OknoPulpitGracza extends JFrame {
 		lblStatek.setBounds(599, 155, 539, 23);
 		contentPane.add(lblStatek);
 		
-		// -----------------------
-		
 		panelStatku = new PanelStatku();
 		panelStatku.setBounds(599, 177, 539, 153);
 		contentPane.add(panelStatku);
 
 		// -----------------------
 		
-		JPanel panelWyspa = new JPanel();
-		panelWyspa.setBackground(Color.GRAY);
+		panelWyspa = new PanelWyspa();
 		panelWyspa.setBounds(599, 351, 539, 147);
 		contentPane.add(panelWyspa);
-		panelWyspa.setLayout(null);
 		
-		JLabel lWyspa = new JLabel("");
-		lWyspa.setIcon(new ImageIcon(OknoPulpitGracza.class.getResource("/obrazki/wyspaSama.png")));
-		lWyspa.setHorizontalAlignment(SwingConstants.CENTER);
-		lWyspa.setBounds(10, 10, 100, 100);
-		panelWyspa.add(lWyspa);
 		
-		JLabel lNazwaWyspy = new JLabel("Wyspa: Nazwa");
-		lNazwaWyspy.setHorizontalAlignment(SwingConstants.CENTER);
-		lNazwaWyspy.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lNazwaWyspy.setBounds(120, 10, 409, 36);
-		panelWyspa.add(lNazwaWyspy);
 		
-		JPanel panelSurowcow = new JPanel();
-		panelSurowcow.setBackground(Color.GRAY);
-		panelSurowcow.setBounds(120, 47, 409, 89);
-		panelWyspa.add(panelSurowcow);
-		panelSurowcow.setLayout(new GridLayout(2, 3, 5, 5));
-		
-		JLabel lSurowiecP0 = new JLabel("<html><center><b>Drzewo</b><br>Kup: 15C</center></html>");
-		lSurowiecP0.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
-		lSurowiecP0.setOpaque(true);
-		lSurowiecP0.setBackground(Color.YELLOW);
-		lSurowiecP0.setForeground(Color.BLACK);
-		lSurowiecP0.setBorder(new LineBorder(Color.RED, 2));
-		lSurowiecP0.setHorizontalAlignment(SwingConstants.CENTER);
-		lSurowiecP0.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panelSurowcow.add(lSurowiecP0);
-		
-		JLabel lSurowiecP1 = new JLabel("<html><center><b>Żelazo</b><br>Kup: 15C</center></html>");
-		lSurowiecP1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
-		lSurowiecP1.setOpaque(true);
-		lSurowiecP1.setBackground(Color.YELLOW);
-		lSurowiecP1.setForeground(Color.BLACK);
-		lSurowiecP1.setBorder(new LineBorder(Color.RED, 2));
-		lSurowiecP1.setHorizontalAlignment(SwingConstants.CENTER);
-		lSurowiecP1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panelSurowcow.add(lSurowiecP1);
-		
-		JLabel lSurowiecP2 = new JLabel("<html><center><b>Skóry</b><br>Kup: 15C</center></html>");
-		lSurowiecP2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
-		lSurowiecP2.setOpaque(true);
-		lSurowiecP2.setBackground(Color.YELLOW);
-		lSurowiecP2.setForeground(Color.BLACK);
-		lSurowiecP2.setBorder(new LineBorder(Color.RED, 2));
-		lSurowiecP2.setHorizontalAlignment(SwingConstants.CENTER);
-		lSurowiecP2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panelSurowcow.add(lSurowiecP2);
-		
-		JLabel lSurowiecW0 = new JLabel("<html><center><b>Drzewo</b><br>Sprzedaj: 15C</center></html>");
-		lSurowiecW0.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
-		lSurowiecW0.setOpaque(true);
-		lSurowiecW0.setBackground(Color.GREEN);
-		lSurowiecW0.setForeground(Color.BLACK);
-		lSurowiecW0.setBorder(new LineBorder(Color.RED, 2));
-		lSurowiecW0.setHorizontalAlignment(SwingConstants.CENTER);
-		lSurowiecW0.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panelSurowcow.add(lSurowiecW0);
-		
-		JLabel lSurowiecW1 = new JLabel("<html><center><b>Żelazo</b><br>Sprzedaj: 15C</center></html>");
-		lSurowiecW1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
-		lSurowiecW1.setOpaque(true);
-		lSurowiecW1.setBackground(Color.GREEN);
-		lSurowiecW1.setForeground(Color.BLACK);
-		lSurowiecW1.setBorder(new LineBorder(Color.RED, 2));
-		lSurowiecW1.setHorizontalAlignment(SwingConstants.CENTER);
-		lSurowiecW1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panelSurowcow.add(lSurowiecW1);
-		
-		JLabel lSurowiecW2 = new JLabel("<html><center><b>Skóry</b><br>Sprzedaj: 15C</center></html>");
-		lSurowiecW2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
-		lSurowiecW2.setOpaque(true);
-		lSurowiecW2.setBackground(Color.GREEN);
-		lSurowiecW2.setForeground(Color.BLACK);
-		lSurowiecW2.setBorder(new LineBorder(Color.RED, 2));
-		lSurowiecW2.setHorizontalAlignment(SwingConstants.CENTER);
-		lSurowiecW2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panelSurowcow.add(lSurowiecW2);
+		// -----------------------
 		
 		JLabel lblWyspa = new JLabel("Wyspa");
 		lblWyspa.setHorizontalAlignment(SwingConstants.CENTER);
@@ -203,14 +114,32 @@ public class OknoPulpitGracza extends JFrame {
 		JButton btnNewButton = new JButton("Nowa tura");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//panelMapy.zmianObrazek(2, false);
-				komunikaty.dodaj("Nowa tura!");
+				dodajKomunikat("Nowa tura!");
+				/*
+				panelMapy.zmianObrazek(2, false);
+				
 				panelDaneGracza.aktualizacjaOpisuStanuKonta(12345);
 				panelDaneGracza.aktualizacjaOpisuZasiedlenia(7);
 				
 				panelStatku.aktualizacjaStatusu(true, "Alfa");
 				panelStatku.aktualizacjaLadunku(8, "Złoto");
 				panelStatku.aktualizacjaCenyLadunku(156);
+				
+
+				panelWyspa.aktualizacjaNazwy(2);
+				dodajKomunikat("Wybrano wyspę " + Nazwy.wyspa(2));
+				
+				RotatorSurowcow rs = new RotatorSurowcow();
+				
+				panelWyspa.aktualizacjaOpisuKupnaSurowca(0, rs.pobierz(), (5 + GeneratorLiczb.losowa(10)));
+				panelWyspa.aktualizacjaOpisuKupnaSurowca(1, rs.pobierz(), (5 + GeneratorLiczb.losowa(10)));
+				panelWyspa.aktualizacjaOpisuKupnaSurowca(2, rs.pobierz(), (5 + GeneratorLiczb.losowa(10)));
+				dodajKomunikat("Zaktualizowano ceny kupna surowcow.");
+				panelWyspa.aktualizacjaOpisuSprzedazySurowca(0, rs.pobierz(), (5 + GeneratorLiczb.losowa(10)));
+				panelWyspa.aktualizacjaOpisuSprzedazySurowca(1, rs.pobierz(), (5 + GeneratorLiczb.losowa(10)));
+				panelWyspa.aktualizacjaOpisuSprzedazySurowca(2, rs.pobierz(), (5 + GeneratorLiczb.losowa(10)));
+				dodajKomunikat("Zaktualizowano ceny sprzedazy surowcow.");
+				 */
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -234,9 +163,29 @@ public class OknoPulpitGracza extends JFrame {
 		lKomunikaty.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(lKomunikaty);
 		
+		inicjowanieDanychGry();
+		
 		komunikaty.dodaj("Witaj w grze!");
 		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+	
+	private void inicjowanieDanychGry() {
+		daneGracza = new DaneGracza();
+		panelDaneGracza.aktualizacjaOpisuStanuKonta(daneGracza.getStanKonta());
+		panelDaneGracza.aktualizacjaOpisuZasiedlenia(daneGracza.getZasiedloneWyspy());
+		
+		statek = new Statek(true, 2, 15, 8, 0, 1234);
+		panelStatku.aktualizacjaStatusu(statek.isPlynie(), statek.getWyspa());
+		panelStatku.aktualizacjaLadunku(statek.getPojemnosc(), statek.getIloscTowaru(), statek.getNazwaTowaru());
+		panelStatku.aktualizacjaCenyLadunku(statek.getCenaTowaru());
+		
+		wyspy = new Wyspy();
+		pokazWyspe(0);
+	}
+
+	public void pokazWyspe(int indeks) {
+		panelWyspa.pokazDane(wyspy.get(indeks));
 	}
 	
 	public void dodajKomunikat(String komunikat) {

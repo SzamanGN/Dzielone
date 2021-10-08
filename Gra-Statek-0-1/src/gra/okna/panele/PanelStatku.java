@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import gra.narzedzia.Nazwy;
 import gra.okna.OknoPulpitGracza;
 
 import java.awt.Color;
@@ -61,23 +62,23 @@ public class PanelStatku extends JPanel {
 		add(bRozladunek);
 	}
 
-	public void aktualizacjaStatusu(boolean plynie, String nazwaWyspy) {
+	public void aktualizacjaStatusu(boolean plynie, int ideksWyspy) {
 		String opis = "Status statku: ";
 		if (plynie) {
 			opis += "płynie do wyspy";
 		} else {
 			opis += "znajduje się w porcie wyspy";
 		}
-		opis += " " + nazwaWyspy;
+		opis += " " + Nazwy.wyspa(ideksWyspy);
 		lStausStatku.setText(opis);
 	}
 	
-	public void aktualizacjaLadunku(int iloscTowaru, String rodzajTowaru) {
-		String opis = "Ladunek (10): ";
+	public void aktualizacjaLadunku(int pojemnosc, int iloscTowaru, int rodzajTowaru) {
+		String opis = "Ladunek (max " + pojemnosc + "): ";
 		if (iloscTowaru == 0) {
 			opis += "pusta ladownia";
 		} else {
-			opis += iloscTowaru + " x " + rodzajTowaru;
+			opis += iloscTowaru + " x " + Nazwy.surowiec(rodzajTowaru);
 		}
 		lLadunek.setText(opis);
 	}
