@@ -3,7 +3,7 @@ package gra.narzedzia;
 public class Nazwy {
 
 	private static String[] wyspy = {"Alfa", "Brawo", "Czarli"};
-	private static String[] surowce = {"Zloto", "Kamien", "Drewno", "Skora", "Tyton", "Bawelna", "Papirus", "Srebro"};
+	private static String[] surowce = {"Zloto", "Kamien", "Drewno", "Skora", "Tyton", "Bawelna"}; //, "Papirus", "Srebro"
 	
 	public static int iloscWysp() {
 		return wyspy.length;

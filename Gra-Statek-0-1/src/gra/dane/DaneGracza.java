@@ -26,4 +26,15 @@ public class DaneGracza {
 		return zasiedloneWyspy;
 	}
 	
+	public boolean zakup(int wartosc) {
+		if (wartosc <= stanKonta) {
+			stanKonta -= wartosc;
+			return true;
+		}
+		return false;
+	}
+	
+	public void sprzedaz(int wartosc) {
+		stanKonta += wartosc;
+	}
 }

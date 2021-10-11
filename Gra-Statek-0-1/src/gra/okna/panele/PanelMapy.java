@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import gra.narzedzia.Nazwy;
 import gra.okna.OknoPulpitGracza;
 
 import java.awt.Color;
@@ -35,7 +36,7 @@ public class PanelMapy extends JPanel {
 		lWyspa0.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				pulpit.dodajKomunikat("Wybrano wyspę o indeksie 0.");
+				pulpit.dodajKomunikat("Wybrano wyspę " + Nazwy.wyspa(0));
 				usunRamki();
 				lWyspa0.setBorder(new LineBorder(Color.RED, 3));
 				pulpit.pokazWyspe(0);
@@ -50,7 +51,7 @@ public class PanelMapy extends JPanel {
 		lWyspa1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				pulpit.dodajKomunikat("Wybrano wyspę o indeksie 1.");
+				pulpit.dodajKomunikat("Wybrano wyspę " + Nazwy.wyspa(1));
 				usunRamki();
 				lWyspa1.setBorder(new LineBorder(Color.RED, 3));
 				pulpit.pokazWyspe(1);
@@ -65,13 +66,13 @@ public class PanelMapy extends JPanel {
 		lWyspa2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				pulpit.dodajKomunikat("Wybrano wyspę o indeksie 2.");
+				pulpit.dodajKomunikat("Wybrano wyspę " + Nazwy.wyspa(2));
 				usunRamki();
 				lWyspa2.setBorder(new LineBorder(Color.RED, 3));
 				pulpit.pokazWyspe(2);
 			}
 		});
-		lWyspa2.setIcon(new ImageIcon(OknoPulpitGracza.class.getResource("/obrazki/wyspaSamaPort.png")));
+		lWyspa2.setIcon(new ImageIcon(OknoPulpitGracza.class.getResource("/obrazki/wyspaSama.png")));
 		lWyspa2.setHorizontalAlignment(SwingConstants.CENTER);
 		lWyspa2.setBounds(236, 289, 100, 100);
 		add(lWyspa2);

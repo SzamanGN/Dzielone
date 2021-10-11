@@ -3,6 +3,7 @@ package gra.dane;
 public class Statek {
 
 	private boolean plynie;
+	private int iloscTur;
 	private int wyspa;
 	private int pojemnosc;
 	private int iloscTowaru;
@@ -42,6 +43,10 @@ public class Statek {
 		return (iloscTowaru > 0);
 	}
 	
+	public boolean isPelnaLadownia() {
+		return (iloscTowaru == pojemnosc);
+	}
+	
 	public int getIloscTowaru() {
 		return iloscTowaru;
 	}
@@ -54,5 +59,25 @@ public class Statek {
 		return cenaTowaru;
 	}
 	
+	public void plynDo(int indeksWyspy, int iloscTur) {
+		plynie = true;
+		wyspa = indeksWyspy;
+		this.iloscTur = iloscTur;
+	}
 	
+	public void rejsTurowy() {
+		iloscTur -= 1;
+		if (iloscTur == 0) {
+			plynie = false;
+		}
+	}
+	
+	public void zaladunek(int indeksTowaru) {
+		nazwaTowaru = indeksTowaru;
+		iloscTowaru += 1;
+	}
+	
+	public void rozladunek() {
+		iloscTowaru -= 1;
+	}
 }

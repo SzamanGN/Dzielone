@@ -22,11 +22,13 @@ import java.awt.Color;
 public class PanelWyspa extends JPanel {
 
 	private JLabel lNazwaWyspy, lSurowiecP0, lSurowiecP1, lSurowiecP2, lSurowiecW0, lSurowiecW1, lSurowiecW2;
+	private OknoPulpitGracza pulpit;
 	
 	/**
 	 * Create the panel.
 	 */
-	public PanelWyspa() {
+	public PanelWyspa(OknoPulpitGracza pulpit) {
+		this.pulpit = pulpit;
 		setBackground(Color.GRAY);
 		setPreferredSize(new Dimension(539, 147));
 		setLayout(null);
@@ -53,6 +55,7 @@ public class PanelWyspa extends JPanel {
 		lSurowiecP0.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				pulpit.tranzakcja(true, 0);
 			}
 		});
 		lSurowiecP0.setOpaque(true);
@@ -67,6 +70,7 @@ public class PanelWyspa extends JPanel {
 		lSurowiecP1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				pulpit.tranzakcja(true, 1);
 			}
 		});
 		lSurowiecP1.setOpaque(true);
@@ -81,6 +85,7 @@ public class PanelWyspa extends JPanel {
 		lSurowiecP2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				pulpit.tranzakcja(true, 2);
 			}
 		});
 		lSurowiecP2.setOpaque(true);
@@ -95,6 +100,7 @@ public class PanelWyspa extends JPanel {
 		lSurowiecW0.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				pulpit.tranzakcja(false, 0);
 			}
 		});
 		lSurowiecW0.setOpaque(true);
@@ -109,6 +115,7 @@ public class PanelWyspa extends JPanel {
 		lSurowiecW1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				pulpit.tranzakcja(false, 1);
 			}
 		});
 		lSurowiecW1.setOpaque(true);
@@ -123,6 +130,7 @@ public class PanelWyspa extends JPanel {
 		lSurowiecW2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				pulpit.tranzakcja(false, 2);
 			}
 		});
 		lSurowiecW2.setOpaque(true);

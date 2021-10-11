@@ -38,4 +38,9 @@ Rotator surowcow:
 lWyspa0.setBorder(new LineBorder(Color.RED, 3));
 
 Nowa Tura:
--
+-zmiana cen surowcow:
+	* Losowa zmiana kazdej ceny surowca;
+	* Warunkowa zmiana cena;
+	* Cena nie moze byc nizsza niz 5;
+	* Cena nie moze byc wyzsza niz 25;
+-sprwdza polozenie statku

@@ -46,6 +46,8 @@ public class OknoPulpitGracza extends JFrame {
 	private DaneGracza daneGracza;
 	private Statek statek;
 	private Wyspy wyspy;
+	private int wybranaWyspa;
+	private JButton bPlynDoWyspy;
 
 	/**
 	 * Create the frame.
@@ -97,7 +99,7 @@ public class OknoPulpitGracza extends JFrame {
 
 		// -----------------------
 		
-		panelWyspa = new PanelWyspa();
+		panelWyspa = new PanelWyspa(this);
 		panelWyspa.setBounds(599, 351, 539, 147);
 		contentPane.add(panelWyspa);
 		
@@ -140,10 +142,19 @@ public class OknoPulpitGracza extends JFrame {
 				panelWyspa.aktualizacjaOpisuSprzedazySurowca(2, rs.pobierz(), (5 + GeneratorLiczb.losowa(10)));
 				dodajKomunikat("Zaktualizowano ceny sprzedazy surowcow.");
 				 */
+				
+				//Nowa tura
+				
+				//Aktualizacja cen surowcow:
+				aktualizacjaCenSurowcow();
+				
+				//Aktualizacja polozenia statku:
+				aktualizacjaPolozeniaStatku();
+				
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnNewButton.setBounds(10, 471, 579, 28);
+		btnNewButton.setBounds(10, 471, 198, 28);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblKomunikat = new JLabel("Komunikaty");
@@ -163,6 +174,19 @@ public class OknoPulpitGracza extends JFrame {
 		lKomunikaty.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(lKomunikaty);
 		
+		bPlynDoWyspy = new JButton("Plyn do wyspy ");
+		bPlynDoWyspy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				statek.plynDo(wybranaWyspa, 2);
+				bPlynDoWyspy.setEnabled(false);
+				panelStatku.aktualizacjaStatusu(statek.isPlynie(), statek.getWyspa());
+				dodajKomunikat("Wybrano rejs do wyspy " + Nazwy.wyspa(wybranaWyspa));
+			}
+		});
+		bPlynDoWyspy.setFont(new Font("Tahoma", Font.BOLD, 16));
+		bPlynDoWyspy.setBounds(218, 470, 371, 28);
+		contentPane.add(bPlynDoWyspy);
+		
 		inicjowanieDanychGry();
 		
 		komunikaty.dodaj("Witaj w grze!");
@@ -175,7 +199,7 @@ public class OknoPulpitGracza extends JFrame {
 		panelDaneGracza.aktualizacjaOpisuStanuKonta(daneGracza.getStanKonta());
 		panelDaneGracza.aktualizacjaOpisuZasiedlenia(daneGracza.getZasiedloneWyspy());
 		
-		statek = new Statek(true, 2, 15, 8, 0, 1234);
+		statek = new Statek(0);
 		panelStatku.aktualizacjaStatusu(statek.isPlynie(), statek.getWyspa());
 		panelStatku.aktualizacjaLadunku(statek.getPojemnosc(), statek.getIloscTowaru(), statek.getNazwaTowaru());
 		panelStatku.aktualizacjaCenyLadunku(statek.getCenaTowaru());
@@ -185,10 +209,97 @@ public class OknoPulpitGracza extends JFrame {
 	}
 
 	public void pokazWyspe(int indeks) {
-		panelWyspa.pokazDane(wyspy.get(indeks));
+		wybranaWyspa = indeks;
+		panelWyspa.pokazDane(wyspy.get(wybranaWyspa));
+		if (wybranaWyspa == statek.getWyspa() || statek.isPlynie()) {
+			bPlynDoWyspy.setEnabled(false);
+		} else {
+			bPlynDoWyspy.setText("Plyn do wyspy " + Nazwy.wyspa(wybranaWyspa));
+			bPlynDoWyspy.setEnabled(true);
+		}
 	}
 	
 	public void dodajKomunikat(String komunikat) {
 		komunikaty.dodaj(komunikat);
+	}
+	
+	private void aktualizacjaCenSurowcow() {
+		String zmianyCen;
+		Wyspa aw;
+		for (int w = 0; w < Nazwy.iloscWysp(); w++) {
+			zmianyCen = "";
+			aw = wyspy.get(w);
+			for (int i = 0; i < 3; i++) {
+				if (aw.aktualizacjaCenySurowcaDoKupna(i, GeneratorLiczb.deltaCeny())) {
+					zmianyCen += Nazwy.wyspa(w) + ": " + Nazwy.surowiec(aw.getNazwaSurowcaDoKupna(i)) + " nowa cena " + aw.getCenaSurowcaDOKupna(i) + " | "; 
+				}
+				if (aw.aktualizacjaCenySurowcaDoSprzedazy(i, GeneratorLiczb.deltaCeny())) {
+					zmianyCen += Nazwy.wyspa(w) + ": " + Nazwy.surowiec(aw.getNazwaSurowcaDoSprzedazy(i)) + " nowa cena " + aw.getCenaSurowcaDoSprzedazy(i) + " | ";
+				}
+			}
+			dodajKomunikat(zmianyCen);
+			//
+		}
+		pokazWyspe(wybranaWyspa);
+	}
+	
+	private void aktualizacjaPolozeniaStatku() {
+		//Plyniecie statku
+		if (statek.isPlynie()) {
+			statek.rejsTurowy();
+			if (statek.isPlynie()) {
+				dodajKomunikat("Statek plynie do wyspy " + Nazwy.wyspa(statek.getWyspa()));
+			} else {
+				dodajKomunikat("Statek doplynal do wyspy " + Nazwy.wyspa(statek.getWyspa()));
+				panelStatku.aktualizacjaStatusu(statek.isPlynie(), statek.getWyspa());
+				pokazWyspe(statek.getWyspa());
+			}
+		}
+	}
+	
+	public void tranzakcja(boolean kupno, int indeksSurowca) {
+		//Czy statek jest w prawidlowym porcie:
+		int surowiec;
+		if (wybranaWyspa == statek.getWyspa()) {
+			if (kupno) {
+				//Kupowanie
+				if (statek.isTowar()) {
+					surowiec = statek.getNazwaTowaru();
+				} else {
+					surowiec = -1;
+				}
+				if (!statek.isPelnaLadownia()) {
+					if (wyspy.get(wybranaWyspa).getNazwaSurowcaDoKupna(indeksSurowca) == surowiec || surowiec == -1) {
+						surowiec = wyspy.get(wybranaWyspa).getNazwaSurowcaDoKupna(indeksSurowca);
+						if (daneGracza.zakup(wyspy.get(wybranaWyspa).getCenaSurowcaDOKupna(indeksSurowca))) {
+							//Kupiono
+							panelDaneGracza.aktualizacjaOpisuStanuKonta(daneGracza.getStanKonta());
+							statek.zaladunek(surowiec);
+							panelStatku.aktualizacjaLadunku(statek.getPojemnosc(), statek.getIloscTowaru(), statek.getNazwaTowaru());
+							dodajKomunikat("Kupiono " + Nazwy.surowiec(surowiec) + " na wyspie " + Nazwy.wyspa(wybranaWyspa));
+						} else {
+							//Nie mozna kupic.
+							dodajKomunikat("Nie masz zasobow do kupna surowcow!");
+						}
+					}
+				} else {
+					dodajKomunikat("Ladownia jest pelna!");
+				}
+			} else {
+				//Sprzedaz
+				if (statek.isTowar()) {
+					surowiec = statek.getNazwaTowaru();
+					if (wyspy.get(wybranaWyspa).getNazwaSurowcaDoSprzedazy(indeksSurowca) == surowiec) {
+						daneGracza.sprzedaz(wyspy.get(wybranaWyspa).getCenaSurowcaDoSprzedazy(indeksSurowca));
+						panelDaneGracza.aktualizacjaOpisuStanuKonta(daneGracza.getStanKonta());
+						statek.rozladunek();
+						panelStatku.aktualizacjaLadunku(statek.getPojemnosc(), statek.getIloscTowaru(), statek.getNazwaTowaru());
+						dodajKomunikat("Sprzedano " + Nazwy.surowiec(surowiec) + " na wyspie "  + Nazwy.wyspa(wybranaWyspa));
+					}
+				} else {
+					dodajKomunikat("Ladownia jest pusta!");
+				}
+			}
+		}
 	}
 }

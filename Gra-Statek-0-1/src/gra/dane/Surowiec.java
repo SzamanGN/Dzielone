@@ -26,4 +26,17 @@ public class Surowiec {
 		return cena;
 	}
 	
+	public boolean aktualizacjaCeny(int delta) {
+		boolean status = false;
+		if (delta != 0) {
+			if (delta < 0 && cena > 5) {
+				cena -= 1;
+				status = true;
+			} else  if (delta > 0 && cena < 25) {
+				cena += 1;
+				status = true;
+			}
+		}
+		return status;
+	}
 }

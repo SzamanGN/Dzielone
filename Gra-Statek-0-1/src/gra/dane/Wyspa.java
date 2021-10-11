@@ -47,4 +47,12 @@ public class Wyspa {
 	public int getCenaSurowcaDoSprzedazy(int indeks) {
 		return surowceDoSprzedazy[indeks].getCena();
 	}
+	
+	public boolean aktualizacjaCenySurowcaDoKupna(int indeks, int delta) {
+		return surowceDoKupna[indeks].aktualizacjaCeny(delta);
+	}
+	
+	public boolean aktualizacjaCenySurowcaDoSprzedazy(int indeks, int delta) {
+		return surowceDoSprzedazy[indeks].aktualizacjaCeny(delta);
+	}
 }
