@@ -1,14 +1,12 @@
-package app.inputs;
+package inputs;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import javax.swing.event.MouseInputListener;
+import main.GamePanel;
 
-import app.panele.GamePanel;
-
-public class MouseInputs implements MouseInputListener,MouseMotionListener{
-
+public class MouseInputs implements MouseListener, MouseMotionListener {
 
 	private GamePanel gamePanel;
 
@@ -56,4 +54,5 @@ public class MouseInputs implements MouseInputListener,MouseMotionListener{
 	public void mouseExited(MouseEvent e) {
 
 	}
+
 }

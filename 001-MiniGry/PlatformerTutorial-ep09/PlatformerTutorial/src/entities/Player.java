@@ -1,14 +1,14 @@
-package app.entities;
+package entities;
 
+import static utilz.Constants.PlayerConstants.*;
+import static utilz.HelpMethods.CanMoveHere;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import static app.utliz.Constans.PlayerConstants;
-import static app.utliz.HelpMethods.CanMoveHere;
-import app.game.Game;
-import app.utliz.LoadSave;
+
+import main.Game;
+import utilz.LoadSave;
 
 public class Player extends Entity {
-
 	private BufferedImage[][] animations;
 	private int aniTick, aniIndex, aniSpeed = 25;
 	private int playerAction = IDLE;

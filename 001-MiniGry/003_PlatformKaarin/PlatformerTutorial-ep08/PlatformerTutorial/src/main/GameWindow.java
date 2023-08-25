@@ -1,16 +1,11 @@
-package app.okna;
+package main;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
 import javax.swing.JFrame;
-import javax.swing.border.EmptyBorder;
 
-import app.panele.GamePanel;
-import java.awt.Frame;
-
-public class GameWindow extends JFrame {
-
+public class GameWindow {
 	private JFrame jframe;
 
 	public GameWindow(GamePanel gamePanel) {
