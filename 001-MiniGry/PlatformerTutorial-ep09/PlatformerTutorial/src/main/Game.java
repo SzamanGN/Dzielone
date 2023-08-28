@@ -21,7 +21,7 @@ public class Game implements Runnable {
 
 
 	public final static int TILES_DEFAULT_SIZE = 32;
-	public final static float SCALE = 1f;
+	public final static float SCALE = 1.5f;
 	public final static int TILES_IN_WIDTH = 26;
 	public final static int TILES_IN_HEIGHT = 14;
 	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
@@ -80,7 +80,10 @@ public class Game implements Runnable {
 //			levelManager.draw(g);
 //			player.render(g);
 			break;
+		case OPTIONS:
+		case QUIT:
 		default:
+			System.exit(0);
 			break;
 		}
 	}
