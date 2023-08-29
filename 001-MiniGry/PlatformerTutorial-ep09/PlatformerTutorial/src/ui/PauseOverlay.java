@@ -15,7 +15,7 @@ public class PauseOverlay {
 	private BufferedImage backgroudImg;
 	private int bgX, bgY, bgW, bgH;
 	private SoundButton musicButtton, sfxButton;
-	private URMButtons menuB, replayB, unpauseB; 
+	private UrmButton menuB, replayB, unpauseB; 
 
 	public PauseOverlay() {
 		loadBcakground();
@@ -29,7 +29,9 @@ public class PauseOverlay {
 		int unpausX = (int) (462 * Game.SCALE);
 		int bY = (int) (325 * Game.SCALE);
 		
-		menuB = new URMButtons(menuX, bY, URM_SIZE, URM_SIZE, 2);
+		menuB = new UrmButton(menuX, bY, URM_SIZE, URM_SIZE, 2);
+		replayB = new UrmButton(replayX, bY, URM_SIZE, URM_SIZE, 1);
+		unpauseB = new UrmButton(unpausX, bY, URM_SIZE, URM_SIZE, 0);
 		// yt 10 37
 		
 	
@@ -54,6 +56,10 @@ public class PauseOverlay {
 	public void upDate() {
 		musicButtton.upDate();
 		sfxButton.upDate();
+		
+		menuB.update();
+		replayB.update();
+		unpauseB.update();
 	}
 
 	public void draw(Graphics g) {
@@ -63,6 +69,11 @@ public class PauseOverlay {
 		// soundButtons
 		musicButtton.draw(g);
 		sfxButton.draw(g);
+		
+		//unb buttons
+		menuB.draw(g);
+		replayB.draw(g);
+		unpauseB.draw(g);
 	}
 
 	public void mouseDrag(MouseEvent e) {
