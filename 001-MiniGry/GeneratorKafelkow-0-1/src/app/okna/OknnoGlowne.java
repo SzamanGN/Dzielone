@@ -6,7 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import app.modeleList.ModelListyKolorow;
 import app.okna.panele.PanelEdytoraKafelka;
+import app.renderery.RendererKolorow;
 
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
@@ -19,12 +21,15 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class OknnoGlowne extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tfNazwaPliku;
 	private PanelEdytoraKafelka panelEdytoraKafelka;
+	private int kolorTuszu;
 
 
 	public OknnoGlowne() {
@@ -74,7 +79,16 @@ public class OknnoGlowne extends JFrame {
 		lblKolory.setFont(new Font("Tahoma", Font.BOLD, 16));
 		spKolory.setColumnHeaderView(lblKolory);
 		
-		JList lKolory = new JList();
+		JList<Integer> lKolory = new JList<Integer>();
+		lKolory.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ustawKolorTuszu(lKolory.getSelectedIndex());
+			}
+		});
+		new ModelListyKolorow(lKolory);
+		lKolory.setCellRenderer(new RendererKolorow());
+		lKolory.setSelectedIndex(1);
 		lKolory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		lKolory.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		spKolory.setViewportView(lKolory);
@@ -87,7 +101,22 @@ public class OknnoGlowne extends JFrame {
 		panelEdytoraKafelka.setPreferredSize(new Dimension(320, 320));
 		panelGlowny.add(panelEdytoraKafelka);
 		setLocationRelativeTo(null);
+		
+		// incjowanie danych
+		incjowanieDanych();
+		
 		setVisible(true);
+	}
+
+
+	private void ustawKolorTuszu(int selectedIndex) {
+		kolorTuszu = selectedIndex;
+		panelEdytoraKafelka.ustawKolorTuszu(kolorTuszu);
+	}
+
+
+	private void incjowanieDanych() {
+		kolorTuszu = 1;
 	}
 
 }

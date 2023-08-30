@@ -1,6 +1,9 @@
 package app.okna.panele;
 
 import javax.swing.JPanel;
+
+import app.pomoce.Kolor;
+
 import java.awt.event.MouseMotionAdapter;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -11,6 +14,7 @@ public class PanelEdytoraKafelka extends JPanel {
 	
 	private Point piksel;
 	private int rozmiar;
+	private int kolorTuszu;
 
 	public PanelEdytoraKafelka() {
 		setBackground(new Color(0, 0, 0));
@@ -24,6 +28,7 @@ public class PanelEdytoraKafelka extends JPanel {
 		});
 		piksel = new Point(0, 0);
 		rozmiar = 10;
+		kolorTuszu = 1;
 	}
 
 	@Override
@@ -31,13 +36,19 @@ public class PanelEdytoraKafelka extends JPanel {
 		super.paintComponent(g);
 		
 		// zaznaczanie piksela
-		g.setColor(Color.WHITE);
-		g.drawRect(
+		g.setColor(Kolor.get(kolorTuszu));
+		g.fillRect(
 				piksel.x * rozmiar, 
 				piksel.y * rozmiar, 
 				rozmiar, 
 				rozmiar);
 	}
+
+	public void ustawKolorTuszu(int kolorTuszu) {
+		this.kolorTuszu = kolorTuszu;
+		repaint();
+	}
+	
 	
 
 }

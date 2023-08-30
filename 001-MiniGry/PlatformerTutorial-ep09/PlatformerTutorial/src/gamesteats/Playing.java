@@ -24,7 +24,7 @@ public class Playing extends State implements Statemethods{
 		levelManager = new LevelManager(game);
 		player = new Player(200, 200, (int)(64 * Game.SCALE), (int)(40 * Game.SCALE));
 		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
-		pauseOverlay = new PauseOverlay();
+		pauseOverlay = new PauseOverlay(this);
 
 	}
 	
@@ -42,7 +42,10 @@ public class Playing extends State implements Statemethods{
 	public void draw(Graphics g) {
 		levelManager.draw(g);
 		player.render(g);
-		pauseOverlay.draw(g);
+		if(pause) {
+			pauseOverlay.draw(g);
+			System.out.println("odrywoano pauseOverlay");
+		}
 	}
 
 	@Override
@@ -116,6 +119,9 @@ public class Playing extends State implements Statemethods{
 			break;
 		}
 		
+	}
+	public void unpauseGame() {
+		pause = false;
 	}
 	
 	public void windowFocusLost() {
