@@ -64,6 +64,5 @@ public class UrmButton extends PauseButton{
 		this.mousePressed = mousePressed;
 		
 	}
-	
-	
+
 }

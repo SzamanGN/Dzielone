@@ -6,8 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import app.modele.Kafelek;
 import app.modeleList.ModelListyKolorow;
 import app.okna.panele.PanelEdytoraKafelka;
+import app.popup.PoupInformacja;
 import app.renderery.RendererKolorow;
 
 import java.awt.BorderLayout;
@@ -16,6 +18,8 @@ import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -23,6 +27,10 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class OknnoGlowne extends JFrame {
 
@@ -30,6 +38,8 @@ public class OknnoGlowne extends JFrame {
 	private JTextField tfNazwaPliku;
 	private PanelEdytoraKafelka panelEdytoraKafelka;
 	private int kolorTuszu;
+	private Kafelek kafelek;
+	private JLabel eKafelek;
 
 
 	public OknnoGlowne() {
@@ -50,7 +60,7 @@ public class OknnoGlowne extends JFrame {
 		lblNewLabe.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panelFormulrza.add(lblNewLabe);
 		
-		JLabel eKafelek = new JLabel("");
+		eKafelek = new JLabel("");
 		eKafelek.setOpaque(true);
 		eKafelek.setBackground(new Color(128, 255, 128));
 		eKafelek.setPreferredSize(new Dimension(32, 32));
@@ -68,6 +78,11 @@ public class OknnoGlowne extends JFrame {
 		tfNazwaPliku.setColumns(10);
 		
 		JButton bZapisz = new JButton("Zapisz");
+		bZapisz.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				zapiszObrazek();
+			}
+		});
 		bZapisz.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panelFormulrza.add(bZapisz);
 		
@@ -98,6 +113,15 @@ public class OknnoGlowne extends JFrame {
 		contentPane.add(panelGlowny, BorderLayout.CENTER);
 		
 		panelEdytoraKafelka = new PanelEdytoraKafelka();
+		panelEdytoraKafelka.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ustawPixel(
+						e.getX() / 10,
+						e.getY() / 10
+						);
+			}
+		});
 		panelEdytoraKafelka.setPreferredSize(new Dimension(320, 320));
 		panelGlowny.add(panelEdytoraKafelka);
 		setLocationRelativeTo(null);
@@ -109,6 +133,17 @@ public class OknnoGlowne extends JFrame {
 	}
 
 
+	private  void ustawPixel(int x, int y) {
+		System.out.println(
+				String.format(
+						"Ustaw piksel: x = %d, y = %d",
+						x, y)
+				);
+		kafelek.setPixel(x, y, kolorTuszu);
+		panelEdytoraKafelka.setPixel(x, y, kolorTuszu);
+	}
+
+
 	private void ustawKolorTuszu(int selectedIndex) {
 		kolorTuszu = selectedIndex;
 		panelEdytoraKafelka.ustawKolorTuszu(kolorTuszu);
@@ -117,6 +152,26 @@ public class OknnoGlowne extends JFrame {
 
 	private void incjowanieDanych() {
 		kolorTuszu = 1;
+		kafelek = new Kafelek(32, 32, 1);
+		pokazKafelek();
+	}
+	
+	public void pokazKafelek() {
+		eKafelek.setIcon(new ImageIcon(kafelek.get()));
+	}
+	
+	private void zapiszObrazek() {
+		String nazwaPliku = tfNazwaPliku.getText();
+		try {
+			ImageIO.write(
+					kafelek.get(),
+					"png", 
+					new File(nazwaPliku + ".png")
+					);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		new PoupInformacja(); 
 	}
 
 }

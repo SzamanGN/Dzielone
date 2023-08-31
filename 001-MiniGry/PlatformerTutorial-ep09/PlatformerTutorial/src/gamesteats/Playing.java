@@ -8,12 +8,20 @@ import entities.Player;
 import levels.LevelManager;
 import main.Game;
 import ui.PauseOverlay;
+import utilz.LoadSave;
 
 public class Playing extends State implements Statemethods{
 	private Player player;
 	private LevelManager levelManager;
 	private PauseOverlay pauseOverlay;
-	private boolean pause = true;
+	private boolean pause = false;
+	
+	private int xLevelOffset;
+	private int leftBorder = (int) (0.2 * Game.GAME_WIDTH);
+	private int rightBorder = (int) (0.2 * Game.GAME_WIDTH);
+	private int lvlTilesWidght = LoadSave.GetLevelData()[0].length;
+	private int maxTilesOffset = lvlTilesWidght - Game.TILES_IN_WIDTH;
+	private int maxLvlOffsetX = maxTilesOffset * Game.TILES_SIZE;
 	
 	public Playing(Game game) {
 		super(game);
@@ -32,20 +40,56 @@ public class Playing extends State implements Statemethods{
 
 	@Override
 	public void update() {
-		levelManager.update();
-		player.update();
+		if (!pause) {
+			levelManager.update();
+			player.update();
+			checkCloseToBorder();
+		} else {
+			pauseOverlay.upDate();
+		}
+	}
+
+	private void checkCloseToBorder() {
+		int playerX = (int) (player.getHitbox().x);
+		int diff = playerX - xLevelOffset;
 		
-		pauseOverlay.upDate();
+//		if(diff > rightBorder) 
+//			xLevelOffset += diff - rightBorder;
+//		else if (diff < leftBorder)
+//			xLevelOffset += diff - leftBorder;
+//		if(xLevelOffset > maxLvlOffsetX)
+//			xLevelOffset = maxLvlOffsetX;
+//		else if(xLevelOffset < 0)
+//			xLevelOffset = 0;
+
+		
+//		}
+		if(diff > rightBorder) {
+			xLevelOffset += diff - rightBorder;
+		}else if (diff < leftBorder) {
+			xLevelOffset += diff - leftBorder;
+		}
+		
+		if(xLevelOffset > maxLvlOffsetX) {
+			xLevelOffset = maxLvlOffsetX;
+		}else if(xLevelOffset < 0) {
+			xLevelOffset = 0;
+		}
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		levelManager.draw(g);
-		player.render(g);
+		levelManager.draw(g, xLevelOffset);
+		player.render(g, xLevelOffset);
 		if(pause) {
 			pauseOverlay.draw(g);
 			System.out.println("odrywoano pauseOverlay");
 		}
+	}
+	
+	public void mouseDragged(MouseEvent e) {
+		if(pause)
+			pauseOverlay.mouseDragged(e);
 	}
 
 	@Override
@@ -93,6 +137,9 @@ public class Playing extends State implements Statemethods{
 			break;
 		case KeyEvent.VK_SPACE:
 			player.setJump(true);
+			break;
+		case KeyEvent.VK_ESCAPE:
+			pause = !pause;
 			break;
 		}
 		
