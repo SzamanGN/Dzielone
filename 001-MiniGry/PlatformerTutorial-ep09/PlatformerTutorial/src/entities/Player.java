@@ -87,11 +87,14 @@ public class Player extends Entity {
 
 	private void updatePos() {
 		moving = false;
+		
 		if(jump)
 			jump();
 		
-		if (!left && !right && !inAir)
-			return;
+		//if (!left && !right && !inAir)
+		if (!inAir)
+			if ((!left && !right) || (right && left))
+				return;
 		
 		float xSpeed = 0; // ySpeed = 0;
 
@@ -101,12 +104,8 @@ public class Player extends Entity {
 			xSpeed += playerSpeed;
 		
 		if(!inAir)
-			if(!IsEntityOnFloar(hitbox,lvlData))
+			if(!IsEntityOnFloar(hitbox, lvlData))
 				inAir = true;
-		
-		
-		
-		
 
 		if (inAir) {
 			if (CanMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, lvlData)) {
@@ -116,6 +115,7 @@ public class Player extends Entity {
 
 			} else {
 				hitbox.y = GetEntityYPosUderRofOrAboveFloor(hitbox, airSpeed);
+				
 				if (airSpeed > 0) {
 					resetInAir();
 				} else {
@@ -130,7 +130,7 @@ public class Player extends Entity {
 	}
 
 	private void jump() {
-		// TODO Auto-generated method stub
+		
 		if(inAir)
 			return;
 		inAir = true;
@@ -159,7 +159,6 @@ public class Player extends Entity {
 		for (int j = 0; j < animations.length; j++)
 			for (int i = 0; i < animations[j].length; i++)
 				animations[j][i] = img.getSubimage(i * 64, j * 40, 64, 40);
-
 	}
 
 	public void loadLvlData(int[][] lvlData) {

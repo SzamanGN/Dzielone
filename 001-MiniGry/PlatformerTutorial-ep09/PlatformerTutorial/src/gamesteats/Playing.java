@@ -1,5 +1,6 @@
 package gamesteats;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -18,7 +19,7 @@ public class Playing extends State implements Statemethods{
 	
 	private int xLevelOffset;
 	private int leftBorder = (int) (0.2 * Game.GAME_WIDTH);
-	private int rightBorder = (int) (0.2 * Game.GAME_WIDTH);
+	private int rightBorder = (int) (0.8 * Game.GAME_WIDTH);
 	private int lvlTilesWidght = LoadSave.GetLevelData()[0].length;
 	private int maxTilesOffset = lvlTilesWidght - Game.TILES_IN_WIDTH;
 	private int maxLvlOffsetX = maxTilesOffset * Game.TILES_SIZE;
@@ -31,6 +32,7 @@ public class Playing extends State implements Statemethods{
 	private void initClasses() {
 		levelManager = new LevelManager(game);
 		player = new Player(200, 200, (int)(64 * Game.SCALE), (int)(40 * Game.SCALE));
+		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		pauseOverlay = new PauseOverlay(this);
 
@@ -81,7 +83,10 @@ public class Playing extends State implements Statemethods{
 	public void draw(Graphics g) {
 		levelManager.draw(g, xLevelOffset);
 		player.render(g, xLevelOffset);
+		
 		if(pause) {
+			g.setColor(new Color(0, 0, 0, 150));
+			g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
 			pauseOverlay.draw(g);
 			System.out.println("odrywoano pauseOverlay");
 		}

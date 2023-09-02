@@ -74,6 +74,7 @@ public class PauseOverlay {
 		menuB.update();
 		replayB.update();
 		unpauseB.update();
+		
 		volumeButtons.update();
 	}
 
