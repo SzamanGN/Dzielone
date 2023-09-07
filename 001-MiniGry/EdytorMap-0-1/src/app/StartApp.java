@@ -8,5 +8,4 @@ public class StartApp {
 		System.out.println("Start edytora map-0-1");
 		new OknoGlowne();
 	}
-
 }

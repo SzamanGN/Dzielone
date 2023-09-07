@@ -1,5 +1,9 @@
 package app.modeleLIst;
 
+import java.awt.Image;
+import java.awt.font.ImageGraphicAttribute;
+import java.util.ArrayList;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
@@ -19,9 +23,23 @@ public class ModelListyKafelki {
 		this.lista = lista;
 	}
 
-//	private void ladowanieKafelkow() {
-//		
-//		
-//	}
+	public ArrayList<Image> getObrazki(){
+		ArrayList<Image> obrazki = new ArrayList<Image>();
+		int ilosc = model.getSize();
+		for(int o = 0; o < ilosc; o++) {
+			obrazki.add(model.get(o).getImg());
+		}
+		System.out.println("Ilosc obrazkow = " + obrazki.size());
+		return obrazki;
+	}
+
+	public int getIlosc() {
+		return model.size();
+	}
+
+	public Kafelek get(int ktory) {
+		return model.get(ktory);
+	}
+	
 
 }
