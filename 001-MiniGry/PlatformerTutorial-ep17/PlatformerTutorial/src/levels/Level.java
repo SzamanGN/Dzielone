@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 import entities.Crabby;
 import main.Game;
+import static utilz.HelpMethods.GetLevelData;
+import static utilz.HelpMethods.GetCrabs;
+import static utilz.HelpMethods.GetPlayerSpawn;
 
 public class Level {
 
@@ -25,16 +28,16 @@ public class Level {
 		calcPlayerSpawn();
 	}
 
+	private void calcPlayerSpawn() {
+		playerSpawn = GetPlayerSpawn(img);
+	}
+
 	private void calcLvlOffsets() {
 		lvlTilesWide = img.getWidth();
 		maxTilesOffset = lvlTilesWide - Game.TILES_IN_WIDTH;
 		maxLvlOffsetX = Game.TILES_SIZE * maxTilesOffset;
 	}
 
-	private void calcPlayerSpawn() {
-		playerSpawn = GetPlayerSpawn(img);
-	}
-	
 	private void createEnemies() {
 		crabs = GetCrabs(img);
 	}
@@ -62,4 +65,5 @@ public class Level {
 	public Point getPlayerSpawn() {
 		return playerSpawn;
 	}
+
 }

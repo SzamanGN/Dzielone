@@ -1,27 +1,18 @@
 package utilz;
 
-import java.awt.Color;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-
-import entities.Crabby;
-import main.Game;
-
-import static utilz.Constants.EnemyConstants.CRABBY;
 
 public class LoadSave {
 
 	public static final String PLAYER_ATLAS = "player_sprites.png";
 	public static final String LEVEL_ATLAS = "outside_sprites.png";
-	//public static final String LEVEL_ONE_DATA = "level_one_data_long.png";
 	public static final String MENU_BUTTONS = "button_atlas.png";
 	public static final String MENU_BACKGROUND = "menu_background.png";
 	public static final String PAUSE_BACKGROUND = "pause_menu.png";
@@ -34,7 +25,7 @@ public class LoadSave {
 	public static final String SMALL_CLOUDS = "small_clouds.png";
 	public static final String CRABBY_SPRITE = "crabby_sprite.png";
 	public static final String STATUS_BAR = "health_power_bar.png";
-	public static final String COMPLED_IMG = "completed_sprite.png";
+	public static final String COMPLETED_IMG = "completed_sprite.png";
 
 	public static BufferedImage GetSpriteAtlas(String fileName) {
 		BufferedImage img = null;
@@ -55,7 +46,7 @@ public class LoadSave {
 	}
 
 	public static BufferedImage[] GetAllLevels() {
-		URL url = LoadSave.class.getResource("/res/lvls");
+		URL url = LoadSave.class.getResource("/lvls");
 		File file = null;
 
 		try {
@@ -85,4 +76,5 @@ public class LoadSave {
 
 		return imgs;
 	}
+
 }

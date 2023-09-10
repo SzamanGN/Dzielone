@@ -41,7 +41,7 @@ public class LevelManager {
 		for (BufferedImage img : allLevels)
 			levels.add(new Level(img));
 	}
-	
+
 	private void importOutsideSprites() {
 		BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.LEVEL_ATLAS);
 		levelSprite = new BufferedImage[48];

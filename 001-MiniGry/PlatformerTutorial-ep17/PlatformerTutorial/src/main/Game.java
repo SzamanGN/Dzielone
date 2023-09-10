@@ -18,7 +18,7 @@ public class Game implements Runnable {
 	private Menu menu;
 
 	public final static int TILES_DEFAULT_SIZE = 32;
-	public final static float SCALE = 1.5f;
+	public final static float SCALE = 2f;
 	public final static int TILES_IN_WIDTH = 26;
 	public final static int TILES_IN_HEIGHT = 14;
 	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
@@ -26,7 +26,6 @@ public class Game implements Runnable {
 	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
 
 	public Game() {
-		LoadSave.GetAllLevels();
 		initClasses();
 
 		gamePanel = new GamePanel(this);
@@ -35,7 +34,6 @@ public class Game implements Runnable {
 		gamePanel.requestFocus();
 
 		startGameLoop();
-
 	}
 
 	private void initClasses() {
@@ -114,7 +112,7 @@ public class Game implements Runnable {
 
 			if (System.currentTimeMillis() - lastCheck >= 1000) {
 				lastCheck = System.currentTimeMillis();
-				//System.out.println("FPS: " + frames + " | UPS: " + updates);
+				System.out.println("FPS: " + frames + " | UPS: " + updates);
 				frames = 0;
 				updates = 0;
 
