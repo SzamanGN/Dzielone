@@ -144,9 +144,6 @@ public abstract class Enemy extends Entity {
 		airSpeed = 0;
 	}
 
-	public int getAniIndex() {
-		return aniIndex;
-	}
 
 	public boolean isActive() {
 		return active;

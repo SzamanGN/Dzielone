@@ -51,4 +51,9 @@ public abstract class Entity {
 	public int getState() {
 		return state;
 	}
+	
+	public int getAniIndex() {
+		return aniIndex;
+	}
+
 }
