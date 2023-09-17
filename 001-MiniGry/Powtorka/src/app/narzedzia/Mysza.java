@@ -21,7 +21,7 @@ public class Mysza implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		panelGry.ustawKwadratPozycje(e.getX(), e.getY());
+		//panelGry.ustawKwadratPozycje(e.getX(), e.getY());
 		
 	}
 
@@ -39,7 +39,7 @@ public class Mysza implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		panelGry.pojawienieRec(e.getX(), e.getY());
+		//panelGry.pojawienieRec(e.getX(), e.getY());
 		
 	}
 
