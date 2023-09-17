@@ -16,11 +16,12 @@ public class Mysza implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
+
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
+		panelGry.ustawKwadratPozycje(e.getX(), e.getY());
 		
 	}
 
@@ -38,7 +39,7 @@ public class Mysza implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		panelGry.pojawienieRec(e.getX(), e.getY());
 		
 	}
 

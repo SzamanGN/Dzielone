@@ -17,7 +17,7 @@ public class MojKwadrat {
 	public MojKwadrat(int x, int y) {
 		this.x = x;
 		this.y = y;
-		dlugosc = losowa.nextInt();
+		dlugosc = losowa.nextInt(50);
 		wysokosc = dlugosc;
 		kolor =  new Color(150, 20, 90);
 	}
