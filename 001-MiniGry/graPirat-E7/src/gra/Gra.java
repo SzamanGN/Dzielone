@@ -1,5 +1,8 @@
 package gra;
 
+import java.awt.Graphics;
+
+import modele.Gracz;
 import okna.OknoGry;
 import panele.PanelGry;
 
@@ -11,13 +14,19 @@ public class Gra implements Runnable{
 	private final int FPS_SET =  120;
 	private final int UPS_SET = 200;
 	
+	private Gracz gracz;
+	
 	public Gra() {
-		
-		panelGry = new PanelGry();
+		initKlasy();
+		panelGry = new PanelGry(this);
 		oknoGry = new OknoGry(panelGry);
 		panelGry.requestFocus();
 		StartGraPentla();
 		
+	}
+	
+	private void initKlasy() {
+		gracz = new Gracz(200, 200);
 	}
 
 	private void StartGraPentla() {
@@ -27,6 +36,9 @@ public class Gra implements Runnable{
 	
 	public void aktulkizacja() {
 		panelGry.aktulizacjaGry();
+	}
+	public void render(Graphics g) {
+		gracz.render(g);
 	}
 
 	@Override
@@ -71,5 +83,13 @@ public class Gra implements Runnable{
 			}
 		}
 
+	}
+	
+	public void windowFocusLost() {
+		gracz.resetowanieKierukow();
+	}
+	
+	public Gracz getGracz() {
+		return gracz;
 	}
 }

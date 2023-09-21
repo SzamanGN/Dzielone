@@ -84,6 +84,7 @@ public class Gracz extends Model {
 			x += graczPredkosc;
 			ruch = true;
 		}
+		
 		if (gora && !dol) {
 			y -= aniPredkosc;
 			ruch =  true;

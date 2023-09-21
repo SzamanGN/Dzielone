@@ -4,11 +4,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import panele.PanelGry;
+
 public class Myszka implements MouseListener, MouseMotionListener  {
 
+	private PanelGry panelGry;
 	
-	public Myszka() {
-		
+	public Myszka(PanelGry panelGry) {
+		this.panelGry = panelGry;
 	}
 	
 	
@@ -27,8 +30,9 @@ public class Myszka implements MouseListener, MouseMotionListener  {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		if (e.getButton() == MouseEvent.BUTTON1) {
+			panelGry.getGra().getGracz().ustawAtak(true);
+		}
 	}
 
 	@Override

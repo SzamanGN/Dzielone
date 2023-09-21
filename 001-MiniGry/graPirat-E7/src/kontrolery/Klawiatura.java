@@ -25,16 +25,16 @@ public class Klawiatura  implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
-			panelGry.ustawKierunek(GORA);
+			panelGry.getGra().getGracz().setGora(true);
 			break;
 		case KeyEvent.VK_A:
-			panelGry.ustawKierunek(LEWO);
+			panelGry.getGra().getGracz().setLewo(true);
 			break;
 		case KeyEvent.VK_S:
-			panelGry.ustawKierunek(DOL);
+			panelGry.getGra().getGracz().setDol(true);
 			break;
 		case KeyEvent.VK_D:
-			panelGry.ustawKierunek(PRAWO);
+			panelGry.getGra().getGracz().setPrawo(true);
 			break;
 		}
 	}
@@ -43,10 +43,16 @@ public class Klawiatura  implements KeyListener{
 	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
+			panelGry.getGra().getGracz().setGora(false);
+			break;
 		case KeyEvent.VK_A:
+			panelGry.getGra().getGracz().setLewo(false);
+			break;
 		case KeyEvent.VK_S:
+			panelGry.getGra().getGracz().setDol(false);
+			break;
 		case KeyEvent.VK_D:
-			panelGry.ustawRuch(false);
+			panelGry.getGra().getGracz().setPrawo(false);
 			break;
 		}
 	}
