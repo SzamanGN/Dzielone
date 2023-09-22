@@ -14,12 +14,13 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class OknoGlowne extends JFrame {
+public class OknoMenu extends JFrame {
 
 	private JPanel contentPane;
 
 
-	public OknoGlowne() {
+	public OknoMenu() {
+		setUndecorated(true);
 		setTitle("Farma-0-1");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 594, 372);
@@ -38,29 +39,51 @@ public class OknoGlowne extends JFrame {
 		lblFarma.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panelStart.add(lblFarma, BorderLayout.NORTH);
 		
-		JButton btnStart = new JButton("StartGry");
-		btnStart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		panelStart.add(btnStart, BorderLayout.WEST);
-		
-		JButton btnNewButton_1 = new JButton("Ustawienias");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		panelStart.add(btnNewButton_1, BorderLayout.CENTER);
-		
-		JButton btnNewButton_2 = new JButton("Zakoncz");
-		panelStart.add(btnNewButton_2, BorderLayout.EAST);
-		
 		JLabel lblNewLabel = new JLabel("Farma obrazek");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		panelStart.add(lblNewLabel, BorderLayout.SOUTH);
+		
+		JPanel panel = new JPanel();
+		panelStart.add(panel, BorderLayout.CENTER);
+		panel.setLayout(new GridLayout(3, 1, 5, 5));
+		
+		JButton pStarGry = new JButton("Start gry");
+		pStarGry.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				uruchomienieGry();
+			}
+
+		});
+		panel.add(pStarGry);
+		
+		JButton pUstawienia = new JButton("Ustawienia");
+		pUstawienia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				doUstawien();
+			}
+		});
+		panel.add(pUstawienia);
+		
+		JButton pWyjdz = new JButton("Zakoncz gre");
+		pWyjdz.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		panel.add(pWyjdz);
 		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+	
+	private void uruchomienieGry() {
+		new OknoFarmy();
+		dispose();
+	}
+	
+	private void doUstawien() {
+		new OknoUstawien();
+		dispose();
 	}
 
 }
