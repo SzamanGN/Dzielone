@@ -23,9 +23,8 @@ public class PanelGry extends JPanel {
 	private Gra gra;
 
 	public PanelGry(Gra gra) {
-		this.gra = gra;
-		
 		myszka = new Myszka(this);
+		this.gra = gra;
 
 		ustawWielkoscPanela();
 		addKeyListener(new Klawiatura(this));

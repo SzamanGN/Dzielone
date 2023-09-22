@@ -15,6 +15,8 @@ public class OknoGry {
 		ramka =  new JFrame();
 		ramka.setDefaultCloseOperation(ramka.EXIT_ON_CLOSE);
 		ramka.add(panelGry);
+		ramka.pack();
+		ramka.setLocationRelativeTo(null);
 		ramka.addWindowFocusListener(new WindowFocusListener() {
 			
 			@Override
@@ -29,8 +31,7 @@ public class OknoGry {
 				
 			}
 		});
-		ramka.pack();
-		ramka.setLocationRelativeTo(null);
+		
 		ramka.setVisible(true);
 		
 	}

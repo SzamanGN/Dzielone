@@ -35,7 +35,7 @@ public class Gracz extends Model {
 	}
 
 	public void aktilazacja() {
-		aktulizacjaPopzycji();
+		aktulizacjaPozycji();
 		aktulizacjaAnimacjiZegar();
 		ustawAnimacje();
 		
@@ -52,6 +52,7 @@ public class Gracz extends Model {
 			aniIndex++;
 			if (aniIndex >=  PobierzDuszkaWielkosc(gracz_akcja)) {
 				aniIndex = 0;
+				atakowanie = false;
 			}
 		}
 	}
@@ -66,16 +67,16 @@ public class Gracz extends Model {
 			gracz_akcja = ATAKUJE_1;
 		}
 		if (starAni != gracz_akcja) {
-			resetuAniZegar();
+			resetAniZegar();
 		}
 	}
 	
-	private void resetuAniZegar() {
+	private void resetAniZegar() {
 		aniZegar = 0;
 		aniIndex = 0;
 	}
 	
-	private void aktulizacjaPopzycji() {
+	private void aktulizacjaPozycji() {
 		ruch = false;
 		if(lewo && !prawo) {
 			x -= graczPredkosc;
