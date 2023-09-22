@@ -21,7 +21,7 @@ public class Gra implements Runnable{
 		panelGry = new PanelGry(this);
 		oknoGry = new OknoGry(panelGry);
 		panelGry.requestFocus();
-		StartGraPentla();
+		startGraPentla();
 		
 	}
 	
@@ -29,13 +29,13 @@ public class Gra implements Runnable{
 		gracz = new Gracz(200, 200);
 	}
 
-	private void StartGraPentla() {
+	private void startGraPentla() {
 		graThread = new Thread(this);
 		graThread.start();
 	}
 	
 	public void aktulkizacja() {
-		panelGry.aktulizacjaGry();
+		gracz.aktilazacja();
 	}
 	public void render(Graphics g) {
 		gracz.render(g);
