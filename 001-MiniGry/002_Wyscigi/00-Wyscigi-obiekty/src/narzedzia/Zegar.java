@@ -11,7 +11,7 @@ public class Zegar implements Runnable{
 
 	public Zegar(PanelGry panelGry) {
 		this.panelGry = panelGry;
-		opoznienie = 100;
+		opoznienie = 50;
 		czasZakonczenia = System.currentTimeMillis() + opoznienie;
 	}
 	private void czekaj() {

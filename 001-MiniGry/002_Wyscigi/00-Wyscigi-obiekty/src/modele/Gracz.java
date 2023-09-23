@@ -33,7 +33,7 @@ public class Gracz extends Duszek {
 	}
 	
 	private void ruchWLewo() {
-		int tmp = obszar.x - 1;
+		int tmp = obszar.x - 5;
 		if(tmp >= 0) {
 			obszar.x = tmp;
 		}else {
@@ -41,7 +41,7 @@ public class Gracz extends Duszek {
 		}
 	}
 	private void ruchWPrawo() {
-		int tmp = obszar.x + 1;
+		int tmp = obszar.x + 5;
 		if(tmp <= (Ekran.getSzerkosc() - obszar.width)) {
 			obszar.x = tmp;
 		}else {

@@ -28,7 +28,7 @@ public class Przeszkoda  extends Duszek{
 	}
 	
 	public void ruch() {
-		obszar.y += 1;
+		obszar.y += 3;
 	}
 
 }
