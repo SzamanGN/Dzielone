@@ -17,7 +17,7 @@ public class LadowanieZapis {
 
 	public static BufferedImage GetDuszekAtlas(String nazwaPliku) {
 		BufferedImage obraz = null;
-		InputStream ten = LadowanieZapis.class.getResourceAsStream("/obrazki/" + nazwaPliku);
+		InputStream ten = LadowanieZapis.class.getResourceAsStream(nazwaPliku);
 		try {
 			obraz = ImageIO.read(ten);
 		} catch (IOException e) {
@@ -42,8 +42,8 @@ public class LadowanieZapis {
 				int wartosc = kolor.getRed();
 				if (wartosc >= 48) {
 					wartosc = 0;
-					pozData[j][i] = wartosc;
 				}
+				pozData[j][i] = wartosc;
 			}
 		}
 		return pozData;

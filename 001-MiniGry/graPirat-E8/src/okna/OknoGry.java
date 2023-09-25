@@ -12,7 +12,7 @@ public class OknoGry {
 	
 	public OknoGry(PanelGry panelGry) {
 		
-		ramka =  new JFrame();
+		ramka = new JFrame();
 		ramka.setDefaultCloseOperation(ramka.EXIT_ON_CLOSE);
 		ramka.add(panelGry);
 		ramka.pack();
