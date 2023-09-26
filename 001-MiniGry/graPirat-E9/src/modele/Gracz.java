@@ -110,7 +110,7 @@ public class Gracz extends Duszek {
 			ruch = true;
 		}
 		
-		if (MetodyPomoc.CzyMozeIsc(detekcjaKolizji.x + xPredkosc,detekcjaKolizji.y + yPredkosc, detekcjaKolizji.width, detekcjaKolizji.height, pozData)) {
+		if (MetodyPomoc.czyMozeIsc(detekcjaKolizji.x + xPredkosc,detekcjaKolizji.y + yPredkosc, detekcjaKolizji.width, detekcjaKolizji.height, pozData)) {
 			detekcjaKolizji.x += xPredkosc;
 			detekcjaKolizji.y += yPredkosc;
 			ruch = true;

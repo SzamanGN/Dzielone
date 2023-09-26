@@ -4,12 +4,12 @@ import gra.Gra;
 
 public class MetodyPomoc {
 	
-	public static boolean CzyMozeIsc(float x, float y, float szerkosc, float wysokosc, int[][] pozData) {
+	public static boolean czyMozeIsc(float x, float y, float szerkosc, float wysokosc, int[][] pozData) {
 		
-		if (!JestCaly( x, y, pozData)) {
-			if (!JestCaly(x + szerkosc, y + wysokosc, pozData)) {
-				if(!JestCaly(x + szerkosc, y, pozData)) {
-					if(!JestCaly( x, y + wysokosc, pozData)) {
+		if (!jestCaly( x, y, pozData)) {
+			if (!jestCaly(x + szerkosc, y + wysokosc, pozData)) {
+				if(!jestCaly(x + szerkosc, y, pozData)) {
+					if(!jestCaly( x, y + wysokosc, pozData)) {
 						return true;
 					}
 				}
@@ -18,7 +18,7 @@ public class MetodyPomoc {
 		return false;
 	}
 	
-	private static boolean JestCaly(float x, float y, int[][] pozData) {
+	private static boolean jestCaly(float x, float y, int[][] pozData) {
 		
 		if (x < 0 || x >= Gra.gra_szerkosc) {
 			return true;
