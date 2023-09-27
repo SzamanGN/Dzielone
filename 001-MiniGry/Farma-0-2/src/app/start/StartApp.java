@@ -1,6 +1,7 @@
 package app.start;
 
 import app.okna.OknoMenu;
+import app.opupy.PopupKoguty;
 
 public class StartApp {
 
@@ -8,6 +9,7 @@ public class StartApp {
 		System.out.println("Start Farmy-0-2");
 		
 		new OknoMenu();
+		//new PopupKoguty();
 	}
 
 }

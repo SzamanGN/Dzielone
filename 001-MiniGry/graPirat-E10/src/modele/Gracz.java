@@ -113,10 +113,9 @@ public class Gracz extends Duszek {
 		
 		float xPredkosc = 0;
 		
-		if(lewo) {
+		if (lewo) {
 			xPredkosc -= graczPredkosc;
-		}
-		if (prawo) {
+		} else if (prawo) {
 			xPredkosc += graczPredkosc;
 		}
 		
@@ -127,18 +126,18 @@ public class Gracz extends Duszek {
 		}
 		
 		if(wPowietrzu) {
-			if (MetodyPomoc.czyMozeIsc(detekcjaKolizji.x,detekcjaKolizji.y + powietrzePredkosc, detekcjaKolizji.width, detekcjaKolizji.height, pozData)) {
+			if (MetodyPomoc.czyMozeIsc(detekcjaKolizji.x, detekcjaKolizji.y + powietrzePredkosc, detekcjaKolizji.width, detekcjaKolizji.height, pozData)) {
 				detekcjaKolizji.y += powietrzePredkosc;
 				powietrzePredkosc += grawitacja;
 				aktulizacjaXpoz(xPredkosc);
 			} else {
 				detekcjaKolizji.y = MetodyPomoc.getDuszekYpozycjaPowyzjDachuAlboPonizejPodlogi(detekcjaKolizji, powietrzePredkosc);
-					if (powietrzePredkosc > 0) {
-						resetWPowietrzu();
-					} else {
-						powietrzePredkosc = upadekPredkoscPoKolizji;
-						aktulizacjaXpoz(xPredkosc);
-					}
+				if (powietrzePredkosc > 0) {
+					resetWPowietrzu();
+				} else {
+					powietrzePredkosc = upadekPredkoscPoKolizji;
+				}
+				aktulizacjaXpoz(xPredkosc);
 			}
 		} else {
 			aktulizacjaXpoz(xPredkosc);
@@ -149,10 +148,10 @@ public class Gracz extends Duszek {
 	private void skok() {
 		if (wPowietrzu) {
 			return;
-		} else {
-			wPowietrzu = true;
-			powietrzePredkosc = predkoscSkoku;
 		}
+		wPowietrzu = true;
+		powietrzePredkosc = predkoscSkoku;
+		
 	}
 	
 	private void resetWPowietrzu() {

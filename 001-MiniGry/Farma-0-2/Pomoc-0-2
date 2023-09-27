@@ -1,3 +1,5 @@
+
+Farma -0-1
 dodanie kury i koguta.
 
 DuszekKury:
@@ -31,3 +33,10 @@ dzwieki:
 kura znosi jajko 
 kogut i kura
 kurczak sie wyklul
+
+farma 0-2
+
+- przgotowanie popupu ale nie skonczone (Jlista + model listy )
+- przygotowanie kurnika (Jlista obiekt model Drub, render drobiu)
+
+farma 0-3
