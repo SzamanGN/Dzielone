@@ -35,7 +35,7 @@ public abstract class Duszek {
 //		detekcjaKolizji.y = (int) y;
 //	}
 	
-	public Rectangle2D.Float getDetekcjaKOlizji(){
+	public Rectangle2D.Float getDetekcjaKolizji(){
 		return detekcjaKolizji;
 	}
 }

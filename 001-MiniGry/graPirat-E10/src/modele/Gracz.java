@@ -22,7 +22,6 @@ import gra.Gra;
 
 public class Gracz extends Duszek {
 
-	private BufferedImage obraz;
 	private BufferedImage[][] animacja;
 	private int gracz_akcja = STOI;
 	private int aniZegar;
@@ -107,7 +106,7 @@ public class Gracz extends Duszek {
 			skok();
 		}
 		
-		if (!lewo && !prawo && !gora && !dol) {
+		if (!lewo && !prawo && !wPowietrzu) {
 			return;
 		}
 		
