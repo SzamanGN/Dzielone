@@ -19,7 +19,7 @@ public class Gra implements Runnable{
 	private PoziomManager poziomManager;
 	
 	public final static int plytka_domyslna_wielkosc = 32;
-	public final static float scalowanie = 2f;
+	public final static float scalowanie = 1.5f;
 	public final static int plytka_in_szerokosc = 26;
 	public final static int plytka_in_wysokosc = 14;
 	public final static int plytka_wielkosc = (int) (plytka_domyslna_wielkosc * scalowanie);
