@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import app.modele.Drub;
 import app.modeleList.ModelListyDrobiu;
+import app.modeleList.ModelListyKogutow;
 import app.modeleList.ModelListyKomunikaty;
 import app.narzedzia.Dane;
 import app.narzedzia.Kalendarz;
@@ -27,6 +28,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import app.okna.renderery.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class OknoFarmy extends JFrame {
 
@@ -34,6 +37,7 @@ public class OknoFarmy extends JFrame {
 	private ModelListyKomunikaty komunikaty;
 	private Kalendarz kalendarz;
 	private ModelListyDrobiu kurnik;
+	private ModelListyKogutow koguty;
 
 	public OknoFarmy() {
 		setExtendedState(Frame.MAXIMIZED_BOTH);
@@ -120,6 +124,15 @@ public class OknoFarmy extends JFrame {
 		spKurnik.setColumnHeaderView(lbKurnik);
 		
 		JList<Drub> lKurnik = new JList<Drub>();
+		lKurnik.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int indeks = lKurnik.getSelectedIndex();
+				if(indeks >= 0) {
+					pokazDrub(indeks);
+				}
+			}
+		});
 		kurnik = new ModelListyDrobiu(lKurnik);
 		lKurnik.setCellRenderer(new RendererKurnik());
 		lKurnik.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -130,10 +143,18 @@ public class OknoFarmy extends JFrame {
 		new ZegarKalendarza(kalendarz).start();
 		komunikaty.dodajKomunikat("Start gry");
 		
+		ladowanieDanychStartowych();
+		
 		ladnowanieDanychTestowych();
 		setVisible(true);
 	}
 	
+	private void ladowanieDanychStartowych() {
+		koguty =  new ModelListyKogutow();
+		koguty.add();
+		kurnik.add(0, 1);
+	}
+
 	private void powrotDoMenu() {
 		Dane.aktywnaGra = false;
 		new OknoMenu();
@@ -141,7 +162,13 @@ public class OknoFarmy extends JFrame {
 	}
 
 	public void ladnowanieDanychTestowych() {
-		kurnik.add(0, 5);
 		kurnik.add(1, 15);
+	}
+	
+	private void pokazDrub(int indeks) {
+		switch(kurnik.get(indeks).getRodzaj()) {
+		// uzupenic !!!!!
+		}
+		
 	}
 }

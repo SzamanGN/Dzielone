@@ -18,7 +18,6 @@ public class OknoMenu extends JFrame {
 
 	private JPanel contentPane;
 
-
 	public OknoMenu() {
 		setUndecorated(true);
 		setTitle("Farma-0-1");

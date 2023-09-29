@@ -21,4 +21,8 @@ public class ModelListyDrobiu {
 		lista.updateUI();
 	}
 	
+	public Drub get(int ktory) {
+		return model.get(ktory);
+	}
+	
 }
