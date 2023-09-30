@@ -20,7 +20,7 @@ public class DuszekDrobiu {
 	
 	private void ustaw(int rodzaj) {
 		this.rodzaj = rodzaj;
-		zycie = 1000;
+		zycie = 100;
 		jestDorosly = false;
 		pozywienie =  new MenagerJedzenia();
 		poziomNajedzenia = 50;
