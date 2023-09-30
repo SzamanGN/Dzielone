@@ -7,7 +7,7 @@ import app.opupy.PopupTest;
 public class StartApp {
 
 	public static void main(String[] args) {
-		System.out.println("Start Farmy-0-3");
+		System.out.println("Start Farmy-0-4");
 		
 		new OknoMenu();
 		//new PopupKoguty();
