@@ -5,6 +5,7 @@ import app.gracze.Potwor;
 import app.narzedzia.Generator;
 
 public class Test {
+	
 
 	public Test() {
 		System.out.println("Start testu:");
