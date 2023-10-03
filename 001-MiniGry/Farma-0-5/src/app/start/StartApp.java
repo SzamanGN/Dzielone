@@ -5,9 +5,10 @@ import app.okna.OknoMenu;
 import app.opupy.PopupTest;
 
 public class StartApp {
-	// zmiana nazwy klas samiecDrobiu na samiec i tak samica i duszka
+	// aktuliazjcja klasy  enum samiec 
+	// dodanie renderer knura
 	public static void main(String[] args) {
-		System.out.println("Start Farmy-0-4");
+		System.out.println("Start Farmy-0-5");
 		
 		new OknoMenu();
 		//new PopupKoguty();

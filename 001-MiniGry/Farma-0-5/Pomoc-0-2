@@ -1,0 +1,60 @@
+
+Farma -0-1
+dodanie kury i koguta.
+
+DuszekKury:
+- rodzaj (kogut 0, kura 1)
+- zycie (czas zycia rok)
+- jestDorosly (czas 30 dni)
+- jedzenie (sposob karmienia - rozne jedzenie, np: ziarno i woda)
+- poziomNajedzenia (procentowy wskaznik najedzienia i ile opada na cykl)
+
+Jedzenie:
+- rodzaj (rodzaj pozywienia)
+	0 = woda
+	1 = ziarno
+- ilosc (ilosc jedzenia na cykl)
+
+
+
+samica drobiu:
+- rodzaj = 1
+- licznikZnoszeniaJajka (ilosc cyklis do zniesienia jajka - 10 cykli)
+
+samiec drobiu
+
+grafiki 2 x wielkosci 
+kogut duzy i maly
+kura tez 
+rozmairy 32 i 64
+
+zynosc 25 i jajko
+dzwieki:
+kura znosi jajko 
+kogut i kura
+kurczak sie wyklul
+
+farma 0-2
+
+- przgotowanie popupu ale nie skonczone (Jlista + model listy )
+- przygotowanie kurnika (Jlista obiekt model Drub, render drobiu)
+
+farma 0-3
+
+zadanie zrobic rendere do kogutow
+orbazki ziarno i woda
+
+dodanie poupa kury:
+- model kura samica drobiu wzorowac na modelu kogutow
+- rendere kury
+- przypiecie renderer do modelu kury
+  zaincjowanie modelu listy
+- odwolanie sie do zdarzenia w kurniku
+- Poup listy kur 
+- aktuliacja case kur
+ 
+farma nowa wersja 
+dodac limit zwierzat na farmie;
+
+
+farma -0-4

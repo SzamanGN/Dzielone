@@ -2,7 +2,7 @@ package app.modele;
 
 import app.menagery.MenagerJedzenia;
 
-public class DuszekDrobiu {
+public class Duszek {
 	
 	private int rodzaj;
 	private int zycie;
@@ -10,11 +10,11 @@ public class DuszekDrobiu {
 	private MenagerJedzenia pozywienie;
 	private int poziomNajedzenia;
 	
-	public DuszekDrobiu() {
+	public Duszek() {
 		ustaw(0);
 	}
 
-	public DuszekDrobiu(int rodzaj) {
+	public Duszek(int rodzaj) {
 		ustaw(rodzaj);
 	}
 	

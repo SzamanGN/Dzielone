@@ -1,8 +1,8 @@
 package app.modele;
 
-public class SamiecDrobiu extends DuszekDrobiu{
+public class Samiec extends Duszek{
 	
-	public SamiecDrobiu() {
+	public Samiec() {
 		super();
 	}
 

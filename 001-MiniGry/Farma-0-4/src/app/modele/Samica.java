@@ -1,13 +1,13 @@
 package app.modele;
 
-public class SamicaDrobiu extends DuszekDrobiu{
+public class Samica extends Duszek{
 
 	private int licznikZnoszeniaJajka;
 	private boolean jestZaplodniona;
 	private int iloscJajek;
 	private int limitJajek;
 	
-	public SamicaDrobiu() {
+	public Samica() {
 		super(1);
 		licznikZnoszeniaJajka = 10;
 		jestZaplodniona = false;

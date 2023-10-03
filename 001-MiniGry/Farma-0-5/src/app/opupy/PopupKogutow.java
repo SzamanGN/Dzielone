@@ -3,6 +3,7 @@ package app.opupy;
 import javax.swing.JList;
 import app.modele.Samiec;
 import app.okna.OknoFarmy;
+import app.okna.renderery.RendererKoguta;
 
 @SuppressWarnings("serial")
 public class PopupKogutow extends PopupWzorzecListy {
@@ -27,6 +28,7 @@ public class PopupKogutow extends PopupWzorzecListy {
 		setTitle("Wykaz kogutow");
 		eTytul.setText("Koguty");
 		lista = oknoFarmy.listy.koguty.getLista();
+		lista.setCellRenderer(new RendererKoguta());
 		scrollPane.setViewportView(lista);
 		addPopup(lista, popupMenu);
 	}

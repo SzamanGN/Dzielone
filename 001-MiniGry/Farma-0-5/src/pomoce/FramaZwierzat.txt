@@ -1,0 +1,59 @@
+zwierze: obiket
+- nazwa
+- wiek =  okreslenie stanu czy dorosle i jaki poziom wieku
+- plec
+- produkt / potomek =  losowo samiec czy samica / czasem brak produkcji
+- rodzajPokarmu
+- stanPozywienia
+- woda
+- czyZywe
+- czyMozeSieRozmnazac
+- cena
+
+ziwerzeta/ magazyn
+-dodanie
+-odjecie
+-aktuliazacja
+
+pomieszczenia na zwierzeta enum
+- nazwa
+- ilosc
+- koszt budowy
+- poziom
+
+pokarm 
+- nazwa
+- ilosc
+- puntyZwiekszeniaPozywienia
+- poziom
+
+sklep
+- pordukty
+- ilosc 
+- skupCena 
+- sprzedazCena
+- CenaBierzaca
+- losowoscCeny
+
+portfel/ walute
+- nazwa waluty
+- ilosc\
+- sprzedaz 
+- zakup
+
+
+studnia
+- woda
+- ilosc 
+- poziom
+
+kalendarz
+
+pjedyncze karmie i pojenie
+
+chorowanie
+
+kolor czarny smierc
+czerowny jest zle 
+pomarnczowy zaczyna byc zle
+kolor zielony norma
