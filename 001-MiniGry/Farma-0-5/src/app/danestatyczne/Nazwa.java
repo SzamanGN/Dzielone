@@ -27,5 +27,12 @@ public class Nazwa {
 		return nazwyObrazkowDrobiu[ktory];
 	}
 	
+	public static String zwierzecia(int ktory) {
+		return nazwyZwierzat[ktory];
+	}
+	
+	public static String obrazkaZwierzecia(int ktory) {
+		return nazwaObrazkaZwierzat[ktory];
+	}
 	
 }

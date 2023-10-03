@@ -5,7 +5,7 @@ import app.okna.OknoMenu;
 import app.opupy.PopupTest;
 
 public class StartApp {
-	// aktuliazjcja klasy  enum samiec 
+	// aktuliazjcja klasy nazwa,samiec, 
 	// dodanie renderer knura
 	public static void main(String[] args) {
 		System.out.println("Start Farmy-0-5");
