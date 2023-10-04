@@ -58,3 +58,17 @@ dodac limit zwierzat na farmie;
 
 
 farma -0-4
+
+
+
+przygotowainie do wersji 1-0
+
+- pakietObrazki:
+* pakietAplikacji = ikony i obrazki do wszystkich okien
+* pakietZagrody
+* pakietKurnika
+* pakierMagazynu
+
+Konwencja nazewnicza:
+- co jak sie nazywa np pakiety
+- doanie paramtrow kluczowych
