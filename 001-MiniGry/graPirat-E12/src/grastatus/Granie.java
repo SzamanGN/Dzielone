@@ -46,7 +46,7 @@ public class Granie extends Status implements Statusmetod {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-	
+		
 	}
 
 	@Override
