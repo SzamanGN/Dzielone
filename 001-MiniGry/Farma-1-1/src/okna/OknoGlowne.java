@@ -46,7 +46,7 @@ public class OknoGlowne extends JFrame {
 				pokazMagazyn();
 			}
 		});
-		eMagazyn.setBounds(333, 374, 200, 162);
+		eMagazyn.setBounds(41, 243, 320, 138);
 		panelOknaFarmy.add(eMagazyn);
 		
 		JLabel eKurnik = new JLabel("");
@@ -56,7 +56,7 @@ public class OknoGlowne extends JFrame {
 				pokazKurnik();
 			}
 		});
-		eKurnik.setBounds(89, 393, 54, 70);
+		eKurnik.setBounds(392, 217, 118, 128);
 		panelOknaFarmy.add(eKurnik);
 		
 		JPanel panelinformacyjny = new JPanel();

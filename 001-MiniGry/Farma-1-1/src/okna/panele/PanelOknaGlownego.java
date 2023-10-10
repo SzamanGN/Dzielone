@@ -14,7 +14,7 @@ public class PanelOknaGlownego extends JPanel {
 	private Image obrazek;
 
 	public PanelOknaGlownego() {
-		obrazek = new ImageIcon(PanelOknaGlownego.class.getResource("/obrazki/okna/farma.png")).getImage();
+		obrazek = new ImageIcon(PanelOknaGlownego.class.getResource("/obrazki/okna/farmaN.png")).getImage();
 
 	}
 

@@ -3,8 +3,6 @@ package ui;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.awt.peer.MouseInfoPeer;
-
 import dodatki.LadowanieZapis;
 
 import static dodatki.Stale.UI.GlosnoscPrzyciski.*;
