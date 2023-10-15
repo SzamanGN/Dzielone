@@ -1,0 +1,31 @@
+zamowienie:
+- obrazek  shake
+- txt shaka
+- licznik czas do wygasniecia oferty
+- rednderowane ma byc
+- generowanie losowo nowe zamowienia
+- poupay wzorzec(gorny lewy rog ekrany albo poprawej strinie?)
+	(lewa o zamowieniu praw o wydaniu )
+
+
+- obrazki zamowienia 3x 
+[0] 150 x 150 d 
+[1] 75 x 75 m
+
+produkty :
+-[0] 40 x 40 razy 3
+
+zadanie domowe :
+- minniaturka shake i duzy
+- minitaurki produktow
+- 3 x rodzaje shakwo
+- 3 produkty
+- rodzaj shakew zaloznia 3 x z 3 prodkutow 4 z 4 i 5 
+z 5
+
+
+statyczna klasa kolory opisu i tla
+
+- wykazy shekow 
+produkt:
+
