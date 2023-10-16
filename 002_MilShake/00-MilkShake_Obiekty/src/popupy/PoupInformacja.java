@@ -67,6 +67,14 @@ public class PoupInformacja extends JDialog {
 				lblnazwatresc.setText("<html><center><h1>" + Nazwa.sheka(id) + "</h1>Wycofano zamowienie z powodu opoznienienia</cnter></html>");
 				lblnazwatresc.setForeground(Color.WHITE);
 				break;
+			case NoweZamowienie:
+				setBounds(500, 0, 420, 254);
+				contentPanel.setBackground(Color.GREEN);
+				eObrazek.setIcon(new ImageIcon(PoupInformacja.class.getResource("/obrazki/zamowienia/shakeD" + id + ".png")));
+				eTytul.setText("Nowe zlecenie");
+				lblnazwatresc.setText("<html><center><h1>" + Nazwa.sheka(id) + "</h1>Dodano nowe zamowienie.</cnter></html>");
+				lblnazwatresc.setForeground(Color.BLACK);
+				break;
 		}
 		zegar();
 		setVisible(true);

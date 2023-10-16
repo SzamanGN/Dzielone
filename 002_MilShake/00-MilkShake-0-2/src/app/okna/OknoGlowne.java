@@ -51,8 +51,8 @@ public class OknoGlowne extends JFrame {
 //		zamowienia.dodaj(0, 0, 3);
 //		zamowienia.dodaj(1, 1, 5);
 //		zamowienia.dodaj(2, 2, 30);
-		zamowienia.dodaj(Generator.liczba(3), 1, 30);
-		generatorZamowien = new Minutnik(0, 10 + Generator.liczba(10));
+		zamowienia.dodaj(Generator.liczba(3), 0, 30);
+		generatorZamowien = new Minutnik(0, 5 + Generator.liczba(5));
 		
 		aktywnyTikZegara = false;
 	}
@@ -85,7 +85,7 @@ public class OknoGlowne extends JFrame {
 			if (ilosc < 10) {
 				id = Generator.liczba(3);
 				new PoupInformacja(id, RodzajPoupu.NoweZamowienie);
-				zamowienia.dodaj(id, 1, 30);
+				zamowienia.dodaj(id, 0, 30);
 			}
 			generatorZamowien = new Minutnik(0, 5 + Generator.liczba(5));
 		}

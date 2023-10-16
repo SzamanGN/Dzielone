@@ -2,5 +2,6 @@ package enumy;
 
 public enum RodzajPoupu {
 
-	Wygaslo
+	Wygaslo,
+	NoweZamowienie
 }
