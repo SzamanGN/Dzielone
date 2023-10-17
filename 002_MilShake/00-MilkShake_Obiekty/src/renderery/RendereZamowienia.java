@@ -45,7 +45,11 @@ public class RendereZamowienia extends JPanel implements ListCellRenderer<Zamowi
 	@Override
 	public Component getListCellRendererComponent(JList<? extends Zamowienie> list, Zamowienie zamowienie, int index,
 			boolean isSelected, boolean cellHasFocus) {
-		setBackground(Color.LIGHT_GRAY);
+		if (isSelected) {
+			setBackground(Color.GREEN);
+		} else {
+			setBackground(Color.LIGHT_GRAY);
+		}
 		int id = zamowienie.getId();
 		eObrazek.setIcon(new ImageIcon(RendereZamowienia.class.getResource("/obrazki/zamowienia/shakeM" + id + ".png")));
 		eNazwa.setText(Nazwa.sheka(id));
