@@ -1,0 +1,116 @@
+<mxfile host="app.diagrams.net" modified="2023-10-20T17:52:05.096Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="k7bFzxdZ9GNYO_muPuyP" version="22.0.6" type="device" pages="3">
+  <diagram name="Jednostka" id="9d159-G_PaJvMVdIkaY0">
+    <mxGraphModel dx="1050" dy="572" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="OUSz2UlI4k9kati9ySGG-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="OUSz2UlI4k9kati9ySGG-1" target="OUSz2UlI4k9kati9ySGG-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OUSz2UlI4k9kati9ySGG-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="OUSz2UlI4k9kati9ySGG-2" target="OUSz2UlI4k9kati9ySGG-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OUSz2UlI4k9kati9ySGG-1" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="110" y="90" width="250" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="OUSz2UlI4k9kati9ySGG-2" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;strokeColor=#FF6666;" vertex="1" parent="1">
+          <mxGeometry x="150" y="130" width="170" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="OUSz2UlI4k9kati9ySGG-3" value="Jednoska" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="202.5" y="185" width="65" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="OUSz2UlI4k9kati9ySGG-4" value="Zasiek widzenia" style="whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="185" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="OUSz2UlI4k9kati9ySGG-6" value="Zasiek Ataku" style="whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="320" y="30" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="OUSz2UlI4k9kati9ySGG-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="OUSz2UlI4k9kati9ySGG-8" target="OUSz2UlI4k9kati9ySGG-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OUSz2UlI4k9kati9ySGG-8" value="-zycie&lt;br&gt;- ilosc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="160" y="400" width="120" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="iMaiFyDhspN6wPtGjsXP" name="Plansza">
+    <mxGraphModel dx="1050" dy="572" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="-WB89NIkYhLOECIgFP7t-16" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry y="70" width="790" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="-WB89NIkYhLOECIgFP7t-2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry y="300" width="790" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="-WB89NIkYhLOECIgFP7t-7" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="90" y="360" width="170" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="-WB89NIkYhLOECIgFP7t-5" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;" vertex="1" parent="-WB89NIkYhLOECIgFP7t-7">
+          <mxGeometry width="170" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="-WB89NIkYhLOECIgFP7t-6" value="Grupa jednoste&lt;br&gt;A - gracz" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="-WB89NIkYhLOECIgFP7t-7">
+          <mxGeometry x="45" y="60" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-WB89NIkYhLOECIgFP7t-8" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="520" y="350" width="170" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="-WB89NIkYhLOECIgFP7t-10" value="Grupa jednoste&lt;br&gt;A - gracz" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="-WB89NIkYhLOECIgFP7t-8">
+          <mxGeometry x="45" y="60" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-WB89NIkYhLOECIgFP7t-9" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;" vertex="1" parent="-WB89NIkYhLOECIgFP7t-8">
+          <mxGeometry x="-10" y="20" width="170" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="-WB89NIkYhLOECIgFP7t-12" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="90" y="80" width="170" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="-WB89NIkYhLOECIgFP7t-13" value="Grupa jednoste&lt;br&gt;A - gracz -b" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="135" y="150" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-WB89NIkYhLOECIgFP7t-14" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="450" y="70" width="170" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="-WB89NIkYhLOECIgFP7t-15" value="Grupa jednoste&lt;br&gt;B- gracz -b" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="130" width="70" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="5CYFCbt08smabq-KE7R6" name="Scenariusz">
+    <mxGraphModel dx="1050" dy="572" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="-zviwmbJdoho3i1JnDLV-1" value="&lt;h1&gt;Rodzaje jdnostek:&lt;/h1&gt;&lt;div&gt;Jdnostki rodzjake&lt;/div&gt;&lt;div&gt;- chlopi&amp;nbsp;&lt;/div&gt;&lt;div&gt;- topornicy&amp;nbsp;&lt;/div&gt;&lt;div&gt;- lucznicy\&lt;/div&gt;&lt;div&gt;-&amp;nbsp;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry y="40" width="280" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="-zviwmbJdoho3i1JnDLV-2" value="&lt;h1&gt;Parametry:&lt;/h1&gt;&lt;div&gt;- id&lt;/div&gt;&lt;div&gt;- zycie&lt;/div&gt;&lt;div&gt;- atak&lt;/div&gt;&lt;div&gt;-obrona&lt;/div&gt;&lt;div&gt;- predkosc&lt;/div&gt;&lt;div&gt;- ilosc&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="10" y="507" width="150" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="-zviwmbJdoho3i1JnDLV-3" value="&lt;h1&gt;wojna:&lt;/h1&gt;&lt;div&gt;- ilosc jednostek A kontra jednostki B graczy&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="10" y="210" width="250" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="-zviwmbJdoho3i1JnDLV-4" value="&lt;h1&gt;Spotaknie jednostek:&lt;/h1&gt;&lt;div&gt;Podczas wyrkycia jednostek a&amp;nbsp; przez jednostki B zachodzi analiza&amp;nbsp; co do wielkosci oddzialaow.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Jezeli&amp;nbsp; wielkosc odzialow jes znacznie wieksza jednostki o mniejszej ilosc uciekaja&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;dodannie mechanizmu&amp;nbsp; bonusow do ataku i obrony&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry y="350" width="530" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="-zviwmbJdoho3i1JnDLV-5" value="&lt;h1&gt;chlop:&lt;/h1&gt;&lt;div&gt;- predkosc dobra&amp;nbsp;&lt;/div&gt;&lt;div&gt;- slaby atak&amp;nbsp;&lt;/div&gt;&lt;div&gt;- slaba obrona&amp;nbsp;&lt;/div&gt;&lt;div&gt;- rekrutacja szybka&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="330" y="50" width="190" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="-zviwmbJdoho3i1JnDLV-6" value="&lt;h1&gt;Topornik:&lt;/h1&gt;&lt;div&gt;- predkosc srednia&lt;/div&gt;&lt;div&gt;- atak silny&lt;/div&gt;&lt;div&gt;- obrona normalna&lt;/div&gt;&lt;div&gt;- rekrutcja normalna&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="460" y="55" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="-zviwmbJdoho3i1JnDLV-8" value="&lt;h1&gt;lucznik:&lt;/h1&gt;&lt;div&gt;- predkosc slaba&lt;/div&gt;&lt;div&gt;- atak dystans dobry&amp;nbsp;&lt;/div&gt;&lt;div&gt;- obrona zwarcie slba&lt;/div&gt;&lt;div&gt;- obrona dystans norma&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="320" y="170" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="-zviwmbJdoho3i1JnDLV-9" value="&lt;h1&gt;Jednostka:&lt;/h1&gt;&lt;div&gt;- predkosc&lt;/div&gt;&lt;div&gt;- atak zwarcie&lt;/div&gt;&lt;div&gt;- obrona zwarcie&amp;nbsp;&lt;/div&gt;&lt;div&gt;- atak dystans&lt;/div&gt;&lt;div&gt;- obrona dystans&lt;/div&gt;&lt;div&gt;- rodzaj broni&lt;/div&gt;&lt;div&gt;-&amp;nbsp; id&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="50" width="190" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="-zviwmbJdoho3i1JnDLV-10" value="&lt;h1&gt;mapa walki&lt;/h1&gt;&lt;div&gt;- grunt&amp;nbsp;&lt;/div&gt;&lt;div&gt;- bonusy dla jednostek&lt;/div&gt;&lt;div&gt;- pogoda&lt;/div&gt;&lt;div&gt;- pora&amp;nbsp;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="10" y="670" width="190" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
