@@ -17,7 +17,7 @@ public class ListaZamowien extends JScrollPane{
 	private ListaZamowienia zamowienia;
 	
 	public ListaZamowien() {
-		setPreferredSize(new Dimension(300, 250));
+		setPreferredSize(new Dimension(350, 250));
 		
 		JLabel lblNewLabel = new JLabel("Zamowienia");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);

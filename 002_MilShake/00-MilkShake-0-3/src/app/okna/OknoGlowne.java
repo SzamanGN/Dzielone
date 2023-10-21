@@ -16,10 +16,12 @@ import jListy.ListaZamowien;
 import modele.Minutnik;
 import modele.Produkt;
 import modeleList.ListaZamowienia;
+import moduly.ModulShakera;
 import narzedzia.Generator;
 import popupy.PoupInformacja;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 public class OknoGlowne extends JFrame {
 
@@ -30,11 +32,12 @@ public class OknoGlowne extends JFrame {
 	private boolean aktywnyTikZegara;
 	private Minutnik generatorZamowien;
 	private ListaProdukty produkty;
+	private ModulShakera shaker;
 
 	public OknoGlowne() {
 		setTitle("Shake-0-1\r\n");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 919, 665);
+		setBounds(100, 100, 1238, 665);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -49,6 +52,9 @@ public class OknoGlowne extends JFrame {
 		
 		produkty =  new ListaProdukty(produktyMouseAdapter());
 		contentPane.add(produkty, BorderLayout.EAST);
+		// dodanie shekera
+				shaker = new ModulShakera();
+				contentPane.add(shaker, BorderLayout.CENTER);
 		
 		ladownaieDanychStartowych();
 		zegar();
@@ -67,9 +73,9 @@ public class OknoGlowne extends JFrame {
 		
 		// dodanie domyslne produty
 		
-		produkty.addProdukt(0, 50);
-		produkty.addProdukt(1, 50);
-		produkty.addProdukt(2, 50);
+		produkty.addProdukt(0, 50, Color.WHITE, Color.BLACK);
+		produkty.addProdukt(1, 50, Color.RED, Color.WHITE);
+		produkty.addProdukt(2, 50, Color.YELLOW, Color.BLACK);
 		
 		aktywnyTikZegara = false;
 	}
@@ -107,6 +113,7 @@ public class OknoGlowne extends JFrame {
 			generatorZamowien = new Minutnik(0, 5 + Generator.liczba(5));
 		}
 		aktywnyTikZegara = false;
+		contentPane.updateUI();
 	}
 	
 	private void zegar() {

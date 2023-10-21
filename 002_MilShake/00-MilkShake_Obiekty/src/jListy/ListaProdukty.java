@@ -10,6 +10,8 @@ import modeleList.ListaProduktow;
 import java.awt.Font;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
+
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -39,14 +41,14 @@ public class ListaProdukty  extends JScrollPane{
 		JList<Produkt> lProdukty = new JList<Produkt>();
 		lProdukty.addMouseListener(mouseAdapter);
 		produkty = new ListaProduktow(lProdukty);
-		lProdukty.setPreferredSize(new Dimension(300, 250));
+		lProdukty.setPreferredSize(new Dimension(350, 250));
 		lProdukty.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lProdukty.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		setViewportView(lProdukty);
 	}
 	
-	public void addProdukt(int id, int ilosc) {
-		produkty.add(id, ilosc);
+	public void addProdukt(int id, int ilosc, Color tlo, Color tusz) {
+		produkty.add(id, ilosc, tlo, tusz);
 	}
 
 	public boolean isDotepny(int ktory) {

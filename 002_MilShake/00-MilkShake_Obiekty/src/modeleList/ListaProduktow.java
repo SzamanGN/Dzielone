@@ -1,5 +1,7 @@
 package modeleList;
 
+import java.awt.Color;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
@@ -19,9 +21,9 @@ public class ListaProduktow {
 		this.lista = lista;
 	}
 	
-	public void add(int id, int ilosc) {
-		model.addElement(new Produkt(id, ilosc));
-		lista.updateUI();
+	public void add(int id, int ilosc, Color tlo, Color tusz) {
+		model.addElement(new Produkt(id, ilosc, tlo, tusz));
+		//lista.updateUI();
 	}
 
 	public boolean isDostepny(int ktory) {
@@ -30,7 +32,7 @@ public class ListaProduktow {
 	
 	public void updateIlosc(int ktory, int delta) {
 		model.get(ktory).updateIlosc(delta);
-		lista.updateUI();
+		//lista.updateUI();
 	}
 	
 	public Produkt get(int ktory) {

@@ -3,11 +3,11 @@ package dane;
 public class Nazwa {
 	
 	private static String[] nazwyShakow = { // Nazwa.nazwyShakow[]
-			"Shake-0", "Shake-1", "Shake-2"
+			"Truskawkowy", "Banananowy", "Mix"
 	};
 	
 	private static String[] nazwyProduktow = { // Nazwa.nazwPr.. statyczna i deklaracja od razu
-			"Pordukt-0", "Pordukt-1", "Pordukt-2"
+			"Mleko", "Truskawa", "Bannan"
 	};
 
 	

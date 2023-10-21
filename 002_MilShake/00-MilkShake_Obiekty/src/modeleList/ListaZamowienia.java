@@ -21,12 +21,12 @@ public class ListaZamowienia {
 	
 	public void add(int id, int minuty, int sekundy) {
 		model.addElement(new Zamowienie(id, minuty, sekundy));
-		lista.updateUI();
+		//lista.updateUI();
 	}
 	
 	public void rem(int ktory) {
 		model.remove(ktory);
-		lista.updateUI();
+		//lista.updateUI();
 	}
 
 	public void tikZegara() {
@@ -35,7 +35,7 @@ public class ListaZamowienia {
 			for (int i = 0; i < ilosc; i++) {
 				model.get(i).tikZegara();
 			}
-			lista.updateUI();
+			//lista.updateUI();
 		}
 	}
 
