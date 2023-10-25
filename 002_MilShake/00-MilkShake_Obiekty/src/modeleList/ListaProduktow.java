@@ -38,4 +38,8 @@ public class ListaProduktow {
 	public Produkt get(int ktory) {
 		return model.get(ktory);
 	}
+
+	public int getSelectedIndex() {
+		return lista.getSelectedIndex();
+	}
 }

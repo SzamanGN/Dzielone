@@ -44,4 +44,8 @@ public class ModelListyShakera {
 			skladniki += produkt.getId();
 		}
 	}
+	
+	public String getSkladniki() {
+		return skladniki;
+	}
 }

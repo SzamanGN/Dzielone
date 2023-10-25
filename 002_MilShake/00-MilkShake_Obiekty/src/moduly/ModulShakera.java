@@ -5,21 +5,25 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Color;
 import javax.swing.border.EmptyBorder;
+
+import modele.Produkt;
+import modeleList.ModelListyShakera;
+
 import javax.swing.JLabel;
 import javax.swing.JList;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ModulShakera extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Create the panel.
-	 */
-	public ModulShakera() {
+	private ModelListyShakera shaker;
+	
+	public ModulShakera(ActionListener actionListener) {
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(new BorderLayout(0, 0));
 		
@@ -32,10 +36,12 @@ public class ModulShakera extends JPanel {
 		add(panel, BorderLayout.SOUTH);
 		
 		JButton bWyczysc = new JButton("Wyczysc");
+		bWyczysc.addActionListener(actionListener);
 		bWyczysc.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel.add(bWyczysc);
 		
-		JButton btnGotowy = new JButton("Gotowy\r\n");
+		JButton btnGotowy = new JButton("Gotowy");
+		btnGotowy.addActionListener(actionListener);
 		btnGotowy.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel.add(btnGotowy);
 		
@@ -55,12 +61,25 @@ public class ModulShakera extends JPanel {
 		panelShaker.setPreferredSize(new Dimension(210, 305));
 		pBaza.add(panelShaker);
 		
-		JList lShaker = new JList();
+		JList<Produkt> lShaker = new JList<Produkt>();
+		shaker = new ModelListyShakera(lShaker);
 		lShaker.setVisibleRowCount(6);
 		lShaker.setBackground(new Color(192, 192, 192));
 		lShaker.setPreferredSize(new Dimension(200, 300));
 		panelShaker.add(lShaker);
 
+	}
+
+	public void addProdukt(Produkt produkt) {
+		shaker.dodajSkaldnik(produkt);
+	}
+
+	public String getSkladniki() {
+		return shaker.getSkladniki();
+	}
+
+	public void wyczysc() {
+		shaker.wyczysc();
 	}
 
 }

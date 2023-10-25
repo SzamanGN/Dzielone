@@ -38,7 +38,7 @@ public class OknoGlowne extends JFrame {
 	private ModulShakera shaker;
 
 	public OknoGlowne() {
-		setTitle("Shake-0-3");
+		setTitle("Shake-0-4");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1238, 665);
 		contentPane = new JPanel();

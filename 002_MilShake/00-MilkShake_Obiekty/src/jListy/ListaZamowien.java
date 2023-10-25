@@ -53,4 +53,8 @@ public class ListaZamowien extends JScrollPane{
 	public int getId(int ktory) {
 		return zamowienia.get(ktory).getId();
 	}
+
+	public void removeShake(int ktory) {
+		zamowienia.rem(ktory);
+	}
 }

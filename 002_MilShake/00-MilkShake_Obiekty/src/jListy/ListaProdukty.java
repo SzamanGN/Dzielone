@@ -62,4 +62,14 @@ public class ListaProdukty  extends JScrollPane{
 	public int getId(int ktory) {
 		return produkty.get(ktory).getId();
 	}
+
+
+	public int getSelectedIndex() {
+		return produkty.getSelectedIndex();
+	}
+
+
+	public Produkt getSelectedProdukt() {
+		return produkty.get(getSelectedIndex());
+	}
 }
