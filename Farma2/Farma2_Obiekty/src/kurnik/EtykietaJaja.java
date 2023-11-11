@@ -8,22 +8,39 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class EtykietaJaja extends JLabel {
+	
+	private boolean jestJajko;
+
 	public EtykietaJaja(int ktoryPanel, int indeksKury, int indeksJajka) {
+		ustaw(ktoryPanel, indeksKury, indeksJajka, null);
+	}
+
+	public EtykietaJaja(int ktoryPanel, int indeksKury, int indeksJajka, MouseAdapter mouseAdapter) {
+		ustaw(ktoryPanel, indeksKury, indeksJajka, mouseAdapter);
+	}
+
+	private void ustaw(int ktoryPanel, int indeksKury, int indeksJajka, MouseAdapter mouseAdapter) {
 		putClientProperty("ktoryPanel", ktoryPanel);
 		putClientProperty("indeskKury", indeksKury);
 		putClientProperty("indeksJajka", indeksJajka);
-		
-		addMouseListener();
+
+		addMouseListener(mouseAdapter);
 		setHorizontalAlignment(SwingConstants.CENTER);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
-		setIcon(new ImageIcon(EtykietaJaja.class.getResource("/obrazki/wiadro.png")));
+		setObrazek();
 	}
-	
+
 	public void setObrazek() {
-		setIcon(new ImageIcon(EtykietaJaja.class.getResource("/obrazki/wiadro.png")));
+		setIcon(new ImageIcon(EtykietaJaja.class.getResource("/obrazki/jajko.png")));
+		jestJajko = true;
 	}
-	
+
 	public void removeObrazek() {
 		setIcon(null);
+		jestJajko = false;
+	}
+
+	public boolean isJajko() {
+		return jestJajko;
 	}
 }

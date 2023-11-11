@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import java.awt.Dimension;
 import javax.swing.border.LineBorder;
 
+import kurnik.PopupKurnik;
 import magazyn.ModelListyProduktow;
 import magazyn.PopapMagazyn;
 
@@ -33,6 +34,7 @@ public class OknoGlowne extends JFrame {
 	private JLabel lKurnik;
 	private JLabel lZagroda;
 	private ModelListyProduktow magazyn;
+	private PopupKurnik kurnik;
 
 	public OknoGlowne() {
 		setResizable(false);
@@ -98,6 +100,7 @@ public class OknoGlowne extends JFrame {
 		magazyn.add(1, 5);
 		magazyn.add(2, 2);
 		magazyn.add(3, 8);
+		kurnik = null;
 
 	}
 
@@ -113,6 +116,7 @@ public class OknoGlowne extends JFrame {
 					break;
 				case "Kurnik":
 					System.out.println("Wybrano Kurnik");
+					kurnik = new PopupKurnik(jajoMouseAdapter());
 					break;
 				case "Zagroda":
 					System.out.println("Wybrano Zagroda");
@@ -157,6 +161,16 @@ public class OknoGlowne extends JFrame {
 				int ktoryPanel = (int) ((JLabel) arg0.getSource()).getClientProperty("ktoryPanel");
 				int indeksKury = (int) ((JLabel) arg0.getSource()).getClientProperty("indeskKury");
 				int indeksJajka = (int) ((JLabel) arg0.getSource()).getClientProperty("indeksJajka");
+				System.out.println(String.format("Kotry panel = %d, indeks ktory = %d, indeks jajak = %d" ,
+						ktoryPanel,
+						indeksKury,
+						indeksJajka
+						));
+				if (kurnik.isJajo(ktoryPanel, indeksKury, indeksJajka)) {
+					System.out.println("Jest jajo");
+				} else {
+					System.out.println("Nie ma jaja");
+				}
 			}
 		};
 	}

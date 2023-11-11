@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -16,29 +18,30 @@ public class PanelKury extends PanelZwierzecia {
 
 	public PanelKury() {
 		super();
-		ustaw(-1, 0, 0);
+		ustaw(-1, 0, 0, 0, 0, null);
 	}
-	
-	public PanelKury(int czasZycia, int wiek, int czasCiazy) {
+
+	public PanelKury(int czasZycia, int wiek, int czasCiazy, int ktoryPanel, int indeksKury,
+			MouseAdapter mouseAdapter) {
 		super();
-		ustaw(czasZycia, wiek, czasCiazy);
+		ustaw(czasZycia, wiek, czasCiazy, ktoryPanel, indeksKury, mouseAdapter);
 	}
-	
-	private void ustaw(int czasZycia, int wiek, int czasCiazy) {
+
+	private void ustaw(int czasZycia, int wiek, int czasCiazy,int ktoryPanel, int indeksKury, MouseAdapter mouseAdapter) {
 		panelJaj = new JPanel();
 		panelJaj.setBorder(new EmptyBorder(5, 5, 5, 5));
 		add(panelJaj, BorderLayout.SOUTH);
 		panelJaj.setLayout(new GridLayout(0, 5, 5, 5));
-
-		JLabel eJajko = new JLabel("Jajko");
-		eJajko.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panelJaj.add(eJajko);
+		
 		if(czasZycia > 0) {
 			kura = new Kura(czasZycia, wiek, czasCiazy);
 		} else {
 			kura = new Kura(-1);
 		}
-
+		
+		for(int i = 0; i < 5; i++) {
+			panelJaj.add(new EtykietaJaja(ktoryPanel, indeksKury, i, mouseAdapter));
+		}
 		incjowanieWizulalizacji();
 	}
 
@@ -64,11 +67,14 @@ public class PanelKury extends PanelZwierzecia {
 			aktualizacjaParametrow();
 		}
 	}
-	
+
 	private void aktualizacjaParametrow() {
 		eNajedzie.setBackground(kura.getNajedzenie().getStan());
 		eNapojenie.setBackground(kura.getNapojenie().getStan());
 	}
-	
-	
+
+	public boolean isJajko(int indeksJajka) {
+		return ((EtykietaJaja) panelJaj.getComponent(indeksJajka)).isJajko();
+	}
+
 }
