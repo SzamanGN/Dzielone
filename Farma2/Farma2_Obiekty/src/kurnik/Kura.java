@@ -13,6 +13,11 @@ public class Kura extends Zwierze {
 		ustawListeJaj();
 	}
 	
+	public Kura(int id) {
+		super(id, 0, 0, 0, false, 0);
+		ustawListeJaj();
+	}
+	
 	public Kura(int czasZycia, int wiek, int czasCiazy) {
 		super(1, czasZycia, wiek, 20, false, czasCiazy ); // dojrzalosc pobieram z globalnego statycznego paramtru dojrzalosc/zwierze
 		ustawListeJaj();

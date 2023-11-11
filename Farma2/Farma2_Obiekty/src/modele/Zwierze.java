@@ -5,6 +5,8 @@ public class Zwierze {
 	private Zycie zycie; // ilosc cykli okresla wiek
 	private boolean samiec;// zalozenie tru samiec fallse samica
 	private Ciaza ciaza; // obsluga ciazy 
+	private ParametrZwierzecia najedzenie;
+	private ParametrZwierzecia napojenie;
 	
 	public Zwierze() {
 		ustaw(0, 0, 0, 0, true, 0);
@@ -19,6 +21,8 @@ public class Zwierze {
 		zycie = new Zycie(czasZycia, wiek, dojrzalosc); // wazne !!!!!!!!
 		this.samiec = samiec;
 		ciaza = new Ciaza(czasCiazy); // wazne pamietac !!!!!!!!
+		najedzenie = new ParametrZwierzecia();
+		napojenie = new ParametrZwierzecia();
 	}
 
 	public int getId() {
@@ -38,6 +42,15 @@ public class Zwierze {
 	public void tikZegara() {
 		zycie.tikZegara();
 		ciaza.tikZegara();
+		najedzenie.tikZegara();
+		napojenie.tikZegara();
+	}
+	
+	public boolean isZyje() {
+		return zycie.isZyje();
+	}
+	
+	public void sprawdzenieCiazy() {
 		if (!ciaza.isCiaza()) { // bezpicznik czy w ciazy
 			if(zycie.isDojrzaly()) {
 				// lsowy bezpicznik zajcia w ciaze
@@ -45,9 +58,14 @@ public class Zwierze {
 			}
 		}
 	}
-	
-	public boolean isZyje() {
-		return zycie.isZyje();
+
+	public ParametrZwierzecia getNajedzenie() {
+		return najedzenie;
 	}
+
+	public ParametrZwierzecia getNapojenie() {
+		return napojenie;
+	}
+	
 	
 }
