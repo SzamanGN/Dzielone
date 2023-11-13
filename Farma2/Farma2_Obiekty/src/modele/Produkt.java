@@ -24,5 +24,9 @@ public class Produkt {
 	public int getIlosc() {
 		return ilosc;
 	}
+
+	public void updateIlosc(int delta) {
+		ilosc += delta;
+	}
 	
 }

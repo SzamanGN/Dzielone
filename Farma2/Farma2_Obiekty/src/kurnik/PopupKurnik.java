@@ -9,6 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
+import modele.Produkt;
+import silnik.Silnik;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,17 +24,19 @@ public class PopupKurnik extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 
-	private JPanel przestzrenKurnika;
+	private JPanel przestrzenKurnika;
+	private Silnik silnik;
 
 	public PopupKurnik() {
-		ustaw(null);
+		ustaw(new Silnik());
 	}
 
-	public PopupKurnik(MouseAdapter mouseAdapter) {
-		ustaw(mouseAdapter);
+	public PopupKurnik(Silnik silnik) {
+		ustaw(silnik);
 	}
 
-	private void ustaw(MouseAdapter mouseAdapter) {
+	private void ustaw(Silnik pobranySilnik) {
+		silnik = pobranySilnik;
 		setBounds(100, 100, 1291, 768);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -57,8 +62,8 @@ public class PopupKurnik extends JDialog {
 				}
 			}
 			{
-				przestzrenKurnika = new JPanel();
-				scrollPane.setViewportView(przestzrenKurnika);
+				przestrzenKurnika = new JPanel();
+				scrollPane.setViewportView(przestrzenKurnika);
 
 			}
 		}
@@ -80,7 +85,7 @@ public class PopupKurnik extends JDialog {
 				getRootPane().setDefaultButton(pZamknij);
 			}
 		}
-		dodanieGrzedy(mouseAdapter);
+		dodanieGrzedy(jajoMouseAdapter());
 		
 		setLocationRelativeTo(null);
 		setModal(true);
@@ -92,13 +97,41 @@ public class PopupKurnik extends JDialog {
 	}
 
 	public void dodanieGrzedy(MouseAdapter mouseAdapter) {
-		int ilosc = przestzrenKurnika.getComponentCount();
-		przestzrenKurnika.add(new Grzeda(ilosc, mouseAdapter));
+		int ilosc = przestrzenKurnika.getComponentCount();
+		przestrzenKurnika.add(new Grzeda(ilosc, mouseAdapter));
 	}
 
 	public boolean isJajo(int ktoryPanel, int indeksKury, int indeksJajka) {
-		// ((Grzeda) getComponent(ktoryPanel)).isJajo(indeksKury, indeksJajka);
-		return true;
+		//Grzeda grzenda = (Grzeda) przestrzenKurnika.getComponent(ktoryPanel);
+		return ((Grzeda) przestrzenKurnika.getComponent(ktoryPanel)).isJajo(indeksKury, indeksJajka);
 	}
-
+	
+	private void usuniecieJajka(int ktoryPanel, int indeksKury, int indeksJajka) {
+		((Grzeda) przestrzenKurnika.getComponent(ktoryPanel)).usunJajo(indeksKury, indeksJajka);
+	}
+	
+	private MouseAdapter jajoMouseAdapter() {
+		return new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int ktoryPanel = (int) ((JLabel) arg0.getSource()).getClientProperty("ktoryPanel");
+				int indeksKury = (int) ((JLabel) arg0.getSource()).getClientProperty("indeskKury");
+				int indeksJajka = (int) ((JLabel) arg0.getSource()).getClientProperty("indeksJajka");
+				System.out.println(String.format("Kotry panel = %d, indeks ktory = %d, indeks jajak = %d" ,
+						ktoryPanel,
+						indeksKury,
+						indeksJajka
+						));
+				if (isJajo(ktoryPanel, indeksKury, indeksJajka)) {
+					System.out.println("Jest jajo");
+					// dodanie jajka do magazynu
+					silnik.dodajProduktDoMagazynu(0, 1);
+					// ususniecie obrazka jajka
+					usuniecieJajka(ktoryPanel, indeksKury, indeksJajka);
+				} else {
+					System.out.println("Nie ma jaja");
+				}
+			}
+		};
+	}
 }

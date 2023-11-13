@@ -17,7 +17,21 @@ public class ModelListyProduktow {
 	}
 	
 	public void add(int id, int ilosc) {
-		model.addElement(new Produkt(id, ilosc));
+		// sprawdzenie czy taki produkt jest i jezli jest dodajemy ilosc produtkow
+		int rozmiar = model.size();
+		boolean zaktulizowano = false;
+		if(rozmiar > 0) {
+			for(int p = 0; p < rozmiar; p++) {
+				if(model.get(p).getId() == id) {
+					model.get(p).updateIlosc(ilosc);
+					zaktulizowano = true;
+					break;
+				}
+			}
+		}
+		if (!zaktulizowano) {
+			model.addElement(new Produkt(id, ilosc));
+		}
 	}
 	
 	public JList<Produkt> getLista(){

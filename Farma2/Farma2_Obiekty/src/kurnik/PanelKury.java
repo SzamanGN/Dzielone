@@ -77,4 +77,8 @@ public class PanelKury extends PanelZwierzecia {
 		return ((EtykietaJaja) panelJaj.getComponent(indeksJajka)).isJajko();
 	}
 
+	public void usunJajko(int indeksJajka) {
+		((EtykietaJaja) panelJaj.getComponent(indeksJajka)).removeObrazek();	
+	}
+
 }

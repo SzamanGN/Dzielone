@@ -6,6 +6,8 @@ import javax.swing.border.EmptyBorder;
 
 import panelAkcji.PanelAkcji;
 import panelInformacyjny.PanelInformacyjny;
+import silnik.Silnik;
+
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -33,8 +35,7 @@ public class OknoGlowne extends JFrame {
 	private JLabel lMagazyn;
 	private JLabel lKurnik;
 	private JLabel lZagroda;
-	private ModelListyProduktow magazyn;
-	private PopupKurnik kurnik;
+	private Silnik silnik;
 
 	public OknoGlowne() {
 		setResizable(false);
@@ -95,13 +96,8 @@ public class OknoGlowne extends JFrame {
 	}
 
 	private void ladowanieDanychStartowych() {
-		magazyn = new ModelListyProduktow();
-		magazyn.add(0, 2);
-		magazyn.add(1, 5);
-		magazyn.add(2, 2);
-		magazyn.add(3, 8);
-		kurnik = null;
-
+		silnik =  new Silnik();
+		silnik.ladowanieDanychStartowych();
 	}
 
 	private MouseAdapter budynekMouseAdapter() {
@@ -111,12 +107,12 @@ public class OknoGlowne extends JFrame {
 				switch ((String) ((JLabel) arg0.getSource()).getClientProperty("budynek")) { // oczytujemy parametr od
 																								// komponetu
 				case "Magazyn":
-					new PopapMagazyn(magazyn);
+					new PopapMagazyn(silnik.getMagazyn());
 					System.out.println("Wybrano magazyn");
 					break;
 				case "Kurnik":
 					System.out.println("Wybrano Kurnik");
-					kurnik = new PopupKurnik(jajoMouseAdapter());
+					new PopupKurnik(silnik);
 					break;
 				case "Zagroda":
 					System.out.println("Wybrano Zagroda");
@@ -154,25 +150,6 @@ public class OknoGlowne extends JFrame {
 		};
 	}
 
-	private MouseAdapter jajoMouseAdapter() {
-		return new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				int ktoryPanel = (int) ((JLabel) arg0.getSource()).getClientProperty("ktoryPanel");
-				int indeksKury = (int) ((JLabel) arg0.getSource()).getClientProperty("indeskKury");
-				int indeksJajka = (int) ((JLabel) arg0.getSource()).getClientProperty("indeksJajka");
-				System.out.println(String.format("Kotry panel = %d, indeks ktory = %d, indeks jajak = %d" ,
-						ktoryPanel,
-						indeksKury,
-						indeksJajka
-						));
-				if (kurnik.isJajo(ktoryPanel, indeksKury, indeksJajka)) {
-					System.out.println("Jest jajo");
-				} else {
-					System.out.println("Nie ma jaja");
-				}
-			}
-		};
-	}
+
 
 }

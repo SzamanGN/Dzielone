@@ -10,6 +10,7 @@ public class Grzeda extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
+	
 	public Grzeda() {
 		ustaw(0, null);
 	}
@@ -35,6 +36,10 @@ public class Grzeda extends JPanel {
 
 	public boolean isJajo(int indeksKury, int indeksJajka) {
 		return ((PanelKury) this.getComponent(indeksKury)).isJajko(indeksJajka);
+	}
+
+	public void usunJajo(int indeksKury, int indeksJajka) {
+		((PanelKury) this.getComponent(indeksKury)).usunJajko(indeksJajka);
 	}
 
 }
