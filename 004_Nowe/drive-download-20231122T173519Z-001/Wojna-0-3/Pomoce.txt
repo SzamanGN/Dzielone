@@ -1,0 +1,52 @@
+jednostki:
+
+rodzaj		ilosc	atak 	obrona		strata
+
+topornicy	20		15		15			2
+
+rycerze		10		17		19			1
+
+wspoczynik ataku =  ilosc * ataku
+wpolczynik obrony = ilosc * obrona
+
+pojedynek:
+
+1 graczA atakuje graczaB
+jezeli wposlczynik atajue - wposlczynik obrony graczaB jest:
+
+	> 0 to wygrywa gracz A - ilolsc graczaA - 5% * strata, ilosc graczaB - 10% * strata
+	
+	= 0  remis - iloscaA i B - 7% * strata
+	 
+	< 0 wyhrywa gracza B - ilosc graczaB - 5% * strata, ilosc graczaA - 10% * strata
+	
+sprawdzenie czy il0sc graczaA jest wieksza od 0:
+
+	tak: graczA zyje
+	
+	nie: graczA nie zyje
+	
+	
+sprawdzenie czy ilosc graczaB jest wieksza od 0:	
+	
+	tak: graczB zyje
+	
+	nie: graczB nie zyje
+	
+Jezeli graczA nie zyje i graczB nie zyje:
+	
+	tak: obie armie zniszczone
+	
+	nie: sprawdzenie czy graczA zyje i graczB zyje 
+	
+		tak: to kolejny pojedynek
+		
+		nie: sprawdzamy czy graczA nie zyje:
+		
+			tak: wygrywa graczB
+			
+			nie: wygrywa graczA 
+			
+			 
+		
+	

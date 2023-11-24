@@ -1,0 +1,90 @@
+Aby dodać bardziej zaawansowane mechaniki, takie jak różne typy jednostek i zdobywanie terytoriów, możemy rozszerzyć klasę Armia i dodać klasę reprezentującą terytoria. Oto przykładowy kod:
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Armia {
+    private Map<String, Integer> jednostki;
+
+    public Armia() {
+        this.jednostki = new HashMap<>();
+        // Inicjalizacja różnych typów jednostek
+        this.jednostki.put("Piechota", 50);
+        this.jednostki.put("Czołgi", 20);
+        // Dodaj więcej typów jednostek według potrzeb gry
+    }
+
+    public int obliczMocAtaku() {
+        int mocAtaku = 0;
+        for (int ilosc : jednostki.values()) {
+            mocAtaku += ilosc;
+        }
+        return mocAtaku;
+    }
+
+    public void zmniejszLiczbeJednostek(String typJednostki, int ilosc) {
+        if (jednostki.containsKey(typJednostki)) {
+            jednostki.put(typJednostki, jednostki.get(typJednostki) - ilosc);
+            if (jednostki.get(typJednostki) < 0) {
+                jednostki.put(typJednostki, 0);
+            }
+        }
+    }
+
+    public boolean czyMaJednostki() {
+        return jednostki.values().stream().anyMatch(ilosc -> ilosc > 0);
+    }
+}
+
+public class Terytorium {
+    private String nazwa;
+    private Gracz wlasciciel;
+
+    public Terytorium(String nazwa) {
+        this.nazwa = nazwa;
+        this.wlasciciel = null; // Początkowo brak właściciela
+    }
+
+    public Gracz getWlasciciel() {
+        return wlasciciel;
+    }
+
+    public void setWlasciciel(Gracz nowyWlasciciel) {
+        this.wlasciciel = nowyWlasciciel;
+    }
+}
+
+public class Gra {
+    public static void main(String[] args) {
+        Gracz gracz1 = new Gracz("Gracz 1");
+        Gracz gracz2 = new Gracz("Gracz 2");
+
+        Terytorium terytorium1 = new Terytorium("Terytorium 1");
+        Terytorium terytorium2 = new Terytorium("Terytorium 2");
+
+        // Przypisanie terytoriów do graczy
+        terytorium1.setWlasciciel(gracz1);
+        terytorium2.setWlasciciel(gracz2);
+
+        while (gracz1.czyZyje() && gracz2.czyZyje()) {
+            // Symulacja ataku na terytorium
+            if (terytorium1.getWlasciciel() == gracz1) {
+                gracz1.atakuj(gracz2, "Piechota", 10);
+            } else {
+                gracz2.atakuj(gracz1, "Czołgi", 5);
+            }
+        }
+
+        if (gracz1.czyZyje()) {
+            System.out.println(gracz1.getNazwa() + " wygrał!");
+        } else {
+            System.out.println(gracz2.getNazwa() + " wygrał!");
+        }
+    }
+}
+
+W powyższym kodzie dodano różne typy jednostek w klasie Armia. Każdy typ jednostki ma swoją ilość, a moc ataku obliczana jest sumując ilości wszystkich typów jednostek. Dodano również klasę Terytorium, aby reprezentować terytoria, które gracze mogą zdobywać. Gracz atakuje terytorium, a rezultat ataku wpływa na zmianę właściciela terytorium.
+
+Pamiętaj, że powyższy kod to jedynie ogólny szkic, który można dostosować i rozbudować w zależności od konkretnych wymagań i koncepcji gry.
+
+

@@ -1,0 +1,55 @@
+Okej, dodajmy teraz bardziej zaawansowaną logikę obrony, która zmniejszy liczbę jednostek w armii w zależności od mocy ataku przeciwnika. Możemy na przykład założyć, że każda jednostka w armii przeciwnika zabiera jednostkę jednostkom w obronnej armii. Poniżej przedstawiam zmieniony kod:
+////////////////////////////////////
+public class Gracz {
+    private String nazwa;
+    private Armia armia;
+
+    public Gracz(String nazwa) {
+        this.nazwa = nazwa;
+        this.armia = new Armia();
+    }
+
+    public void atakuj(Gracz przeciwnik) {
+        int moceAtaku = this.armia.obliczMocAtaku();
+        przeciwnik.obrona(moceAtaku);
+    }
+
+    public void obrona(int mocAtakuPrzeciwnika) {
+        int jednostkiStracone = mocAtakuPrzeciwnika;
+        this.armia.zmniejszLiczbeJednostek(jednostkiStracone);
+        System.out.println(this.nazwa + " stracił " + jednostkiStracone + " jednostek w obronie.");
+    }
+
+    public boolean czyZyje() {
+        return armia.czyMaJednostki();
+    }
+}
+
+public class Armia {
+    private int liczbaJednostek;
+
+    public Armia() {
+        this.liczbaJednostek = 100; // Przykładowa początkowa liczba jednostek.
+    }
+
+    public int obliczMocAtaku() {
+        // Tutaj możesz dodać logikę obliczania mocy ataku na podstawie liczby jednostek.
+        return liczbaJednostek;
+    }
+
+    public void zmniejszLiczbeJednostek(int ilosc) {
+        this.liczbaJednostek -= ilosc;
+        if (this.liczbaJednostek < 0) {
+            this.liczbaJednostek = 0;
+        }
+    }
+
+    public boolean czyMaJednostki() {
+        return liczbaJednostek > 0;
+    }
+}
+
+
+/////////////////////////////
+
+W tym przypadku, kiedy gracz jest atakowany, jego armia traci jednostki zgodnie z mocą ataku przeciwnika. Warto zauważyć, że liczba jednostek w armii nie spadnie poniżej zera, co oznacza, że armia nie może mieć ujemnej liczby jednostek. Możesz dostosować tę logikę zgodnie z wymaganiami i specyfiką swojej gry.

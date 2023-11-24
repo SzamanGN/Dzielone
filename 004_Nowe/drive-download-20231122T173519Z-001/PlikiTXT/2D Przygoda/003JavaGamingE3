@@ -1,0 +1,63 @@
+public class Game{
+private Display display;
+
+public Game(int witdth, int height){
+		display = new Display(width, height);
+	}	
+	
+	public void update(){
+	}
+	
+	public void render(){
+	display.render(this);
+	}
+}
+////////////////////////////////////////////
+
+
+public class GameLoop implements Runnable{
+private Game game;
+
+public GameLoop(Game game){
+this.game = game;
+	}
+
+
+private void update(){
+	game.update();
+	ups++;
+	}
+	
+	private void render(){
+	game.render();
+	fps++;
+	}
+}
+
+
+///////////////////////
+public class Start{
+// dodac do kontruktora
+new Thread(new GameLoop(new Game(800, 600))).start();
+
+}
+
+public class Display{
+// dodac do ciala
+pack();
+
+canvas.creatBufferStrategy(3);
+
+
+public void render(Game game){
+	BufferStrategy  buffersStrategy =  canvas.getBufferStrategy();
+	Graphics graphics = buffersStrategy.getDrawGraphics();
+	
+	graphics.setColor(Color.BLACK);
+	graphics.fillRect(0 , 0, canvas.getWidth(), canvas.getheighjt());
+	
+	graphics.dispose();
+	buffersStrategy.show();
+
+	}
+}
