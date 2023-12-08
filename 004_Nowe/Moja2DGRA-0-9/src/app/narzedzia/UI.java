@@ -70,7 +70,7 @@ public class UI {
 			x = gp.screenWidth /2 - textLenght /2;
 			y = gp.screenHeight /2 + (gp.tileSize * 2);
 			g2.drawString(text, x, y);
-			//zatzrymanie gry
+			//zatrzymanie gry-- zegara
 			gp.gameThread = null;
 			
 		} else {
