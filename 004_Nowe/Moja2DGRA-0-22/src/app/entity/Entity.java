@@ -18,6 +18,7 @@ public class Entity {
 			attackLeft1, attackLeft2, attackRight1, attackRight2;
 	public BufferedImage image, image2, image3;
 	public Rectangle solidArea =  new Rectangle(0 , 0, 48, 48);
+	public Rectangle attackArea = new Rectangle(0 , 0, 0, 0);
 	public int solidAreaDefaultX,solidAreaDefaultY;
 	public boolean collisionOn = false;
 	public String dialogues[] = new String[20];
@@ -121,6 +122,15 @@ public class Entity {
 				spriteNum = 1;
 			}
 			spriteCounter = 0;
+		}
+		
+		// tis is need to be outside of key if statment
+		if (invicible == true) {
+			invicibleCounter++;
+			if (invicibleCounter > 60) {
+				invicible = false;
+				invicibleCounter = 0;
+			}
 		}
 	}
 	

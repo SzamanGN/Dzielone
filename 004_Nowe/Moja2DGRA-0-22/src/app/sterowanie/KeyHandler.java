@@ -75,17 +75,17 @@ public class KeyHandler implements KeyListener {
 					if(gp.ui.commandNum == 0) {
 						System.out.println("Do sam fighter specific stuff!");
 						gp.gameState = gp.playState;
-						gp.playMusic(0);
+						//gp.playMusic(0);
 					}
 					if(gp.ui.commandNum == 1) {
 						System.out.println("Do sam thief specific stuff!");
 						gp.gameState = gp.playState;
-						gp.playMusic(0);
+						//gp.playMusic(0);
 					}
 					if(gp.ui.commandNum == 2) {
 						System.out.println("Do sam sorcer specific stuff!");
 						gp.gameState = gp.playState;
-						gp.playMusic(0);
+						//gp.playMusic(0);
 					}
 					if(gp.ui.commandNum == 3) {
 						gp.ui.titleScreenState = 0;
@@ -99,7 +99,7 @@ public class KeyHandler implements KeyListener {
 		
 		
 		// this is a play state
-		if (gp.gameState ==  gp.playState) {
+		else if (gp.gameState ==  gp.playState) {
 			
 			if (code == KeyEvent.VK_W) {
 				upPressed = true;

@@ -36,6 +36,9 @@ public class Player extends Entity {
 		solidAreaDefaultY = solidArea.y;
 		solidArea.width = 32;
 		solidArea.height = 32;
+		
+		attackArea.width = 36;
+		attackArea.height = 36;
 
 		steDefaultValues();
 		getPlayerImage();
@@ -69,7 +72,7 @@ public class Player extends Entity {
 	}
 
 	public void getPlayerAttackImage() {
-		attackUp1 = setup("/player/boy_attack_up_1", gp.tileSize, gp.tileSize);
+		attackUp1 = setup("/player/boy_attack_up_1", gp.tileSize, gp.tileSize * 2);
 		attackUp2 = setup("/player/boy_attack_up_2", gp.tileSize, gp.tileSize * 2);
 		attackDown1 = setup("/player/boy_attack_down_1", gp.tileSize, gp.tileSize * 2);
 		attackDown2 = setup("/player/boy_attack_down_2", gp.tileSize, gp.tileSize * 2);
@@ -153,15 +156,6 @@ public class Player extends Entity {
 				spriteCounter = 0;
 			}
 		}
-
-		// tis is need to be outside of key if statment
-		if (invicible == true) {
-			invicibleCounter++;
-			if (invicibleCounter > 60) {
-				invicible = false;
-				invicibleCounter = 0;
-			}
-		}
 	}
 
 	public void attacking() {
@@ -173,6 +167,34 @@ public class Player extends Entity {
 
 		if (spriteCounter > 5 && spriteCounter <= 25) {
 			spriteNum = 2;
+			
+			// SAVE TO CURRENT worldX, wolrdY, solidArea
+			int currentWorldX = worldX;
+			int currentWorldY = worldY;
+			int solidAreaWidth = solidArea.width;
+			int solidAreaHight = solidArea.height;
+			
+			// Adjust player,s sworldX/y for the attack
+			switch(direction){
+			case "up": worldY -= attackArea.height; break;
+			case "down": worldY += attackArea.height; break;
+			case "left": worldX -= attackArea.height; break;
+			case "right": worldX += attackArea.height; break;
+			}
+			
+			// attackArea become solidArea
+			solidArea.width = attackArea.width;
+			solidArea.height = attackArea.height;
+			// chceck monster colission wht tje uopdated worldX , wolrdY and solicdArea
+			int monsterIndex = gp.colChecker.checkEtity(this, gp.monster);
+			damageMonster(monsterIndex);
+			
+			// After chccking collision retore the orginal date
+			worldX = currentWorldX;
+			worldY =  currentWorldY;
+			solidArea.width = solidAreaWidth;
+			solidArea.height = solidAreaHight;
+			
 		}
 
 		if (spriteCounter > 25) {
@@ -180,7 +202,6 @@ public class Player extends Entity {
 			spriteCounter = 0;
 			attacking = false;
 		}
-
 	}
 
 	// metoda do podnoszenia
@@ -207,6 +228,16 @@ public class Player extends Entity {
 				invicible = true;
 			}
 
+		}
+	}
+	
+	public void damageMonster(int i) {
+		
+		if(i != 999) {
+			
+			System.out.println("Hit");
+		} else {
+			System.out.println("Miss");
 		}
 	}
 
