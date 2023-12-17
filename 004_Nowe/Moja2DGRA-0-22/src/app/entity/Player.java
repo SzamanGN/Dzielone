@@ -156,6 +156,15 @@ public class Player extends Entity {
 				spriteCounter = 0;
 			}
 		}
+		
+		// tis is need to be outside of key if statment
+		if (invicible == true) {
+			invicibleCounter++;
+			if (invicibleCounter > 60) {
+				invicible = false;
+				invicibleCounter = 0;
+			}
+		}
 	}
 
 	public void attacking() {
@@ -178,8 +187,8 @@ public class Player extends Entity {
 			switch(direction){
 			case "up": worldY -= attackArea.height; break;
 			case "down": worldY += attackArea.height; break;
-			case "left": worldX -= attackArea.height; break;
-			case "right": worldX += attackArea.height; break;
+			case "left": worldX -= attackArea.width; break;
+			case "right": worldX += attackArea.width; break;
 			}
 			
 			// attackArea become solidArea
@@ -234,10 +243,13 @@ public class Player extends Entity {
 	public void damageMonster(int i) {
 		
 		if(i != 999) {
-			
-			System.out.println("Hit");
-		} else {
-			System.out.println("Miss");
+			if(gp.monster[i].invicible == false) {
+				gp.monster[i].life -= 1;
+				gp.monster[i].invicible = true;
+				if(gp.monster[i].life <= 0) {
+					gp.monster[i] = null;
+				}
+			}
 		}
 	}
 
@@ -328,7 +340,7 @@ public class Player extends Entity {
 		// dodanie warunku
 		if (invicible == true) {
 			// zminie kazda grafie na 70% przejszystosci
-			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
 		}
 
 		g2.drawImage(image, tempScreenX, tempScreenY, null);

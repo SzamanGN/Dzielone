@@ -1,5 +1,6 @@
 package app.entity;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -127,7 +128,7 @@ public class Entity {
 		// tis is need to be outside of key if statment
 		if (invicible == true) {
 			invicibleCounter++;
-			if (invicibleCounter > 60) {
+			if (invicibleCounter > 40) {
 				invicible = false;
 				invicibleCounter = 0;
 			}
@@ -195,7 +196,17 @@ public class Entity {
 				break;		
 			}
 			
+			// dodanie warunku
+			if (invicible == true) {
+				// zminie kazda grafie na 70% przejszystosci
+				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+			}
+
+			
 			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+			
+			// RESET DO ALHA PRZYWRUCI GRAFIKE DO NORAMLNEJ
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 			
 		}
 	}
