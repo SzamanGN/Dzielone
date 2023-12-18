@@ -424,7 +424,7 @@ public class UI {
 		// DRAW CURSOR
 		g2.setColor(Color.WHITE);
 		g2.setStroke(new BasicStroke(3)); // zmniejszenie obwudki
-		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+		g2.drawRoundRect(cursorX, cursorY -(gp.tileSize - 1), cursorWidth, cursorHeight, 10, 10);
 		
 		
 	}
