@@ -394,39 +394,64 @@ public class UI {
 		int frameY = gp.tileSize;
 		int frameWidth = gp.tileSize * 6;
 		int frameHeight = gp.tileSize * 5;
-		drawSubWindow(frameX, frameY,frameWidth, frameHeight);
+		drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 		
 		//SLOT
 		final int slotXstart = frameX + 20;
 		final int slotYstart = frameY + 20;
 		int slotX = slotXstart;
 		int slotY = slotYstart;
+		int slotSize = gp.tileSize + 3;
 		
 		// DRAW PLAYER ITEMS
 		for(int i = 0; i < gp.player.invetory.size(); i++) {
 			g2.drawImage(gp.player.invetory.get(i).down1, slotX, slotY, null);
 			
-			slotX += gp.tileSize;
+			slotX += slotSize;
+					
 			// czas 16:50
 			if(i == 4 || i == 9 || i == 14) {
 				slotX = slotXstart;
-				slotY += gp.tileSize;
+				slotY += slotSize;
 			}
 			
 		}
 		
 		// CURSOR
-		int cursorX = slotXstart + (gp.tileSize * slotCol);
-		int cursorY = slotY + (gp.tileSize * slotRow);
+		int cursorX = slotXstart + (slotSize * slotCol);
+		int cursorY = slotYstart + (slotSize * slotRow);
 		int cursorWidth = gp.tileSize;
 		int cursorHeight = gp.tileSize;
 		
 		// DRAW CURSOR
 		g2.setColor(Color.WHITE);
 		g2.setStroke(new BasicStroke(3)); // zmniejszenie obwudki
-		g2.drawRoundRect(cursorX, cursorY -(gp.tileSize - 1), cursorWidth, cursorHeight, 10, 10);
+		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 		
+		// DESCRIPTION FRAME;
+		int dFrameX = frameX;
+		int dFrameY = frameY + frameHeight;
+		int dFrameWidth = frameWidth;
+		int dFrameHeight = gp.tileSize * 3;
+		drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
+		// DRAW DESCRIPTION TEXT
+		int textX = dFrameX + 20;
+		int textY = dFrameY + gp.tileSize;
+		g2.setFont(g2.getFont().deriveFont(20f));
 		
+		int itemIndex = getItemIndexOnSlot();
+		if (itemIndex < gp.player.invetory.size()) {
+			// dodanie rozdzielenialini
+			for(String line: gp.player.invetory.get(itemIndex).description.split("\n")) {
+				g2.drawString(line, textX, textY);
+				textY += 32;
+			}
+		}
+	}
+	
+	public int getItemIndexOnSlot() {
+		int itemIndex = slotCol + (slotRow * 5);
+		return itemIndex;
 	}
 	
 	public void drawSubWindow(int x, int y, int width, int height) {

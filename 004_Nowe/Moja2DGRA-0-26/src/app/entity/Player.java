@@ -82,11 +82,6 @@ public class Player extends Entity {
 		invetory.add(currentWeapon);
 		invetory.add(currentShield);
 		invetory.add(new OBJ_Key(gp));
-		invetory.add(new OBJ_Key(gp));
-		invetory.add(new OBJ_Key(gp));
-		invetory.add(new OBJ_Key(gp));
-		invetory.add(new OBJ_Key(gp));
-		invetory.add(new OBJ_Key(gp));
 		
 	}
 	// metoda do sprawdzenia ataku
