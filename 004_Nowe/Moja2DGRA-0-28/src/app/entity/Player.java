@@ -396,7 +396,7 @@ public class Player extends Entity {
 				currentShield = selectedItem;
 				defense = getDefense();
 			}
-			// Napoje zuzywalne
+			// Napoj jednokrotnego uzycia
 			if (selectedItem.type == type_consumable) {
 				selectedItem.use(this);
 				invetory.remove(itemIndex);

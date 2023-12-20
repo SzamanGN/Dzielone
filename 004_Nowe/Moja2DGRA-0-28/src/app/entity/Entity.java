@@ -50,7 +50,7 @@ public class Entity {
 	public int speed;
 	public int maxLife;
 	public int life;
-	// dpdaniereszty parametrow
+	// dodanie reszty parametrow
 	public int level;
 	public int strenght;
 	public int dexterity;

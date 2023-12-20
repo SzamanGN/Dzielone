@@ -7,6 +7,7 @@ public class OBJ_Potion_Red extends Entity {
 	
 	private int value = 5;
 	private GamePanel gp;
+	
 	public OBJ_Potion_Red(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
