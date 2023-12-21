@@ -7,7 +7,7 @@ import app.panele.GamePanel;
 public class Start {
 
 	public static void main(String[] args) {
-		// 
+		// Monster and mana 
 		System.out.println("Moja 2D Gra-wersja-0-29 epizod 30");
 		
 		JFrame windows = new JFrame();
