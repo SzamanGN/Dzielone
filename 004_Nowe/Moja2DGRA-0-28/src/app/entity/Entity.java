@@ -41,6 +41,7 @@ public class Entity {
 	public int spriteCounter = 0;
 	public int actionLockCounter = 0;
 	public int invicibleCounter = 0;
+	public int shotAvailableCounter = 0;
 	public int dayingCounter = 0;
 	public int hpBarCounter = 0;
 
@@ -50,6 +51,9 @@ public class Entity {
 	public int speed;
 	public int maxLife;
 	public int life;
+	// dodanie parametrow do many
+	public int maxMana;
+	public int mana;
 	// dodanie reszty parametrow
 	public int level;
 	public int strenght;
@@ -61,12 +65,14 @@ public class Entity {
 	public int coin;
 	public Entity currentWeapon;
 	public Entity currentShield;
+	public Projectile projectile;// DO KULI OGNIA
 
 	// ITEM ATTRIUBUTES
 	
 	public int attackValue;
 	public int defenseValue;
 	public String description = "";
+	public int useCost;
 	
 	// TYPE
 	public int type; // 0 player, 1 NPC, 2 = Monster
@@ -299,7 +305,7 @@ public class Entity {
 			changeAlpha(g2, 0f);
 		}
 		if (dayingCounter > i * 8) {
-			dying = false;
+			//dying = false;
 			alive = false;
 		}
 	}

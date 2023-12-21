@@ -66,7 +66,8 @@ public class GamePanel extends JPanel implements Runnable {
 	// doaniae npc potwory
 	public Entity monster[] = new Entity[20];
 	// dodanie listy obiktow
-	public ArrayList<Entity> entytiyList =  new ArrayList<>();
+	public ArrayList<Entity> projectileList = new ArrayList<>();
+	public ArrayList<Entity> entytiyList = new ArrayList<>();
 	
 	// Game Status
 	public int gameState;
@@ -161,6 +162,18 @@ public class GamePanel extends JPanel implements Runnable {
 					}
 				}
 			}
+			
+			// dodanie kuli ogniste
+			for(int i = 0; i < projectileList.size(); i++) {
+				if(projectileList.get(i) != null) {
+					if(projectileList.get(i).alive == true) {
+						projectileList.get(i).update();
+					}
+					if(projectileList.get(i).alive == false) {
+						projectileList.remove(i);
+					}
+				}
+			}	
 		}
 		
 		if(gameState == pauseState) {
@@ -205,6 +218,12 @@ public class GamePanel extends JPanel implements Runnable {
 			for(int i = 0; i < monster.length; i++) {
 				if(monster[i] != null) {
 					entytiyList.add(monster[i]);
+				}
+			}
+			// dodanie rysowania kulli 
+			for(int i = 0; i < projectileList.size(); i++) {
+				if(projectileList.get(i) != null) {
+					entytiyList.add(projectileList.get(i));
 				}
 			}
 			

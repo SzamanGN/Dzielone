@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import app.narzedzia.UtilityTool;
+import app.object.OBJ_Fireall;
 import app.object.OBJ_Key;
 import app.object.OBJ_Shield_Wood;
 import app.object.OBJ_Sword_Normal;
@@ -74,6 +75,8 @@ public class Player extends Entity {
 		coin = 0;
 		currentWeapon = new OBJ_Sword_Normal(gp);
 		currentShield = new OBJ_Shield_Wood(gp);
+		// dodanie ognistej kuli
+		projectile = new OBJ_Fireall(gp);
 		attack = getAttack();// The total attack value is decided by strenght weapon
 		defense = getDefense();// The total defnese value is decided by dexterity and sheald
 	}
@@ -218,6 +221,21 @@ public class Player extends Entity {
 				spriteCounter = 0;
 			}
 		}
+		
+		// dodanie fireball
+		if(gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30) {
+			
+			// SET DEFALT USER PARAMETERS
+			projectile.set(worldX, worldY, direction, true, this);
+			
+			//ADD IT TO THE LIST
+			gp.projectileList.add(projectile);
+			// resetowanie licznika strzelania 
+			shotAvailableCounter = 0;
+			
+			// dodanie efektu
+			gp.playSE(10);
+		}
 
 		// tis is need to be outside of key if statment
 		if (invicible == true) {
@@ -227,6 +245,11 @@ public class Player extends Entity {
 				invicibleCounter = 0;
 			}
 		}
+		// doanie licznika strzalu aby nie moc strzelac za szybbko
+		if(shotAvailableCounter < 30) {
+			shotAvailableCounter++;
+		}
+		
 	}
 
 	public void attacking() {
@@ -266,7 +289,7 @@ public class Player extends Entity {
 			solidArea.height = attackArea.height;
 			// chceck monster colission wht tje uopdated worldX , wolrdY and solicdArea
 			int monsterIndex = gp.colChecker.checkEtity(this, gp.monster);
-			damageMonster(monsterIndex);
+			damageMonster(monsterIndex, attack);
 
 			// After chccking collision retore the orginal date
 			worldX = currentWorldX;
@@ -313,7 +336,7 @@ public class Player extends Entity {
 
 	public void contacktMonster(int i) {
 		if (i != 999) {
-			if (invicible == false) {
+			if (invicible == false && gp.monster[i].dying == false) {
 				// jak gracz otrzymuje orbazenia dzwiek
 				gp.playSE(6);
 				// dodanie ataku potwora
@@ -328,7 +351,7 @@ public class Player extends Entity {
 		}
 	}
 
-	public void damageMonster(int i) {
+	public void damageMonster(int i, int attack) {
 
 		if (i != 999) {
 			if (gp.monster[i].invicible == false) {

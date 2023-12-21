@@ -7,7 +7,7 @@ import app.panele.GamePanel;
 public class Start {
 
 	public static void main(String[] args) {
-		// 
+		// Fireball 
 		System.out.println("Moja 2D Gra-wersja-0-28 epizod 29");
 		
 		JFrame windows = new JFrame();

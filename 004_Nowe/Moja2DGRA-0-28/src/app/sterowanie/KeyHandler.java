@@ -7,7 +7,7 @@ import app.panele.GamePanel;
 
 public class KeyHandler implements KeyListener {
 
-	public boolean upPressed, downPressed, leftPressed, rightPressed, entertPressed;
+	public boolean upPressed, downPressed, leftPressed, rightPressed, entertPressed, shotKeyPressed;
 	// debug
 	public boolean checkDrawTime = false;
 
@@ -139,6 +139,10 @@ public class KeyHandler implements KeyListener {
 		if (code == KeyEvent.VK_ENTER) {
 			entertPressed = true;
 		}
+		
+		if (code == KeyEvent.VK_F) {
+			shotKeyPressed = true;
+		}
 
 		// debug
 		if (code == KeyEvent.VK_T) {
@@ -217,6 +221,9 @@ public class KeyHandler implements KeyListener {
 		}
 		if (code == KeyEvent.VK_D) {
 			rightPressed = false;
+		}
+		if (code == KeyEvent.VK_F) {
+			shotKeyPressed = false;
 		}
 	}
 
