@@ -7,7 +7,7 @@ import app.panele.GamePanel;
 public class Start {
 
 	public static void main(String[] args) {
-		// 
+		// ITEM DROPS
 		System.out.println("Moja 2D Gra-wersja-0-30 epizod 31");
 		
 		JFrame windows = new JFrame();
