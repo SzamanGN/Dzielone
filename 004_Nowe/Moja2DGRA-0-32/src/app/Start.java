@@ -7,7 +7,7 @@ import app.panele.GamePanel;
 public class Start {
 
 	public static void main(String[] args) {
-		// BREAKING OBJECTS
+		// PARTICLES
 		System.out.println("Moja 2D Gra-wersja-0-32 epizod 33");
 		
 		JFrame windows = new JFrame();

@@ -34,44 +34,46 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int maxScreenRow = 12;
 	public final int screenWidth = tileSize * maxScreenCol; // 768
 	public final int screenHeight = tileSize * maxScreenRow; // 576
-	
-	//WORLD SETTINGS
+
+	// WORLD SETTINGS
 	public final int maxWorldCol = 50;
 	public final int maxWorldRow = 50;
-	
+
 	// FPS
 	private int FPS = 60;
-	// menager plytek 
-	public TileManager tileM =  new TileManager(this);
+	// menager plytek
+	public TileManager tileM = new TileManager(this);
 	// wlasny sluchacz sterowania
 	public KeyHandler keyH = new KeyHandler(this);
-	//doanie muzyki Sound
+	// doanie muzyki Sound
 	public Sound music = new Sound();
 	public Sound se = new Sound();
-	//dodanie kolizji
+	// dodanie kolizji
 	public CollisionChecker colChecker = new CollisionChecker(this);
-	//dodanie ustawienia obiktow
+	// dodanie ustawienia obiktow
 	public AssetSetter aSetter = new AssetSetter(this);
-	//doanie Ui klasy
+	// doanie Ui klasy
 	public UI ui = new UI(this);
 	// dodanie EvenHanlder
-	public EventHandler eHandler =  new EventHandler(this);
-	// dodanie  watku
+	public EventHandler eHandler = new EventHandler(this);
+	// dodanie watku
 	public Thread gameThread;
-	//dodanie gracza
-	public Player player =  new Player(this, keyH);
-	//dodanie objektu
+	// dodanie gracza
+	public Player player = new Player(this, keyH);
+	// dodanie objektu
 	public Entity obj[] = new Entity[20];
-	//dodanie NPC
+	// dodanie NPC
 	public Entity npc[] = new Entity[10];
 	// doaniae npc potwory
 	public Entity monster[] = new Entity[20];
-	// dodanie plytek do zniszczenia 
-	public Interactivetile iTile[] =  new Interactivetile[50];
-	// dodanie listy obiktow
+	// dodanie plytek do zniszczenia
+	public Interactivetile iTile[] = new Interactivetile[50];
+	// dodanie animacji np kula kamien
 	public ArrayList<Entity> projectileList = new ArrayList<>();
+
+	// dodanie listy obiktow
 	public ArrayList<Entity> entytiyList = new ArrayList<>();
-	
+
 	// Game Status
 	public int gameState;
 	public final int titleState = 0;
@@ -79,8 +81,6 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int pauseState = 2;
 	public final int dialogueState = 3;
 	public final int characterState = 4;
-	
-	
 
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -89,9 +89,8 @@ public class GamePanel extends JPanel implements Runnable {
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
 	}
-	
-	
-	// dodawanie do mapy 
+
+	// dodawanie do mapy
 	public void setupGame() {
 		// dodanie obiktu
 		aSetter.setObject();
@@ -101,7 +100,7 @@ public class GamePanel extends JPanel implements Runnable {
 		aSetter.setMonster();
 		// danie drzew do wyciecia
 		aSetter.setInetractiveTile();
-		//wlaczenie muzyki o indeksie 0 
+		// wlaczenie muzyki o indeksie 0
 		playMusic(0);
 		stopMusic();
 		// doadanie statusu gry
@@ -114,184 +113,182 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 
 	public void run() {
-		
-		double drawInterval = 1000000000/ FPS; //0,1666
+
+		double drawInterval = 1000000000 / FPS; // 0,1666
 		double delta = 0;
 		long lastTime = System.nanoTime();
 		long currentTime;
 		long timer = 0;
 		int drawCount = 0;
-		
-		while(gameThread != null) {
-			
+
+		while (gameThread != null) {
+
 			currentTime = System.nanoTime();
-			
-			delta += (currentTime - lastTime ) / drawInterval;
-			timer += (currentTime - lastTime );
+
+			delta += (currentTime - lastTime) / drawInterval;
+			timer += (currentTime - lastTime);
 			lastTime = currentTime;
-			
-			if(delta >= 1) {
+
+			if (delta >= 1) {
 				update();
 				repaint();
 				delta--;
 				drawCount++;
 			}
-			if(timer > 1000000000) {
-				//System.out.println("FPS " + drawCount); // ja wylaczam widocznosc
+			if (timer > 1000000000) {
+				// System.out.println("FPS " + drawCount); // ja wylaczam widocznosc
 				drawCount = 0;
 				timer = 0;
 			}
 		}
-		
+
 	}
-	
+
 	public void update() {
-		//dodanie statusu
-		if(gameState == playState) {
+		// dodanie statusu
+		if (gameState == playState) {
 			// PLAYER
 			player.update();
 			// NPC
-			for(int i= 0; i < npc.length; i++) {
-				if(npc[i] != null) {
+			for (int i = 0; i < npc.length; i++) {
+				if (npc[i] != null) {
 					npc[i].update();
 				}
 			}
 			// dodanie upate dla potworow
-			for(int i = 0; i < monster.length; i++) {
-				if(monster[i] != null) {
-					if(monster[i].alive == true && monster[i].dying == false) {
+			for (int i = 0; i < monster.length; i++) {
+				if (monster[i] != null) {
+					if (monster[i].alive == true && monster[i].dying == false) {
 						monster[i].update();
 					}
-					if(monster[i].alive == false) {
+					if (monster[i].alive == false) {
 						monster[i].checkDrop();
 						monster[i] = null;
 					}
 				}
 			}
-			
+
 			// dodanie kuli ogniste
-			for(int i = 0; i < projectileList.size(); i++) {
-				if(projectileList.get(i) != null) {
-					if(projectileList.get(i).alive == true) {
+			for (int i = 0; i < projectileList.size(); i++) {
+				if (projectileList.get(i) != null) {
+					if (projectileList.get(i).alive == true) {
 						projectileList.get(i).update();
 					}
-					if(projectileList.get(i).alive == false) {
+					if (projectileList.get(i).alive == false) {
 						projectileList.remove(i);
 					}
 				}
-			}	
-		}
-		// dodanie plytek kotore mozna zniszczyc 
-		for(int i = 0;i < iTile.length; i++) {
-			if(iTile[i] != null) {
-				iTile[i].update();
 			}
+
+
+			// dodanie plytek kotore mozna zniszczyc
+			for (int i = 0; i < iTile.length; i++) {
+				if (iTile[i] != null) {
+					iTile[i].update();
+				}
+			}
+
 		}
-		
-		
-		if(gameState == pauseState) {
+		if (gameState == pauseState) {
 			// nothing at moment
 		}
-		
+
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		
+
 		// Debug
 		long drawStart = 0;
-		if(keyH.checkDrawTime == true) {
+		if (keyH.checkDrawTime == true) {
 			drawStart = System.nanoTime();
 		}
 		// Title screen
-		if(gameState == titleState) {
+		if (gameState == titleState) {
 			ui.draw(g2);
-		// others	
+			// others
 		} else {
-			
+
 			// plytki tile TILE
 			tileM.draw(g2);
 			// Rysowanie plytek do zniszczenia
 			// interactive tiles
-			for(int i = 0;i < iTile.length; i++) {
-				if(iTile[i] != null) {
+			for (int i = 0; i < iTile.length; i++) {
+				if (iTile[i] != null) {
 					iTile[i].draw(g2);
 				}
 			}
-			
-			
+
 			// ADD ENTITIS TO THE LIST
 			entytiyList.add(player);
-			
-			for(int i = 0; i < npc.length; i++) {
-				if(npc[i] != null)
-				entytiyList.add(npc[i]);
+
+			for (int i = 0; i < npc.length; i++) {
+				if (npc[i] != null)
+					entytiyList.add(npc[i]);
 			}
-			
-			for(int i = 0; i < obj.length; i++) {
-				if(obj[i] != null) {
+
+			for (int i = 0; i < obj.length; i++) {
+				if (obj[i] != null) {
 					entytiyList.add(obj[i]);
 				}
 			}
-			
+
 			// dodanie do rysowania listy potworow
-			for(int i = 0; i < monster.length; i++) {
-				if(monster[i] != null) {
+			for (int i = 0; i < monster.length; i++) {
+				if (monster[i] != null) {
 					entytiyList.add(monster[i]);
 				}
 			}
-			// dodanie rysowania kulli 
-			for(int i = 0; i < projectileList.size(); i++) {
-				if(projectileList.get(i) != null) {
+			// dodanie rysowania kulli
+			for (int i = 0; i < projectileList.size(); i++) {
+				if (projectileList.get(i) != null) {
 					entytiyList.add(projectileList.get(i));
 				}
 			}
-			
+
 			// SORT
 			Collections.sort(entytiyList, new Comparator<Entity>() {
 
 				@Override
 				public int compare(Entity e1, Entity e2) {
-					
-					int result = Integer.compare(e1.worldY, e2.worldY); 
+
+					int result = Integer.compare(e1.worldY, e2.worldY);
 					return result;
 				}
 			});
-			
+
 			// DRAW ENTITIS
-			for(int i = 0; i < entytiyList.size(); i++) {
+			for (int i = 0; i < entytiyList.size(); i++) {
 				entytiyList.get(i).draw(g2);
 			}
-			
+
 			// EMPTY ENTITY LIST
 			entytiyList.clear();
-			
+
 			// doadnie UI
 			ui.draw(g2);
 		}
-	
-	
-		
+
 		// DEBUG
-		if(keyH.checkDrawTime == true) {
+		if (keyH.checkDrawTime == true) {
 			long drawEnd = System.nanoTime();
 			long passed = drawEnd - drawStart;
 			g2.setColor(Color.WHITE);
 			g2.drawString("Draw time:" + passed, 10, 400);
 			System.out.println("Draw time:" + passed);
 		}
-				
+
 		g2.dispose();
 	}
-	
+
 	public void playMusic(int i) {
-		
+
 		music.setFile(i);
 		music.play();
-		music.loop();	
+		music.loop();
 	}
-	
+
 	public void stopMusic() {
 		music.stop();
 	}

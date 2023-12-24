@@ -1,5 +1,7 @@
 package tiles_interactive;
 
+import java.awt.Color;
+
 import app.entity.Entity;
 import app.panele.GamePanel;
 
@@ -39,5 +41,6 @@ public class IT_DryTree extends Interactivetile {
 		Interactivetile tile = new IT_Trunk(gp, worldX / gp.tileSize, worldY / gp.tileSize);
 		return tile;		
 	}
+	
 
 }
