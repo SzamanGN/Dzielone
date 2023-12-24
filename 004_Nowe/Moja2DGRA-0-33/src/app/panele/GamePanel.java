@@ -4,11 +4,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 import javax.swing.JPanel;
+
+import app.Start;
 import app.entity.Entity;
 import app.entity.Player;
 import app.monster.MON_GreenSlime;
@@ -30,14 +35,19 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int scale = 3;
 
 	public final int tileSize = orginalTileSize * scale;
-	public final int maxScreenCol = 16;
+	public final int maxScreenCol = 20;
 	public final int maxScreenRow = 12;
-	public final int screenWidth = tileSize * maxScreenCol; // 768
-	public final int screenHeight = tileSize * maxScreenRow; // 576
+	public final int screenWidth = tileSize * maxScreenCol; // 960 pixel
+	public final int screenHeight = tileSize * maxScreenRow; // 576 pixel
 	
 	//WORLD SETTINGS
 	public final int maxWorldCol = 50;
 	public final int maxWorldRow = 50;
+	// FOR FULL SCREEN
+	int screenWidth2 = screenWidth;
+	int screenHeight2 = screenHeight;
+	public BufferedImage tempScreen;
+	public Graphics2D g2;
 	
 	// FPS
 	private int FPS = 60;
@@ -105,12 +115,30 @@ public class GamePanel extends JPanel implements Runnable {
 		// danie drzew do wyciecia
 		aSetter.setInetractiveTile();
 		//wlaczenie muzyki o indeksie 0 
-		playMusic(0);
-		stopMusic();
+		//playMusic(0);
+		//stopMusic();
 		// doadanie statusu gry
 		gameState = titleState;
+		
+		tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_RGB);
+		g2 = (Graphics2D)tempScreen.getGraphics();
+		
+		// wywolanie metody do pelnego ekranu
+		//setFullScreen();
+		
 	}
 
+	public void setFullScreen() {
+		// GET THE LOCAL DEVICE SCREEN
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment(); // pobranie wielkosci monitora
+		GraphicsDevice gd = ge.getDefaultScreenDevice();
+		gd.setFullScreenWindow(Start.windows);
+		
+		// GET THE FULL SCREEN HEAIGHT AND WIDHT
+		screenWidth2 = Start.windows.getWidth();
+		screenHeight2 = Start.windows.getHeight();
+	}
+	
 	public void startGameThread() {
 		gameThread = new Thread(this);
 		gameThread.start();
@@ -135,7 +163,9 @@ public class GamePanel extends JPanel implements Runnable {
 			
 			if(delta >= 1) {
 				update();
-				repaint();
+				//repaint();
+				drawToTempScreen();
+				drawToScreen();
 				delta--;
 				drawCount++;
 			}
@@ -209,102 +239,103 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 
 	}
-
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D) g;
-		
+	
+	public void drawToTempScreen() {
 		// Debug
-		long drawStart = 0;
-		if(keyH.checkDrawTime == true) {
-			drawStart = System.nanoTime();
-		}
-		// Title screen
-		if(gameState == titleState) {
-			ui.draw(g2);
-		// others	
-		} else {
-			
-			// plytki tile TILE
-			tileM.draw(g2);
-			// Rysowanie plytek do zniszczenia
-			// interactive tiles
-			for(int i = 0;i < iTile.length; i++) {
-				if(iTile[i] != null) {
-					iTile[i].draw(g2);
+				long drawStart = 0;
+				if(keyH.checkDrawTime == true) {
+					drawStart = System.nanoTime();
 				}
-			}
-			
-			
-			// ADD ENTITIS TO THE LIST
-			entytiyList.add(player);
-			
-			for(int i = 0; i < npc.length; i++) {
-				if(npc[i] != null)
-				entytiyList.add(npc[i]);
-			}
-			
-			for(int i = 0; i < obj.length; i++) {
-				if(obj[i] != null) {
-					entytiyList.add(obj[i]);
-				}
-			}
-			
-			// dodanie do rysowania listy potworow
-			for(int i = 0; i < monster.length; i++) {
-				if(monster[i] != null) {
-					entytiyList.add(monster[i]);
-				}
-			}
-			// dodanie rysowania kulli 
-			for(int i = 0; i < projectileList.size(); i++) {
-				if(projectileList.get(i) != null) {
-					entytiyList.add(projectileList.get(i));
-				}
-			}
-			
-			// dodanie rysowania particle
-			for (int i = 0; i < particleList.size(); i++) {
-				if (particleList.get(i) != null) {
-					entytiyList.add(particleList.get(i));
-				}
-			}
-			
-			// SORT
-			Collections.sort(entytiyList, new Comparator<Entity>() {
-
-				@Override
-				public int compare(Entity e1, Entity e2) {
+				// Title screen
+				if(gameState == titleState) {
+					ui.draw(g2);
+				// others	
+				} else {
 					
-					int result = Integer.compare(e1.worldY, e2.worldY); 
-					return result;
+					// plytki tile TILE
+					tileM.draw(g2);
+					// Rysowanie plytek do zniszczenia
+					// interactive tiles
+					for(int i = 0;i < iTile.length; i++) {
+						if(iTile[i] != null) {
+							iTile[i].draw(g2);
+						}
+					}
+					
+					
+					// ADD ENTITIS TO THE LIST
+					entytiyList.add(player);
+					
+					for(int i = 0; i < npc.length; i++) {
+						if(npc[i] != null)
+						entytiyList.add(npc[i]);
+					}
+					
+					for(int i = 0; i < obj.length; i++) {
+						if(obj[i] != null) {
+							entytiyList.add(obj[i]);
+						}
+					}
+					
+					// dodanie do rysowania listy potworow
+					for(int i = 0; i < monster.length; i++) {
+						if(monster[i] != null) {
+							entytiyList.add(monster[i]);
+						}
+					}
+					// dodanie rysowania kulli 
+					for(int i = 0; i < projectileList.size(); i++) {
+						if(projectileList.get(i) != null) {
+							entytiyList.add(projectileList.get(i));
+						}
+					}
+					
+					// dodanie rysowania particle
+					for (int i = 0; i < particleList.size(); i++) {
+						if (particleList.get(i) != null) {
+							entytiyList.add(particleList.get(i));
+						}
+					}
+					
+					// SORT
+					Collections.sort(entytiyList, new Comparator<Entity>() {
+
+						@Override
+						public int compare(Entity e1, Entity e2) {
+							
+							int result = Integer.compare(e1.worldY, e2.worldY); 
+							return result;
+						}
+					});
+					
+					// DRAW ENTITIS
+					for(int i = 0; i < entytiyList.size(); i++) {
+						entytiyList.get(i).draw(g2);
+					}
+					
+					// EMPTY ENTITY LIST
+					entytiyList.clear();
+					
+					// doadnie UI
+					ui.draw(g2);
 				}
-			});
 			
-			// DRAW ENTITIS
-			for(int i = 0; i < entytiyList.size(); i++) {
-				entytiyList.get(i).draw(g2);
-			}
 			
-			// EMPTY ENTITY LIST
-			entytiyList.clear();
-			
-			// doadnie UI
-			ui.draw(g2);
-		}
-	
-	
-		
-		// DEBUG
-		if(keyH.checkDrawTime == true) {
-			long drawEnd = System.nanoTime();
-			long passed = drawEnd - drawStart;
-			g2.setColor(Color.WHITE);
-			g2.drawString("Draw time:" + passed, 10, 400);
-			System.out.println("Draw time:" + passed);
-		}
 				
-		g2.dispose();
+				// DEBUG
+				if(keyH.checkDrawTime == true) {
+					long drawEnd = System.nanoTime();
+					long passed = drawEnd - drawStart;
+					g2.setColor(Color.WHITE);
+					g2.drawString("Draw time:" + passed, 10, 400);
+					System.out.println("Draw time:" + passed);
+				}
+	}
+	
+	public void drawToScreen() {
+		Graphics g = getGraphics();
+		g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
+		g.dispose();
 	}
 	
 	public void playMusic(int i) {
