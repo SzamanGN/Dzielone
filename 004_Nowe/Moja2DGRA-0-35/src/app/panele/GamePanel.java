@@ -19,6 +19,7 @@ import app.entity.Player;
 import app.monster.MON_GreenSlime;
 import app.narzedzia.AssetSetter;
 import app.narzedzia.CollisionChecker;
+import app.narzedzia.Config;
 import app.narzedzia.EventHandler;
 import app.narzedzia.UI;
 import app.sound.Sound;
@@ -48,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
 	int screenHeight2 = screenHeight;
 	public BufferedImage tempScreen;
 	public Graphics2D g2;
+	public boolean fullScrenOn = false;
 	
 	// FPS
 	private int FPS = 60;
@@ -65,7 +67,10 @@ public class GamePanel extends JPanel implements Runnable {
 	//doanie Ui klasy
 	public UI ui = new UI(this);
 	// dodanie EvenHanlder
-	public EventHandler eHandler =  new EventHandler(this);
+	public EventHandler eHandler = new EventHandler(this);
+	// dodanie load and save
+	public Config config = new Config(this);
+	
 	// dodanie  watku
 	public Thread gameThread;
 	//dodanie gracza
@@ -92,7 +97,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int pauseState = 2;
 	public final int dialogueState = 3;
 	public final int characterState = 4;
-	
+	public final int optionState = 5;
 	
 
 	public GamePanel() {
@@ -123,8 +128,11 @@ public class GamePanel extends JPanel implements Runnable {
 		tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_RGB);
 		g2 = (Graphics2D)tempScreen.getGraphics();
 		
-		// wywolanie metody do pelnego ekranu
-		//setFullScreen();
+		// wywolanie metody do pelnego ekranu	
+		if(fullScrenOn == true) {
+			setFullScreen();
+		}
+		
 		
 	}
 

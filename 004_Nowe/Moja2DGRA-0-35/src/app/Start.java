@@ -9,7 +9,7 @@ public class Start {
 	public static JFrame windows;
 	
 	public static void main(String[] args) {
-		// CONFIG
+		// LOAD AND SAVE
 		System.out.println("Moja 2D Gra-wersja-0-35 epizod 36");
 		
 		windows = new JFrame();
@@ -20,6 +20,11 @@ public class Start {
 		
 		GamePanel gamePanel =  new GamePanel();
 		windows.add(gamePanel);
+		
+		gamePanel.config.loadConfig();
+		if(gamePanel.fullScrenOn == true) {
+			windows.setUndecorated(true);
+		}
 		
 		windows.pack();
 		gamePanel.setupGame();
