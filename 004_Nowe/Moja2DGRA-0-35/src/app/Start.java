@@ -10,7 +10,7 @@ public class Start {
 	
 	public static void main(String[] args) {
 		// OPTIONS STATE
-		System.out.println("Moja 2D Gra-wersja-0-34 epizod 35");
+		System.out.println("Moja 2D Gra-wersja-0-35 epizod 36");
 		
 		windows = new JFrame();
 		windows.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -227,6 +227,9 @@ public class KeyHandler implements KeyListener {
 		case 0:
 			maxComandNum = 5;
 			break;
+		case 3:
+			maxComandNum = 1;
+			break;
 		}
 
 		if (code == KeyEvent.VK_W) {
