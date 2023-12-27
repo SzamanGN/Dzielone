@@ -1,5 +1,6 @@
 package app.sterowanie;
 
+import java.awt.RenderingHints.Key;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -43,6 +44,10 @@ public class KeyHandler implements KeyListener {
 		// CHARACTER STATE
 		else if (gp.gameState == gp.characterState) {
 			characterState(code);
+		}
+		// OPTIONS STATE
+		else if (gp.gameState == gp.optionState) {
+			optionsState(code);
 		}
 	}
 
@@ -95,7 +100,7 @@ public class KeyHandler implements KeyListener {
 				if (gp.ui.commandNum == 0) {
 					System.out.println("Do sam fighter specific stuff!");
 					gp.gameState = gp.playState;
-					// gp.playMusic(0);
+					 gp.playMusic(0);
 				}
 				if (gp.ui.commandNum == 1) {
 					System.out.println("Do sam thief specific stuff!");
@@ -139,9 +144,13 @@ public class KeyHandler implements KeyListener {
 		if (code == KeyEvent.VK_ENTER) {
 			entertPressed = true;
 		}
-		
+
 		if (code == KeyEvent.VK_F) {
 			shotKeyPressed = true;
+		}
+
+		if (code == KeyEvent.VK_ESCAPE) {
+			gp.gameState = gp.optionState;
 		}
 
 		// debug
@@ -186,7 +195,7 @@ public class KeyHandler implements KeyListener {
 		}
 
 		if (code == KeyEvent.VK_S) {
-			if (gp.ui.slotRow != 3) { 
+			if (gp.ui.slotRow != 3) {
 				gp.ui.slotRow++;
 				gp.playSE(9);
 			}
@@ -199,11 +208,72 @@ public class KeyHandler implements KeyListener {
 			}
 		}
 		// dodanie wybrania ewkipunku
-		if(code == KeyEvent.VK_ENTER) {
+		if (code == KeyEvent.VK_ENTER) {
 			gp.player.selectItem();
 		}
-		
-		
+
+	}
+
+	public void optionsState(int code) {
+		if (code == KeyEvent.VK_ESCAPE) {
+			gp.gameState = gp.playState;
+		}
+		if (code == KeyEvent.VK_ENTER) {
+			entertPressed = true;
+		}
+
+		int maxComandNum = 0;
+		switch (gp.ui.subState) {
+		case 0:
+			maxComandNum = 5;
+			break;
+		}
+
+		if (code == KeyEvent.VK_W) {
+			gp.ui.commandNum--;
+			gp.playSE(9);
+			if (gp.ui.commandNum < 0) {
+				gp.ui.commandNum = maxComandNum;
+			}
+		}
+
+		if (code == KeyEvent.VK_S) {
+			gp.ui.commandNum++;
+			gp.playSE(9);
+			if (gp.ui.commandNum > maxComandNum) {
+				gp.ui.commandNum = 0;
+			}
+		}
+
+		if (code == KeyEvent.VK_A) {
+			if(gp.ui.subState == 0) {
+				if(gp.ui.commandNum == 1 && gp.music.volumeScale > 0) {
+					gp.music.volumeScale--;
+					gp.music.chceckVolume();
+					gp.playMusic(9);
+				}
+				if(gp.ui.commandNum == 2 && gp.se.volumeScale > 0) {
+					gp.se.volumeScale--;
+					gp.playMusic(9);
+				}
+				
+			}
+		}
+
+		if (code == KeyEvent.VK_D) {
+			if(gp.ui.subState == 0) {
+				if(gp.ui.commandNum == 1 && gp.music.volumeScale < 5) {
+					gp.music.volumeScale++;
+					gp.music.chceckVolume();
+					gp.playMusic(9);
+				}
+				if(gp.ui.commandNum == 2 && gp.se.volumeScale < 5) {
+					gp.se.volumeScale++;
+					gp.playMusic(9);
+				}
+			}
+		}
+
 	}
 
 	@Override
