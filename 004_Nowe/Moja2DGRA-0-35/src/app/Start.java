@@ -9,7 +9,7 @@ public class Start {
 	public static JFrame windows;
 	
 	public static void main(String[] args) {
-		// OPTIONS STATE
+		// CONFIG
 		System.out.println("Moja 2D Gra-wersja-0-35 epizod 36");
 		
 		windows = new JFrame();
