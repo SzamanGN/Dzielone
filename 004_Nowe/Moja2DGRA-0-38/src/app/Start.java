@@ -9,7 +9,7 @@ public class Start {
 	public static JFrame windows;
 	
 	public static void main(String[] args) {
-		// 
+		// TRADE SYSTEM
 		System.out.println("Moja 2D Gra-wersja-0-38 epizod 39");
 		
 		windows = new JFrame();
