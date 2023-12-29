@@ -9,7 +9,7 @@ public class Start {
 	public static JFrame windows;
 	
 	public static void main(String[] args) {
-		// GAME OVER 
+		// TRANSITION BETWEEN MAPS
 		System.out.println("Moja 2D Gra-wersja-0-37 epizod 38");
 		
 		windows = new JFrame();
