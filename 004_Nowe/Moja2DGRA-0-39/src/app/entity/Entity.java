@@ -38,6 +38,7 @@ public class Entity {
 	public boolean alive = true;
 	public boolean dying = false;
 	public boolean hpBarOn = false;
+	public boolean onPath = false;
 
 	// COUNTER
 	public int spriteCounter = 0;
@@ -48,7 +49,7 @@ public class Entity {
 	public int hpBarCounter = 0;
 
 	// CHARACTER ATTRIBUTES
-	
+
 	public String name;
 	public int speed;
 	public int maxLife;
@@ -79,7 +80,7 @@ public class Entity {
 	public String description = "";
 	public int useCost;
 	public int price;
-	
+
 	// TYPE
 	public int type; // 0 player, 1 NPC, 2 = Monster
 	public final int type_player = 0;
@@ -90,7 +91,6 @@ public class Entity {
 	public final int type_shield = 5;
 	public final int type_consumable = 6;
 	public final int type_pickupOnly = 7;
-	
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -127,19 +127,19 @@ public class Entity {
 			break;
 		}
 	}
-	
+
 	public void use(Entity entity) {
-		
+
 	}
-	
+
 	public void checkDrop() {
-		
+
 	}
-	
+
 	public void dropItem(Entity droppedItem) {
-		
-		for(int i = 0; i < gp.obj[1].length; i++) {
-			if(gp.obj[gp.currentMap][i] == null) {
+
+		for (int i = 0; i < gp.obj[1].length; i++) {
+			if (gp.obj[gp.currentMap][i] == null) {
 				gp.obj[gp.currentMap][i] = droppedItem;
 				gp.obj[gp.currentMap][i].worldX = worldX; // this is a dead monster X
 				gp.obj[gp.currentMap][i].worldY = worldY;
@@ -147,7 +147,7 @@ public class Entity {
 			}
 		}
 	}
-	
+
 	public Color getParticleColor() {
 		Color color = null;
 		return color;
@@ -157,23 +157,23 @@ public class Entity {
 		int size = 0;
 		return size;
 	}
-	
+
 	public int getParticleSpeed() {
 		int speed = 0;
 		return speed;
 	}
-	
+
 	public int getParticleMaxLIfe() {
 		int maxLife = 0;
 		return maxLife;
 	}
-	
+
 	public void generateParticle(Entity generator, Entity targe) {
 		Color color = generator.getParticleColor();
 		int size = generator.getParticleSize();
 		int speed = generator.getParticleSpeed();
 		int maxLife = generator.getParticleMaxLIfe();
-		
+
 		Particle p1 = new Particle(gp, targe, color, size, speed, maxLife, -2, -1);
 		gp.particleList.add(p1);
 		Particle p2 = new Particle(gp, targe, color, size, speed, maxLife, 2, -1);
@@ -185,8 +185,7 @@ public class Entity {
 
 	}
 
-	public void update() {
-		setAction();
+	public void checkCollision() {
 		collisionOn = false;
 		gp.colChecker.checkTile(this);
 		gp.colChecker.checkObject(this, false);
@@ -199,6 +198,11 @@ public class Entity {
 		if (this.type == 2 && contactPlayer == true) {
 			damagePlayer(attack);
 		}
+	}
+
+	public void update() {
+		setAction();
+		checkCollision();
 
 		// IF COLLISON IS FALSE, PLAYER CANN MOVE
 		if (collisionOn == false) {
@@ -236,16 +240,14 @@ public class Entity {
 				invicibleCounter = 0;
 			}
 		}
-		
+
 		// doanie licznika strzalu aby nie moc strzelac za szybbko
-		if(shotAvailableCounter < 30) {
+		if (shotAvailableCounter < 30) {
 			shotAvailableCounter++;
 		}
-		
-		
-		
+
 	}
-	
+
 	public void damagePlayer(int attack) {
 		if (gp.player.invicible == false) {
 			// we can give damge
@@ -378,7 +380,7 @@ public class Entity {
 			changeAlpha(g2, 0f);
 		}
 		if (dayingCounter > i * 8) {
-			//dying = false;
+			// dying = false;
 			alive = false;
 		}
 	}
@@ -400,5 +402,78 @@ public class Entity {
 			e.printStackTrace();
 		}
 		return image;
+	}
+
+	public void serachPath(int goalCol, int goalRow) {
+
+		int startCol = (worldX + solidArea.x) / gp.tileSize;
+		int startRow = (worldY + solidArea.y) / gp.tileSize;
+
+		gp.pFineder.setNodes(startCol, startRow, goalCol, goalRow, this);
+
+		if (gp.pFineder.search() == true) {
+
+			// next worldX and wolrdY
+			int nextX = gp.pFineder.pathList.get(0).col * gp.tileSize;
+			int nextY = gp.pFineder.pathList.get(0).row * gp.tileSize;
+			// entity solidarea position
+			int enLeftX = worldX + solidArea.x;
+			int enRightX = worldX + solidArea.x + solidArea.width;
+			int enTopY = worldY + solidArea.y;
+			int enBottomY = worldY + solidArea.y + solidArea.height;
+
+			if (enTopY > nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
+				direction = "up";
+			} 
+			else if (enTopY < nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
+				direction = "down";
+			}
+			else if (enTopY >= nextY && enBottomY < nextY + gp.tileSize) {
+				// left or right
+				if (enLeftX > nextX) {
+					direction = "left";
+				}
+				if (enLeftX < nextX) {
+					direction = "right";
+				}
+			} 
+			else if (enTopY > nextY && enLeftX > nextX) {
+				// up or left
+				direction = "up";
+				checkCollision();
+				if (collisionOn == true) {
+					direction = "left";
+				}
+			} 
+			else if (enTopY > nextY && enLeftX < nextX) {
+				// up or right
+				direction = "up";
+				if (collisionOn == true) {
+					direction = "right";
+				}
+			} 
+			else if (enTopY < nextY && enLeftX > nextX) {
+				// down or left
+				direction = "down";
+				checkCollision();
+				if (collisionOn == true) {
+					direction = "left";
+				}
+			} 
+			else if (enTopY < nextY && enLeftX < nextX) {
+				// down or right
+				direction = "down";
+				checkCollision();
+				if (collisionOn == true) {
+					direction = "right";
+				} 
+			}
+			// if reach the goal stop search
+			int nextCol = gp.pFineder.pathList.get(0).col;
+			int nextRow = gp.pFineder.pathList.get(0).row;
+			if(nextCol == goalCol && nextRow == goalRow) {
+				onPath = false;
+			}
+		}
 	}
 }

@@ -9,7 +9,7 @@ public class Start {
 	public static JFrame windows;
 	
 	public static void main(String[] args) {
-		// TRADE SYSTEM
+		// PATH FINDERE AND/ NPC FALLOW THE PLAYER AGGRO MONSTER
 		System.out.println("Moja 2D Gra-wersja-0-39 epizod 40");
 		
 		windows = new JFrame();

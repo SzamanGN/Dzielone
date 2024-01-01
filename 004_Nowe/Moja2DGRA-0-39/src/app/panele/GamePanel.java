@@ -14,6 +14,7 @@ import java.util.Comparator;
 import javax.swing.JPanel;
 
 import app.Start;
+import app.ai.PathFinder;
 import app.entity.Entity;
 import app.entity.Player;
 import app.monster.MON_GreenSlime;
@@ -45,7 +46,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int maxWorldCol = 50;
 	public final int maxWorldRow = 50;
 	public final int maxMap = 10;
-	public int currentMap = 1;
+	public int currentMap = 0;
 	
 	
 	// FOR FULL SCREEN
@@ -74,7 +75,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public EventHandler eHandler = new EventHandler(this);
 	// dodanie load and save
 	public Config config = new Config(this);
-	
+	// daodanie path finder 
+	public PathFinder pFineder = new PathFinder(this);
 	// dodanie  watku
 	public Thread gameThread;
 	//dodanie gracza
