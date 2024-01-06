@@ -38,7 +38,7 @@ public class Entity {
 	public boolean alive = true;
 	public boolean dying = false;
 	public boolean hpBarOn = false;
-	public boolean onPath = false;
+	public boolean onPath = false; // sprawdzone 
 
 	// COUNTER
 	public int spriteCounter = 0;
@@ -433,7 +433,7 @@ public class Entity {
 				if (enLeftX > nextX) {
 					direction = "left";
 				}
-				if (enLeftX < nextX) {
+				 if (enLeftX < nextX) {
 					direction = "right";
 				}
 			} 

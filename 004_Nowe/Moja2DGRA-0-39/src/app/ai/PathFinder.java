@@ -1,4 +1,4 @@
-package app.ai;
+ package app.ai;
 
 import java.util.ArrayList;
 
@@ -130,22 +130,22 @@ public class PathFinder {
 			currentNode.checked = true;
 			openList.remove(currentNode);
 			
-			//open teh Up the node
+			//Open the Up the node
 			if(row - 1 >= 0) {
 				openNode(node[col][row - 1]);
 			}
 			
-			//open teh left the node
+			//open the left the node
 			if(col - 1 >= 0) {
 				openNode(node[col - 1][row]);
 			}
 			
-			//open teh Down the node
+			//open the Down the node
 			if(row + 1 < gp.maxWorldRow) {
 				openNode(node[col][row + 1]);
 			}
 			
-			//open teh Down the node
+			//open the Down the node
 			if(col + 1 < gp.maxWorldCol) {
 				openNode(node[col + 1][row]);
 			}	
@@ -154,8 +154,7 @@ public class PathFinder {
 			int bestNodeIndex = 0;
 			int bestNodefCost = 999;
 			
-			for(int i = 0; i < openList.size(); i++) {
-				
+			for(int i = 0; i < openList.size(); i++) {		
 				// check if this nodes f cost is better
 				if(openList.get(i).fCost < bestNodefCost) {
 					bestNodeIndex = i;
