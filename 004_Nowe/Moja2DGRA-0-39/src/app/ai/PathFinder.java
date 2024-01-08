@@ -1,4 +1,4 @@
-package app.ai;
+ package app.ai;
 
 import java.util.ArrayList;
 
@@ -145,7 +145,7 @@ public class PathFinder {
 				openNode(node[col][row + 1]);
 			}
 			
-			//open teh Down the node
+			//open teh Right the node
 			if(col + 1 < gp.maxWorldCol) {
 				openNode(node[col + 1][row]);
 			}	
