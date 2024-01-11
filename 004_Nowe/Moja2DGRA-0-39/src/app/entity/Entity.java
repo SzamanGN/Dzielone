@@ -409,13 +409,13 @@ public class Entity {
 		int startCol = (worldX + solidArea.x) / gp.tileSize;
 		int startRow = (worldY + solidArea.y) / gp.tileSize;
 
-		gp.pFineder.setNodes(startCol, startRow, goalCol, goalRow, this);
+		gp.pFinder.setNodes(startCol, startRow, goalCol, goalRow, this);
 
-		if (gp.pFineder.search() == true) {
+		if (gp.pFinder.search() == true) {
 
 			// next worldX and wolrdY
-			int nextX = gp.pFineder.pathList.get(0).col * gp.tileSize;
-			int nextY = gp.pFineder.pathList.get(0).row * gp.tileSize;
+			int nextX = gp.pFinder.pathList.get(0).col * gp.tileSize;
+			int nextY = gp.pFinder.pathList.get(0).row * gp.tileSize;
 			// entity solidarea position
 			int enLeftX = worldX + solidArea.x;
 			int enRightX = worldX + solidArea.x + solidArea.width;
@@ -469,8 +469,8 @@ public class Entity {
 				} 
 			}
 			// if reach the goal stop search
-			int nextCol = gp.pFineder.pathList.get(0).col;
-			int nextRow = gp.pFineder.pathList.get(0).row;
+			int nextCol = gp.pFinder.pathList.get(0).col;
+			int nextRow = gp.pFinder.pathList.get(0).row;
 			if(nextCol == goalCol && nextRow == goalRow) {
 				onPath = false;
 			}
