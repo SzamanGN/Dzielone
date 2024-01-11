@@ -54,37 +54,52 @@ public class MON_GreenSlime extends Entity {
 	}
 
 	public void setAction() {
-		actionLockCounter++;
-
-		if (actionLockCounter == 120) {
-			Random random = new Random();
-			int i = random.nextInt(100) + 1; // pick up o number from 1 to 100
-
-			if (i <= 25) {
-				direction = "up";
+if(onPath == true) {
+			
+//			int goalCol = 12;
+//			int goalRow = 9;
+			
+		int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
+		int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
+			
+			serachPath(goalCol, goalRow);
+			
+			// dodanie ataku kamieniem
+			int i = new Random().nextInt(200) + 1;
+			if(i > 197 && projectile.alive == false && shotAvailableCounter == 30) {
+				projectile.set(worldX, worldY, direction, alive, this);
+				gp.projectileList.add(projectile);
+				shotAvailableCounter = 0;
 			}
-
-			if (i > 25 && i <= 50) {
-				direction = "down";
-			}
-
-			if (i > 50 && i <= 75) {
-				direction = "left";
-			}
-
-			if (i > 75 && i <= 100) {
-				direction = "right";
-			}
-
-			actionLockCounter = 0;
+			
+		} else {
+			
+			actionLockCounter++;
+			
+			if(actionLockCounter == 120) {
+				Random random =  new Random();
+				int i =  random.nextInt(100) + 1; // pick up o number from 1 to 100
+				
+				if (i <= 25) {
+					direction = "up";
+				}
+				
+				if (i > 25 && i <= 50) {
+					direction = "down";
+				}
+				
+				if (i > 50 && i <= 75) {
+					direction = "left";
+				}
+				
+				if (i > 75 && i <= 100) {
+					direction = "right";
+				}
+				
+				actionLockCounter = 0;
+			}	
 		}
-		// dodanie ataku kamieniem
-		int i = new Random().nextInt(100) + 1;
-		if(i > 99 && projectile.alive == false && shotAvailableCounter == 30) {
-			projectile.set(worldX, worldY, direction, alive, this);
-			gp.projectileList.add(projectile);
-			shotAvailableCounter = 0;
-		}
+		
 	}
 
 	public void damageReaction() {

@@ -469,11 +469,11 @@ public class Entity {
 				} 
 			}
 			// if reach the goal stop search
-			int nextCol = gp.pFinder.pathList.get(0).col;
-			int nextRow = gp.pFinder.pathList.get(0).row;
-			if(nextCol == goalCol && nextRow == goalRow) {
-				onPath = false;
-			}
+//			int nextCol = gp.pFinder.pathList.get(0).col;
+//			int nextRow = gp.pFinder.pathList.get(0).row;
+//			if(nextCol == goalCol && nextRow == goalRow) {
+//				onPath = false;
+//			}
 		}
 	}
 }
