@@ -28,8 +28,7 @@ public class MON_GreenSlime extends Entity {
 		exp = 2;
 		// dodanie rzutu kamieniem
 		projectile = new OBJ_Rock(gp);
-		
-		
+
 		// ustawnie wymiarow solid
 		solidArea.x = 3;
 		solidArea.y = 18;
@@ -52,59 +51,101 @@ public class MON_GreenSlime extends Entity {
 		right1 = setup("/monster/greenslime_down_1", gp.tileSize, gp.tileSize);
 		right2 = setup("/monster/greenslime_down_2", gp.tileSize, gp.tileSize);
 	}
+	
+	public void update() {
+		super.update();
+		
+		int xDistance = Math.abs(worldX - gp.player.worldX);
+		int yDistance = Math.abs(worldY - gp.player.worldY);
+		int tileDistanece = (xDistance + yDistance) / gp.tileSize;
+		
+		// jesli jesetes bliko 5 plytek potwor atakuje 
+		if(onPath == false && tileDistanece < 5) { 
+			
+			int r = new Random().nextInt(100) + 1;
+			if(r > 50) {
+				onPath = true;
+			}	
+		}
+		
+//		if(onPath == true && tileDistanece > 20) {
+//			onPath = false;
+//		}
+		
+	}
 
 	public void setAction() {
-		actionLockCounter++;
 
-		if (actionLockCounter == 120) {
-			Random random = new Random();
-			int i = random.nextInt(100) + 1; // pick up o number from 1 to 100
+		if (onPath == true) {
 
-			if (i <= 25) {
-				direction = "up";
+//			int goalCol = 12;
+//			int goalRow = 9;
+
+			int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
+			int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
+
+			serachPath(goalCol, goalRow);
+			
+			// dodanie 2 kondycji jak gracz jest blisko 
+			
+
+			// dodanie ataku kamieniem
+			int i = new Random().nextInt(200) + 1;
+			if (i > 197 && projectile.alive == false && shotAvailableCounter == 30) {
+				projectile.set(worldX, worldY, direction, alive, this);
+				gp.projectileList.add(projectile);
+				shotAvailableCounter = 0;
 			}
 
-			if (i > 25 && i <= 50) {
-				direction = "down";
-			}
+		} else {
 
-			if (i > 50 && i <= 75) {
-				direction = "left";
-			}
+			actionLockCounter++;
 
-			if (i > 75 && i <= 100) {
-				direction = "right";
-			}
+			if (actionLockCounter == 120) {
+				Random random = new Random();
+				int i = random.nextInt(100) + 1; // pick up o number from 1 to 100
 
-			actionLockCounter = 0;
+				if (i <= 25) {
+					direction = "up";
+				}
+
+				if (i > 25 && i <= 50) {
+					direction = "down";
+				}
+
+				if (i > 50 && i <= 75) {
+					direction = "left";
+				}
+
+				if (i > 75 && i <= 100) {
+					direction = "right";
+				}
+
+				actionLockCounter = 0;
+			}
 		}
-		// dodanie ataku kamieniem
-		int i = new Random().nextInt(100) + 1;
-		if(i > 99 && projectile.alive == false && shotAvailableCounter == 30) {
-			projectile.set(worldX, worldY, direction, alive, this);
-			gp.projectileList.add(projectile);
-			shotAvailableCounter = 0;
-		}
+
 	}
 
 	public void damageReaction() {
 		actionLockCounter = 0;
-		direction = gp.player.direction;	
+		// direction = gp.player.direction;  // zmieniami ze by po zatakowaniu sledzil gracza a nie uciekal
+		onPath = true;
 	}
-	
+
 	public void checkDrop() {
 		// CAST DIE
 		int i = new Random().nextInt(100) + 1;
 		// SET THE MONSTER DROP
-		if(i < 50) {
+		if (i < 50) {
 			dropItem(new OBJ_Coin_Bronze(gp));
-		}	
-		if(i >= 50 && i < 75) {
+		}
+		if (i >= 50 && i < 75) {
 			dropItem(new OBJ_Heart(gp));
 		}
-		
-		if(i >= 75 && i < 100) {
+
+		if (i >= 75 && i < 100) {
 			dropItem(new OBJ_ManaCrystal(gp));
 		}
-	}	
+	}
 }

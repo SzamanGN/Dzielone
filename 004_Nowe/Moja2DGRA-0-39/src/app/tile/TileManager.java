@@ -174,16 +174,15 @@ public class TileManager {
 			}
 		}
 		
-		if(drawPath == true) {
+		if(drawPath = true) {
 			g2.setColor(new Color(255, 0, 0, 70));
-			
-			for(int i = 0; i < gp.pFineder.pathList.size(); i++) {
+			for(int i = 0; i < gp.pFinder.pathList.size(); i++) {
 				
-				int worldX = gp.pFineder.pathList.get(i).col * gp.tileSize;
-				int worldY = gp.pFineder.pathList.get(i).row * gp.tileSize;
+				int worldX = gp.pFinder.pathList.get(i).col * gp.tileSize;
+				int worldY = gp.pFinder.pathList.get(i).row * gp.tileSize;
 				int screenX = worldX - gp.player.worldX + gp.player.screenX;
 				int screenY = worldY - gp.player.worldY + gp.player.screenY;
-				
+			
 				g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);
 			}
 		}

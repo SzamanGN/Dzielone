@@ -76,7 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
 	// dodanie load and save
 	public Config config = new Config(this);
 	// daodanie path finder 
-	public PathFinder pFineder = new PathFinder(this);
+	public PathFinder pFinder = new PathFinder(this);
 	// dodanie  watku
 	public Thread gameThread;
 	//dodanie gracza

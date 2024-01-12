@@ -130,22 +130,22 @@ public class PathFinder {
 			currentNode.checked = true;
 			openList.remove(currentNode);
 			
-			//Open the Up the node
+			//open teh Up the node
 			if(row - 1 >= 0) {
 				openNode(node[col][row - 1]);
 			}
 			
-			//open the left the node
+			//open teh left the node
 			if(col - 1 >= 0) {
 				openNode(node[col - 1][row]);
 			}
 			
-			//open the Down the node
+			//open teh Down the node
 			if(row + 1 < gp.maxWorldRow) {
 				openNode(node[col][row + 1]);
 			}
 			
-			//open the Down the node
+			//open teh Right the node
 			if(col + 1 < gp.maxWorldCol) {
 				openNode(node[col + 1][row]);
 			}	
@@ -154,7 +154,8 @@ public class PathFinder {
 			int bestNodeIndex = 0;
 			int bestNodefCost = 999;
 			
-			for(int i = 0; i < openList.size(); i++) {		
+			for(int i = 0; i < openList.size(); i++) {
+				
 				// check if this nodes f cost is better
 				if(openList.get(i).fCost < bestNodefCost) {
 					bestNodeIndex = i;
